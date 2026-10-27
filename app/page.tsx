@@ -477,8 +477,7 @@ export default function Home() {
                 />
               </h2>
               <p className="txt anime-fade-up delay3 sp-none">
-                Your trusted partner in global procurement &amp; precision manufacturing.<br className="sp-none" />
-                Delivering 99% custom-engineered solutions with guaranteed quality.
+                Your trusted partner in global procurement &amp; precision manufacturing. Delivering 99% custom-engineered solutions with guaranteed quality.
               </p>
               <div className="btn anime-fade-up delay3 sp-none">
                 <a
@@ -559,7 +558,7 @@ export default function Home() {
             <div className="inner">
               <h4 className="sub-ttl anime-fade-up">OUR MISSION</h4>
               <h3 className="ttl ttl-02 txt-ctr anime-fade-up delay1">
-                <span className="jp font-en block">
+                <span className="block">
                   &ldquo;Count on SBM GOLD for Every Solution&rdquo;<br />
                   Your Trusted Professional Partner in<br />
                   <span className="txt-lg">Precision Parts</span> &amp; <span className="txt-lg">Procurement</span>.
@@ -1097,7 +1096,7 @@ export default function Home() {
                 </div>
                 <div className="txtarea">
                   <h4 className="ttl font-en">
-                    Custom-Engineered Parts
+                    Custom Parts
                     <span className="arrow"></span>
                   </h4>
                   <div className="txt">
@@ -1119,7 +1118,7 @@ export default function Home() {
                 </div>
                 <div className="txtarea">
                   <h4 className="ttl font-en">
-                    Production Equipment
+                    Equipment
                     <span className="arrow"></span>
                   </h4>
                   <div className="txt">
@@ -1141,7 +1140,7 @@ export default function Home() {
                 </div>
                 <div className="txtarea">
                   <h4 className="ttl font-en">
-                    Specialty Components
+                    Components
                     <span className="arrow"></span>
                   </h4>
                   <div className="txt">

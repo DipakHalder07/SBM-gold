@@ -30,22 +30,61 @@ body {
   font-family: inherit;
 }
 
-/* Haruchika Heading Typography: Bold Plus Jakarta Sans with signature -0.04em letter-spacing */
+/* Typography: Advanced Designer Polish with Plus Jakarta Sans */
 h1, h2, h3, h4, h5, h6,
 .ttl, .ttl-01, .ttl-02, .ttl-03, .ttl-04, .ttl-05, .ttl-06,
-.ttl--row, .catch, [class*="ttl"], [class*="title"],
-.header--nav a, .btn, .cta_contact a, .cta_tel a,
-.num, .num_en, .lead, .nav_item, .header--nav li a {
+.ttl--row, .catch {
   font-family: var(--font-heading) !important;
-  letter-spacing: -0.035em;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.ttl-01 {
+  font-size: 3.5rem;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
   font-weight: 800;
 }
 
+.ttl-02 {
+  font-size: 2.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+/* Eyebrows / Subtitle Labels */
 .sub-ttl, .ttl-01-sub, .subtitle, .subtitle-sm {
   font-family: var(--font-heading) !important;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-  text-transform: uppercase;
+  letter-spacing: 0.12em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.95rem;
+}
+
+/* Navigation & Interactive Elements */
+.header--nav a, .gnav--link, .nav_item a {
+  font-family: var(--font-heading) !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 600 !important;
+}
+
+.btn a, .gnav--contact a, .cta_contact a, .cta_tel a {
+  font-family: var(--font-heading) !important;
+  letter-spacing: 0.05em !important;
+  font-weight: 700 !important;
+}
+
+/* Paragraph & Body Text Spacing */
+body, p, .txt, .desc, .lead, dd, li {
+  letter-spacing: -0.01em !important;
+  line-height: 1.72 !important;
+}
+
+p:not(:last-child) {
+  margin-bottom: 1.15rem;
 }
 
 /* Custom Cursor */
@@ -270,27 +309,40 @@ h1, h2, h3, h4, h5, h6,
   max-width: 150px;
 }
 
-/* --- Hero Section SBM Logo Icon & Haruchika Typography --- */
+/* --- Hero Section SBM Logo Icon & Advanced Typography --- */
 .hero--cont .ttl {
   font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif) !important;
   font-style: normal;
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.0;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.hero--cont .ttl .row-01 {
+  display: block;
+  font-size: 4.125rem;
+  letter-spacing: -0.02em;
+}
+
+.hero--cont .ttl .row-02 {
+  display: block;
+  padding-left: 1.25rem;
+  margin-top: -0.15rem;
 }
 
 .hero--cont .ttl .txt-lg {
+  font-size: 6.25rem;
   font-weight: 800;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
 }
 
 .hero--cont .ttl .hero-icon-img {
-  height: 6rem;
+  height: 5.5rem;
   width: auto;
-  max-width: 8.5rem;
+  max-width: 7.75rem;
   object-fit: contain;
   display: block;
-  margin-top: 1.125rem;
+  margin-top: 1.25rem;
   transition: transform 0.3s ease;
 }
 
@@ -298,14 +350,56 @@ h1, h2, h3, h4, h5, h6,
   transform: scale(1.04);
 }
 
+.hero--cont .txt {
+  max-width: 35rem;
+  font-size: 1.1rem;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+  color: #182e66;
+  margin-top: 1.75rem;
+  font-weight: 500;
+}
+
+.hero--cont .btn {
+  margin-top: 1.75rem;
+}
+
 @media screen and (max-width: 767px) {
+  .hero--cont .ttl .row-01 {
+    font-size: 2.25rem;
+  }
+  .hero--cont .ttl .txt-lg {
+    font-size: 3.25rem;
+  }
   .hero--cont .ttl .hero-icon-img {
-    height: 4.5rem;
-    max-width: 6.5rem;
+    height: 4.25rem;
+    max-width: 6rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1rem;
   }
+  .hero--cont .txt {
+    max-width: 100%;
+    margin-top: 1.25rem;
+  }
+}
+
+/* --- Products Section Single-Line Card Titles with Arrow --- */
+.home_products .cont--wrap .txtarea .ttl {
+  white-space: nowrap !important;
+  font-size: 1.45rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.35rem 1rem !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.4 !important;
+}
+
+.home_products .cont--wrap .txtarea .txt {
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  margin-top: 0.75rem;
 }
 
 /* --- Desktop Navigation --- */

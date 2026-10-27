@@ -1561,7 +1561,7 @@ export default function Home() {
             <h2 className="ttl ttl-01 font-en txt-lft">
               <span className="jp block">CONTACT US</span>
             </h2>
-            <h3 className="ttl-01-sub font-en txt-ctr mgn-btm42">
+            <h3 className="ttl-01-sub font-en txt-lft mgn-btm42">
               <span className="txt">CONTACT</span>
             </h3>
             <p className="txt">

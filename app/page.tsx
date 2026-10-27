@@ -459,22 +459,20 @@ export default function Home() {
             </span>
 
             <div className="cont--inner">
+              <p className="hero-eyebrow anime-fade-lft">
+                Precision Parts &amp; Procurement
+              </p>
               <h2 className="ttl">
                 <span className="ttl--row">
                   <span className="row-01 anime-fade-lft">
                     The Optimal
                   </span>
                   <span className="row-02 anime-fade-lft delay1">
-                    <span className="txt-lg">Solution</span>
+                    <span className="txt-lg">
+                      Solution<span className="ttl-dot">.</span>
+                    </span>
                   </span>
                 </span>
-                <img
-                  src="/images/logo/sbm-gold-icon.png"
-                  width="140"
-                  height="124"
-                  className="hero-icon-img anime-fade-lft delay2"
-                  alt="SBM GOLD"
-                />
               </h2>
               <p className="txt anime-fade-up delay3 sp-none">
                 Your trusted partner in global procurement &amp; precision manufacturing. Delivering 99% custom-engineered solutions with guaranteed quality.

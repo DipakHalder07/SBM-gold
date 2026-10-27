@@ -392,49 +392,69 @@ body footer .footer--tel {
   max-width: 150px;
 }
 
-/* --- Hero Section SBM Logo Icon & Advanced Typography --- */
-.hero--cont .ttl {
-  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif) !important;
-  font-style: normal;
+/* --- Hero Section Typography ---
+   The theme's stepped two-row title suits Japanese; English reads better
+   flush-left with a small eyebrow above and a tight, heavy headline. */
+body .hero--cont .hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--clr-secondary-default);
+}
+
+body .hero--cont .hero-eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+body .hero--cont .ttl {
+  font-family: var(--font-heading);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
+  letter-spacing: -0.035em;
+  line-height: 1;
 }
 
-.hero--cont .ttl .row-01 {
+body .hero--cont .ttl .row-01 {
   display: block;
-  font-size: 4.125rem;
-  letter-spacing: -0.02em;
-}
-
-.hero--cont .ttl .row-02 {
-  display: block;
-  padding-left: 1.25rem;
-  margin-top: -0.15rem;
-}
-
-.hero--cont .ttl .txt-lg {
-  font-size: 6.25rem;
-  font-weight: 800;
+  font-size: clamp(36px, 3.75vw, 64px);
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
-.hero--cont .ttl .hero-icon-img {
-  height: 5.5rem;
-  width: auto;
-  max-width: 7.75rem;
-  object-fit: contain;
+body .hero--cont .ttl .row-02 {
   display: block;
-  margin-top: 1.25rem;
-  transition: transform 0.3s ease;
+  padding-left: 0;
+  margin-top: 0.1em;
 }
 
-.hero--cont .ttl .hero-icon-img:hover {
-  transform: scale(1.04);
+body .hero--cont .ttl .txt-lg {
+  font-size: clamp(56px, 6.25vw, 108px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+body .hero--cont .ttl .ttl-dot {
+  color: var(--clr-secondary-default);
+}
+
+/* Soft halo in the hero background colour keeps copy legible where the
+   diagonal video edge passes behind it */
+body .hero--cont .hero-eyebrow,
+body .hero--cont .txt {
+  text-shadow: 0 0 12px rgba(241, 241, 243, 0.95), 0 0 2px rgba(241, 241, 243, 0.9);
 }
 
 .hero--cont .txt {
-  max-width: 31rem;
+  max-width: 30rem;
   font-size: var(--fs-lead);
   line-height: 1.7;
   letter-spacing: var(--ls-body);
@@ -448,18 +468,18 @@ body footer .footer--tel {
 }
 
 @media screen and (max-width: 767px) {
-  .hero--cont .ttl .row-01 {
-    font-size: 2.25rem;
+  body .hero--cont .hero-eyebrow {
+    justify-content: center;
+    margin-bottom: 0.875rem;
+    font-size: 11px;
+    letter-spacing: 0.14em;
   }
-  .hero--cont .ttl .txt-lg {
-    font-size: 3.25rem;
+  body .hero--cont .ttl .row-01 {
+    font-size: 30px;
   }
-  .hero--cont .ttl .hero-icon-img {
-    height: 4.25rem;
-    max-width: 6rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1rem;
+  body .hero--cont .ttl .txt-lg {
+    font-size: 30px;
+    letter-spacing: -0.035em;
   }
   .hero--cont .txt {
     max-width: 100%;

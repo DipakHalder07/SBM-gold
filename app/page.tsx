@@ -197,7 +197,7 @@ export default function Home() {
           {/* Navigation */}
           <nav className={`gnav ${mobileMenuOpen ? "active" : ""}`}>
             <ul className="gnav--menu flex flex-j-ctr">
-              <li className="menu-item menu-item-has-children">
+              <li className={`menu-item menu-item-has-children ${activeSubmenu === "ymd" ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -240,7 +240,7 @@ export default function Home() {
                 ></span>
               </li>
 
-              <li className="menu-item menu-item-has-children">
+              <li className={`menu-item menu-item-has-children ${activeSubmenu === "products" ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -290,7 +290,7 @@ export default function Home() {
                 </a>
               </li>
 
-              <li className="menu-item menu-item-has-children">
+              <li className={`menu-item menu-item-has-children ${activeSubmenu === "company" ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -328,7 +328,7 @@ export default function Home() {
                 ></span>
               </li>
 
-              <li className="menu-item menu-item-has-children">
+              <li className={`menu-item menu-item-has-children ${activeSubmenu === "recruit" ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"

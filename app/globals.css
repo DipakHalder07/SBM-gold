@@ -30,61 +30,144 @@ body {
   font-family: inherit;
 }
 
-/* Typography: Advanced Designer Polish with Plus Jakarta Sans */
-h1, h2, h3, h4, h5, h6,
-.ttl, .ttl-01, .ttl-02, .ttl-03, .ttl-04, .ttl-05, .ttl-06,
-.ttl--row, .catch {
-  font-family: var(--font-heading) !important;
-  font-style: normal;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  font-weight: 700;
+/* ==========================================================================
+   Typography system
+   The theme sizes rem from the viewport (1rem = 12px at 1440px wide), so
+   body copy uses px-based clamp() values to stay readable at every width.
+   The theme stylesheet loads after this file, so rules are prefixed with
+   `body` to win on specificity instead of relying on !important.
+   ========================================================================== */
+:root {
+  --fs-body: clamp(15px, 1.111vw, 17px);   /* 16px @ 1440 */
+  --fs-lead: clamp(16px, 1.25vw, 19px);    /* 18px @ 1440 */
+  --fs-small: clamp(13px, 0.903vw, 14px);  /* 13px @ 1440 */
+  --fs-eyebrow: clamp(13px, 0.972vw, 15px);
+  --lh-body: 1.75;
+  --lh-heading: 1.2;
+  --ls-body: 0.005em;
+  --ls-heading: -0.02em;
+  --ls-caps: 0.02em;
+  --ls-eyebrow: 0.16em;
 }
 
-.ttl-01 {
-  font-size: 3.5rem;
-  letter-spacing: -0.025em;
-  line-height: 1.12;
+/* The theme gives every element `letter-spacing: 0.055em` via `*`, which
+   blocks inheritance and makes spacing uneven. Let text inherit instead. */
+body * {
+  letter-spacing: inherit;
+}
+
+body {
+  font-size: var(--fs-body);
+  font-weight: 500;
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  font-feature-settings: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings */
+body h1, body h2, body h3, body h4, body h5, body h6,
+body .ttl, body .catch {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+}
+
+/* Section titles (ABOUT US, OUR STRENGTHS ...) */
+body .ttl-01 {
   font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: var(--ls-caps);
 }
 
-.ttl-02 {
-  font-size: 2.75rem;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
+body .ttl-02 {
   font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
 }
 
-/* Eyebrows / Subtitle Labels */
-.sub-ttl, .ttl-01-sub, .subtitle, .subtitle-sm {
-  font-family: var(--font-heading) !important;
-  letter-spacing: 0.12em !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  font-size: 0.95rem;
+/* Eyebrow labels under section titles (ABOUT, FEATURE ...) */
+body .ttl-01-sub,
+body .ttl-01-sub .txt {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
 }
 
-/* Navigation & Interactive Elements */
-.header--nav a, .gnav--link, .nav_item a {
-  font-family: var(--font-heading) !important;
-  letter-spacing: 0.02em !important;
-  font-weight: 600 !important;
+body .sub-ttl {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.btn a, .gnav--contact a, .cta_contact a, .cta_tel a {
-  font-family: var(--font-heading) !important;
-  letter-spacing: 0.05em !important;
-  font-weight: 700 !important;
+/* Body copy */
+body p,
+body .txt,
+body dd,
+body dt {
+  line-height: var(--lh-body);
 }
 
-/* Paragraph & Body Text Spacing */
-body, p, .txt, .desc, .lead, dd, li {
-  letter-spacing: -0.01em !important;
-  line-height: 1.72 !important;
+body p.txt,
+body div.txt {
+  font-size: var(--fs-body);
+  font-weight: 500;
 }
 
-p:not(:last-child) {
-  margin-bottom: 1.15rem;
+body p:not(:last-child) {
+  margin-bottom: 1.15em;
+}
+
+/* Justified text leaves rivers of white space in English copy */
+body .home_about .txt,
+body .home_recruit .txtarea .txt,
+body .posts-query01 .post--txt,
+body .posts-query02 .post--txt {
+  text-align: left;
+}
+
+/* Navigation & buttons */
+body .gnav--link,
+body .header--nav a,
+body .nav_item a {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+body .btn a,
+body .gnav--contact a,
+body .cta_contact a,
+body .cta_tel a {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Larger intro copy for Mission and Careers */
+body .home_mission .txt,
+body .home_mission .txt p,
+body .home_recruit .txtarea .txt,
+body .home_recruit .txtarea .txt p {
+  font-size: var(--fs-lead);
+  line-height: 1.8;
+}
+
+/* Keep "FEATURE 03" style numbers on one line beside the heading */
+body .home_feature .ttl .num-decoration {
+  flex-shrink: 0;
+}
+
+body .home_feature .ttl .num {
+  white-space: nowrap;
+}
+
+/* Footer */
+body footer p,
+body footer .footer--tel {
+  font-size: var(--fs-small);
+  line-height: 1.7;
 }
 
 /* Custom Cursor */
@@ -351,10 +434,10 @@ p:not(:last-child) {
 }
 
 .hero--cont .txt {
-  max-width: 35rem;
-  font-size: 1.1rem;
-  line-height: 1.72;
-  letter-spacing: -0.01em;
+  max-width: 31rem;
+  font-size: var(--fs-lead);
+  line-height: 1.7;
+  letter-spacing: var(--ls-body);
   color: #182e66;
   margin-top: 1.75rem;
   font-weight: 500;
@@ -381,6 +464,16 @@ p:not(:last-child) {
   .hero--cont .txt {
     max-width: 100%;
     margin-top: 1.25rem;
+  }
+  /* Theme lays both rows out inline in a flex row, which drops the space */
+  body .hero--cont .ttl--row {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    column-gap: 0.3em;
+  }
+  body .hero--cont .ttl .row-02 {
+    padding-left: 0;
   }
 }
 
@@ -426,7 +519,7 @@ p:not(:last-child) {
 }
 
 .gnav--link {
-  font-family: var(--font-jp), "Montserrat", sans-serif;
+  font-family: var(--font-jp);
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -441,9 +534,9 @@ p:not(:last-child) {
 }
 
 /* Submenu Indicator (+) Icon on Desktop */
-@media screen and (min-width: 1081px) {
+@media print, screen and (min-width: 67.5625em) {
   .gnav--menu > li.menu-item-has-children > .gnav--link {
-    padding-right: 2.85rem;
+    padding-right: 2.875rem;
   }
 
   .gnav--menu > li.menu-item-has-children > .gnav--link::before,
@@ -454,57 +547,76 @@ p:not(:last-child) {
     right: 1.25rem;
     bottom: 0;
     margin: auto;
-    width: 0.85rem;
+    width: 0.9375rem;
     height: 2px;
-    background-color: currentColor;
-    transition: transform 0.35s ease;
+    border-bottom: 2px solid currentColor;
+    transition: transform 0.4s ease-out;
   }
 
   .gnav--menu > li.menu-item-has-children > .gnav--link::after {
     transform: rotate(90deg);
   }
 
-  .gnav--menu > li.menu-item-has-children:hover > .gnav--link::after {
+  .gnav--menu > li.menu-item-has-children:hover > .gnav--link::after,
+  .gnav--menu > li.menu-item-has-children > .gnav--link:hover::after {
     transform: rotate(180deg);
   }
 }
 
-/* --- Submenu Dropdown Card on Desktop --- */
+/* --- Submenu Dropdown Card on Desktop (Pixel-Perfect to e-ymd.com) --- */
 .head_sub_nav--wrap {
   display: block;
+  width: -moz-max-content;
+  width: max-content;
   position: absolute;
-  top: 86%;
   left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  background: #ffffff;
-  min-width: 220px;
-  box-shadow: 0 12px 35px rgba(24, 46, 102, 0.15);
-  border-radius: 8px;
-  padding: 0.85rem 0;
-  z-index: 1010;
+  top: 88%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  padding: 1.5rem 0;
+  box-shadow: 4.9px 4.9px 30px 0 rgba(75, 77, 83, 0.2);
 }
 
-.head_sub_nav--wrap::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  width: 12px;
-  height: 12px;
-  background: #ffffff;
-  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.04);
-}
+@media print, screen and (min-width: 67.5625em) {
+  /* Polygon arrow pointer (exact SVG from e-ymd.com) */
+  .head_sub_nav--wrap::before {
+    content: "";
+    width: 1.375rem;
+    height: 0.75rem;
+    background-image: url("/wp/wp-content/themes/standard_sass/images/common/polygon.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -0.6875rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 
-@media screen and (min-width: 1081px) {
-  .gnav--menu > li:hover .head_sub_nav--wrap {
-    opacity: 1;
+  /* Seamless hover bridge: connects nav link to dropdown so mouse never drops hover */
+  .head_sub_nav--wrap::after {
+    content: "";
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    width: 100%;
+    height: 2rem;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+  }
+
+  .gnav--menu > li:hover .head_sub_nav--wrap,
+  .gnav--menu .menu-item-has-children:hover .head_sub_nav--wrap,
+  .head_sub_nav--wrap.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%);
   }
 }
 
@@ -514,26 +626,48 @@ p:not(:last-child) {
   margin: 0;
 }
 
-.head_sub_nav li a {
-  display: block;
-  padding: 0.7rem 1.8rem;
-  color: #182e66 !important;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 0.2s ease;
+.head_sub_nav li {
   position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.head_sub_nav li a:hover {
-  background-color: #f7f9fb;
-  color: #0d3387 !important;
-  padding-left: 2.15rem;
+.head_sub_nav a,
+.head_sub_nav .gnav--link {
+  display: block !important;
+  height: auto !important;
+  padding: 0.5rem 2.5rem !important;
+  font-family: var(--font-jp) !important;
+  font-size: 1.125rem !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
 }
 
-.head_sub_nav li a:hover[href*="recruit"] {
-  color: #e62320 !important;
+@media print, screen and (min-width: 67.5625em) {
+  .head_sub_nav a:hover,
+  .head_sub_nav .gnav--link:hover {
+    color: #0D3387 !important;
+    background-color: #ffffff !important;
+    padding-left: 2.5rem !important;
+  }
+
+  .head_sub_nav a:hover[href*="recruit"],
+  .head_sub_nav .gnav--link:hover[href*="recruit"],
+  .head_sub_nav a:hover[href$="/recruit/"],
+  .head_sub_nav a:hover[href*="/recruit/"] {
+    color: #E62320 !important;
+    background-color: #ffffff !important;
+    padding-left: 2.5rem !important;
+  }
 }
 
 /* --- Contact CTA Button --- */
@@ -554,7 +688,7 @@ p:not(:last-child) {
   color: #ffffff !important;
   padding: 0.75rem 1.6rem;
   height: 2.85rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-en);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -787,6 +921,7 @@ p:not(:last-child) {
     background: transparent;
     box-shadow: none;
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     padding: 0 0 1rem 1.5rem;
     width: 100%;
@@ -796,21 +931,27 @@ p:not(:last-child) {
     display: block !important;
   }
 
-  .head_sub_nav--wrap::before {
-    display: none;
+  .head_sub_nav--wrap::before,
+  .head_sub_nav--wrap::after {
+    display: none !important;
   }
 
-  .head_sub_nav li a {
+  .head_sub_nav a,
+  .head_sub_nav li a,
+  .head_sub_nav .gnav--link {
     color: rgba(255, 255, 255, 0.8) !important;
-    padding: 0.6rem 0;
-    font-size: 0.95rem;
-    background: transparent;
+    padding: 0.6rem 0 !important;
+    font-size: 0.95rem !important;
+    background: transparent !important;
+    text-align: left !important;
   }
 
-  .head_sub_nav li a:hover {
+  .head_sub_nav a:hover,
+  .head_sub_nav li a:hover,
+  .head_sub_nav .gnav--link:hover {
     color: #ffffff !important;
-    background: transparent;
-    padding-left: 0.5rem;
+    background: transparent !important;
+    padding-left: 0.5rem !important;
   }
 
   /* CTA on Mobile */
@@ -1119,7 +1260,7 @@ p:not(:last-child) {
 /* Column Header with Polygon Slash Accent */
 .fnav--menu .menu-item-has-children > a {
   display: block;
-  font-family: var(--font-jp), "Montserrat", sans-serif;
+  font-family: var(--font-jp);
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -1235,7 +1376,7 @@ p:not(:last-child) {
   gap: 0.85rem;
   padding: 1.15rem 3rem;
   height: 4.8rem;
-  font-family: var(--font-en), "Montserrat", sans-serif;
+  font-family: var(--font-en);
   font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: 0.125em;

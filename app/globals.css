@@ -12,9 +12,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
   height: auto !important;
-  overflow-x: hidden;
+  overflow-x: clip;
   overflow-y: scroll;
 }
 
@@ -403,6 +402,8 @@ body footer .footer--tel {
 }
 
 /* 4. Complete Hide during GSAP Zoom Section (.home_ymd) */
+.home .header.hide,
+.home .header.header-sm.hide,
 .header.hide {
   transform: translateY(-120%) !important;
   opacity: 0 !important;
@@ -1797,5 +1798,82 @@ body .hero--cont .txt {
 
   .footer_btm--rgt {
     display: none;
+  }
+}
+
+/* ==========================================================================
+   SBM GOLD EMBLEM STICKY ZOOM SECTION (.home_ymd)
+   ========================================================================== */
+body .home_ymd .imgarea {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: min(54vw, 62vh);
+  height: auto;
+  aspect-ratio: 2077 / 1830;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .home_ymd .imgarea .ymd-lg-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  object-fit: contain;
+  z-index: 1;
+  display: block;
+}
+
+body .home_ymd .imgarea .ymd-line-red {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  left: -4vw;
+  top: -4vw;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body .home_ymd .imgarea .ymd-line-blue {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  right: -4vw;
+  bottom: -4vw;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body .home_ymd .imgarea .ymd-lg-color {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body .home_ymd .imgarea .ymd-lg-color .red-parts {
+  opacity: 0;
+}
+
+@media screen and (max-width: 767px) {
+  body .home_ymd .imgarea {
+    width: 76vw;
+  }
+  body .home_ymd .imgarea .ymd-line-red {
+    left: -5vw;
+    top: -5vw;
+  }
+  body .home_ymd .imgarea .ymd-line-blue {
+    right: -5vw;
+    bottom: -5vw;
   }
 }

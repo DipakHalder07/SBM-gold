@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2077 1830" width="100%" height="100%">
+  <g id="sbm-icon-colored">
+    <!-- Facet 0: Top Right Orange-Red Ribbon -->
+    <polygon points="1019,1 2075,764 1668,831 769,203" fill="#EB4424" />
+    <!-- Facet 1: Top Left Dark Red Fold -->
+    <polygon points="763,199 1060,408 666,726 361,509" fill="#851A1D" />
+    <!-- Facet 2: Middle Left Orange-Red Ribbon -->
+    <polygon points="359,511 1052,995 811,1190 295,830 253,799" fill="#EB4424" />
+    <!-- Facet 3: Middle Right Dark Red Fold -->
+    <polygon points="1294,641 1832,1018 1687,1342 1009,878" fill="#851A1D" />
+    <!-- Facet 4: Center Gold Accent Connector -->
+    <polygon points="1008,878 1108,948 1053,994 952,924" fill="#C6A028" />
+    <!-- Facet 5: Bottom Left Dark Red Ribbon -->
+    <polygon points="405,1028 1310,1642 1064,1829 0,1114" fill="#851A1D" />
+    <!-- Facet 6: Bottom Right Orange-Red Fold -->
+    <polygon points="1404,1154 1686,1344 1311,1641 1020,1443" fill="#EB4424" />
+  </g>
+</svg>

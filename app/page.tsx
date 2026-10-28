@@ -50,6 +50,10 @@ export default function Home() {
     }
 
     gsap.registerPlugin(ScrollTrigger);
+    if (typeof window !== "undefined") {
+      (window as any).gsap = gsap;
+      (window as any).ScrollTrigger = ScrollTrigger;
+    }
 
     // 1. Custom Cursor tracking
     const cursor = cursorRef.current;
@@ -107,22 +111,19 @@ export default function Home() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // 4. GSAP YMD Sticky Zoom Animation & Header Hide
+    // 4. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
     const moveCont1 = document.querySelector(".ymd-line-red");
     const moveCont2 = document.querySelector(".ymd-line-blue");
     const scaleCont = document.querySelector(".home_ymd--sticky .imgarea");
     const colorCont = document.querySelector(".ymd-lg-color");
-    const redCont = document.querySelector(".ymd-lg-color .red-parts");
+    const redCont = document.querySelectorAll(".ymd-lg-color .red-parts");
     const visibleCont = document.querySelector(".home_ymd--sticky .contarea");
-
-    const vw = (coef: number) => window.innerWidth * (coef / 100);
-    const translateXVal = window.innerWidth > 1200 ? vw(850) : vw(1000);
 
     // Dedicated trigger to ensure header stays hidden throughout entire home_ymd section
     ScrollTrigger.create({
       trigger: ".home_ymd",
-      start: "top 85%",
-      end: "bottom 10%",
+      start: "top 80%",
+      end: "bottom top",
       toggleClass: { targets: ".header", className: "hide" },
     });
 
@@ -142,22 +143,31 @@ export default function Home() {
         endTrigger: ".home_ymd--scrolltarget01",
         end: "center top",
         scrub: true,
+        toggleClass: { targets: ".header", className: "hide" },
       },
     });
 
-    if (moveCont1 && moveCont2 && colorCont && redCont && scaleCont && visibleCont) {
+    if (moveCont1 && moveCont2 && colorCont && redCont.length > 0 && scaleCont && visibleCont) {
       tlYmd
-        .to(moveCont1, { left: 0, top: 0 })
-        .to(moveCont2, { right: 0, bottom: 0 }, "<")
-        .to(colorCont, { opacity: 1 })
-        .to(redCont, { opacity: 1 })
-        .to(scaleCont, { scale: 30, translateX: translateXVal })
-        .to(visibleCont, { opacity: 1 });
+        .to(moveCont1, { left: 0, top: 0, ease: "none" })
+        .to(moveCont2, { right: 0, bottom: 0, ease: "none" }, "<")
+        .to(colorCont, { opacity: 1, ease: "none" })
+        .to(redCont, { opacity: 1, ease: "none" })
+        .to(scaleCont, { scale: 35, transformOrigin: "50% 50%", ease: "none" })
+        .to(visibleCont, { opacity: 1, ease: "none" });
     }
+
+    const refreshST = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refreshST);
+    const timer1 = setTimeout(refreshST, 600);
+    const timer2 = setTimeout(refreshST, 1500);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("load", refreshST);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -1252,116 +1262,89 @@ export default function Home() {
           </div>
         </section>
 
-        {/* YMD ZOOM ANIMATION SECTION */}
+        {/* SBM GOLD EMBLEM ZOOM ANIMATION SECTION */}
         <div className="home_ymd" ref={ymdContainerRef}>
           <div className="home_ymd--sticky">
             <div className="imgarea pos-rel">
               <svg
                 className="ymd-lg-color new img-specif"
-                viewBox="0 0 1716 513"
+                viewBox="0 0 2077 1830"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M203.991 511.838L341.249 305.582V511.838H203.991Z"
-                  fill="#0D3387"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M202.125 512.838L342.249 302.274V512.838H202.125ZM203.991 511.838H341.249V305.582L203.991 511.838Z"
-                  fill="#0D3387"
-                />
-                <path
+                <polygon
                   className="red-parts"
-                  d="M41.3166 511.563L40.8059 512.338H41.7341H203.991H204.259L204.408 512.115L544.356 1.27701L544.873 0.5H543.94H445.232C403.266 0.5 364.129 21.6003 341.064 56.6113L41.3166 511.563Z"
-                  fill="#E62320"
-                  stroke="#E62320"
+                  points="1019,1 2075,764 1668,831 769,203"
+                  fill="#EB4424"
                 />
-                <path
-                  d="M201.042 271.858L276.859 156.765L168.604 0H0.0168457L201.042 271.858Z"
-                  fill="#0D3387"
+                <polygon
+                  points="763,199 1060,408 666,726 361,509"
+                  fill="#851A1D"
                 />
-                <path
-                  d="M1131.62 0H1013.18L856.317 180.988L701.456 2.48122L699.309 0H581V512.838H719.593V213.976L856.317 372.685L993.023 213.976V512.838H1131.62V0Z"
-                  fill="#0D3387"
+                <polygon
+                  className="red-parts"
+                  points="359,511 1052,995 811,1190 295,830 253,799"
+                  fill="#EB4424"
                 />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M1432.56 0H1205.56V512.838H1418.6C1512.61 512.838 1586.35 489.991 1637.58 444.857C1689.07 399.501 1715.13 336.341 1715.13 257.334C1715.15 181.906 1689.49 119.448 1638.84 71.7186C1588.33 24.1057 1518.86 0 1432.56 0ZM1417.88 407.07H1344.13V105.768H1416.46C1467.13 105.768 1506.25 119.325 1532.8 145.928C1559.42 172.546 1572.98 209.722 1572.98 256.598C1572.98 301.869 1559.57 338.609 1533.26 365.937C1507.03 393.178 1468.26 407.07 1417.88 407.07Z"
-                  fill="#0D3387"
+                <polygon
+                  points="1294,641 1832,1018 1687,1342 1009,878"
+                  fill="#851A1D"
+                />
+                <polygon
+                  points="1008,878 1108,948 1053,994 952,924"
+                  fill="#C6A028"
+                />
+                <polygon
+                  points="405,1028 1310,1642 1064,1829 0,1114"
+                  fill="#851A1D"
+                />
+                <polygon
+                  className="red-parts"
+                  points="1404,1154 1686,1344 1311,1641 1020,1443"
+                  fill="#EB4424"
                 />
               </svg>
 
               <svg
                 className="ymd-line-red img-specif"
-                width="1712"
-                height="510"
-                viewBox="0 0 1712 510"
+                viewBox="0 0 2077 1830"
                 fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.5">
-                  <path
-                    d="M1.54919 0.5H166.298L266.503 145.445L192.179 258.06L1.54919 0.5Z"
-                    stroke="#E62320"
-                  />
-                  <path
-                    d="M339.081 509.277H216.755L339.081 325.822V509.277Z"
-                    stroke="#E62320"
-                  />
-                  <path
-                    d="M340.133 56.0786L340.134 56.0778C362.984 21.3087 401.831 0.5 443.367 0.5H541.09L202.057 509.277H41.1647L340.133 56.0786Z"
-                    stroke="#E62320"
-                  />
-                  <path
-                    d="M989.718 209.542L852.436 368.561L715.153 209.542L714.275 208.524V209.869V509.277H578.828V0.5H694.843L696.582 2.48452L696.584 2.48614L852.058 181.486L852.436 181.921L852.813 181.486L1009.89 0.5H1126.04V509.277H990.597V209.869V208.524L989.718 209.542Z"
-                    stroke="#E62320"
-                  />
-                  <path
-                    d="M1633.8 441.737L1633.63 441.887V442.021C1582.75 486.567 1509.52 509.277 1415.9 509.277H1204.51V0.5H1429.8C1515.81 0.5 1584.78 24.4639 1635.01 71.5332C1685.24 118.879 1710.7 177.109 1710.7 255.697C1710.7 334.296 1684.83 396.827 1633.8 441.737ZM1340.09 406.124V406.624H1340.59H1415.23C1465.93 406.624 1505.08 392.714 1531.65 365.09C1558.21 337.484 1571.74 301.902 1571.74 254.889C1571.74 207.883 1558.21 170.406 1531.24 143.468L1531.24 143.467C1504.26 116.657 1464.71 103.019 1413.88 103.019H1340.59H1340.09V103.519V406.124Z"
-                    stroke="#E62320"
-                  />
+                <g opacity="0.6" stroke="#EB4424" strokeWidth="4" strokeLinejoin="round">
+                  <polygon points="1019,1 2075,764 1668,831 769,203" />
+                  <polygon points="763,199 1060,408 666,726 361,509" />
+                  <polygon points="359,511 1052,995 811,1190 295,830 253,799" />
+                  <polygon points="1294,641 1832,1018 1687,1342 1009,878" />
+                  <polygon points="1008,878 1108,948 1053,994 952,924" />
+                  <polygon points="405,1028 1310,1642 1064,1829 0,1114" />
+                  <polygon points="1404,1154 1686,1344 1311,1641 1020,1443" />
                 </g>
               </svg>
 
               <svg
                 className="ymd-line-blue img-specif"
-                width="1712"
-                height="510"
-                viewBox="0 0 1712 510"
+                viewBox="0 0 2077 1830"
                 fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.5">
-                  <path
-                    d="M1.54919 0.5H166.298L266.503 145.445L192.179 258.06L1.54919 0.5Z"
-                    stroke="#0D3387"
-                  />
-                  <path
-                    d="M339.081 509.277H216.755L339.081 325.822V509.277Z"
-                    stroke="#0D3387"
-                  />
-                  <path
-                    d="M340.133 56.0786L340.134 56.0778C362.984 21.3087 401.831 0.5 443.367 0.5H541.09L202.057 509.277H41.1647L340.133 56.0786Z"
-                    stroke="#0D3387"
-                  />
-                  <path
-                    d="M989.718 209.542L852.436 368.561L715.153 209.542L714.275 208.524V209.869V509.277H578.828V0.5H694.843L696.582 2.48452L696.584 2.48614L852.058 181.486L852.436 181.921L852.813 181.486L1009.89 0.5H1126.04V509.277H990.597V209.869V208.524L989.718 209.542Z"
-                    stroke="#0D3387"
-                  />
-                  <path
-                    d="M1633.8 441.737L1633.63 441.887V442.021C1582.75 486.567 1509.52 509.277 1415.9 509.277H1204.51V0.5H1429.8C1515.81 0.5 1584.78 24.4639 1635.01 71.5332C1685.24 118.879 1710.7 177.109 1710.7 255.697C1710.7 334.296 1684.83 396.827 1633.8 441.737ZM1340.09 406.124V406.624H1340.59H1415.23C1465.93 406.624 1505.08 392.714 1531.65 365.09C1558.21 337.484 1571.74 301.902 1571.74 254.889C1571.74 207.883 1558.21 170.406 1531.24 143.468L1531.24 143.467C1504.26 116.657 1464.71 103.019 1413.88 103.019H1340.59H1340.09V103.519V406.124Z"
-                    stroke="#0D3387"
-                  />
+                <g opacity="0.6" stroke="#182E66" strokeWidth="4" strokeLinejoin="round">
+                  <polygon points="1019,1 2075,764 1668,831 769,203" />
+                  <polygon points="763,199 1060,408 666,726 361,509" />
+                  <polygon points="359,511 1052,995 811,1190 295,830 253,799" />
+                  <polygon points="1294,641 1832,1018 1687,1342 1009,878" />
+                  <polygon points="1008,878 1108,948 1053,994 952,924" />
+                  <polygon points="405,1028 1310,1642 1064,1829 0,1114" />
+                  <polygon points="1404,1154 1686,1344 1311,1641 1020,1443" />
                 </g>
               </svg>
 
               <img
-                src="/wp/wp-content/themes/standard_sass/images/top/ymd-img.png"
-                width="1712"
-                height="510"
+                src="/images/logo/sbm-gold-icon-img.png"
+                width="2077"
+                height="1830"
                 className="ymd-lg-img"
-                alt=""
+                alt="SBM GOLD"
               />
             </div>
 

@@ -657,12 +657,11 @@ export default function Home() {
                 <span className="txt">ABOUT</span>
               </h3>
               <h3 className="catch font-en">
-                99% Custom-Made Precision Components!<br />
-                Tailored to your exact specifications,<br />
-                delivering optimal quality and speed.
+                99% Custom-Made Precision.<br />
+                Tailored Quality &amp; Speed.
               </h3>
               <p className="txt">
-                Combining global trading power with dedicated manufacturer capabilities, SBM GOLD operates as your integrated manufacturing partner. Our specialized sales engineers analyze technical drawings, evaluate precision requirements, and deliver optimal procurement with guaranteed quality. From order to processing, assembly, and inspection — your one-stop partner.
+                As an integrated trader and manufacturer, SBM GOLD delivers custom-engineered precision parts — from technical drawing analysis to machining and rigorous QA inspection. Your trusted one-stop partner.
               </p>
               <div className="btn btn-wh">
                 <Link href="#feature">Explore SBM GOLD</Link>

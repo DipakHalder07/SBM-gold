@@ -153,6 +153,7 @@ body .cta_tel a {
 body .home_mission .ttl,
 body .home_mission .ttl .txt-lg {
   line-height: 1.15;
+  word-spacing: 0.08em;
 }
 
 /* Larger intro copy for Mission and Careers */
@@ -162,6 +163,7 @@ body .home_recruit .txtarea .txt,
 body .home_recruit .txtarea .txt p {
   font-size: var(--fs-lead);
   line-height: 1.6;
+  word-spacing: 0.04em;
 }
 
 /* Keep "FEATURE 03" style numbers on one line beside the heading */

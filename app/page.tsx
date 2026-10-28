@@ -1528,7 +1528,7 @@ export default function Home() {
             </div>
             <div className="imgarea">
               <img
-                src="/images/sbm/partner-img.webp"
+                src="/images/sbm/partner-img.webp?v=2"
                 width="808"
                 height="800"
                 alt="Partner with SBM Gold in India"

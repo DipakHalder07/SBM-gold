@@ -1615,23 +1615,6 @@ export default function Home() {
                     <span className="circle"></span>
                   </div>
                 </article>
-
-                <article className="post">
-                  <div className="post--info flex flex-c-wrap flex-a-ctr">
-                    <p className="post--date">2021</p>
-                    <div className="cat_list">
-                      <span className="tag">Milestone</span>
-                    </div>
-                  </div>
-                  <div className="post--txtarea">
-                    <h2 className="post--ttl">
-                      <Link href="#news" className="post--link">
-                        Pioneered 10,000-litre water tanks, delivering our first to Bandapani
-                      </Link>
-                    </h2>
-                    <span className="circle"></span>
-                  </div>
-                </article>
               </div>
             </div>
           </div>

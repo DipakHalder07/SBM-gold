@@ -3,13 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sbmgold.com"),
-  title: "SBM GOLD | Custom Precision Parts & Equipment Procurement",
+  title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
   description:
-    "99% Custom-Made Precision Components. SBM GOLD delivers optimal procurement and engineering solutions across global supply networks with unmatched precision and quality assurance.",
+    "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
   openGraph: {
     title: "SBM GOLD",
     description:
-      "99% Custom-Made Precision Components. SBM GOLD delivers optimal procurement and engineering solutions across global supply networks with unmatched precision and quality assurance.",
+      "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
     url: "https://www.sbmgold.com/",
     siteName: "SBM GOLD",
     images: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         alt: "SBM GOLD",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
 };

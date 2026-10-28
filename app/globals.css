@@ -1917,3 +1917,26 @@ body .home_company::after {
 body .home_recruit::after {
   background-image: linear-gradient(to bottom, #F04934, #F1F1F3);
 }
+
+/* hero still photo replaces the old video; a slow push-in keeps it from feeling static */
+.hero--movie .hero-photo {
+  animation: hero-photo-zoom 18s ease-out both;
+}
+@keyframes hero-photo-zoom {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+
+/* the brochure photos are bright, so card text needs a dark wash behind it */
+body .home_quality .cont--wrap .cont--bg::after,
+body .home_company .cont--wrap .cont--bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(40, 10, 8, 0.72) 0%, rgba(40, 10, 8, 0.35) 55%, rgba(40, 10, 8, 0.15) 100%);
+}
+body .home_company .cont--wrap.cont-04 .cont--bg::after {
+  background: linear-gradient(to right, rgba(40, 10, 8, 0.78) 0%, rgba(40, 10, 8, 0.45) 60%, rgba(40, 10, 8, 0.2) 100%);
+}

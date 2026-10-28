@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const ymdContainerRef = useRef<HTMLDivElement>(null);
@@ -16,8 +16,10 @@ export default function Home() {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
   }, [mobileMenuOpen]);
 
@@ -25,11 +27,10 @@ export default function Home() {
     if (href.startsWith("#") && href !== "#no_link") {
       if (e) e.preventDefault();
       setMobileMenuOpen(false);
-      setActiveSubmenu(null);
       const targetId = href.substring(1);
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
-        const headerH = window.innerWidth > 1080 ? 74 : 64;
+        const headerH = window.innerWidth > 1080 ? 74 : 72;
         const top = targetEl.getBoundingClientRect().top + window.scrollY - headerH;
         window.scrollTo({ top, behavior: "smooth" });
       }
@@ -160,7 +161,10 @@ export default function Home() {
   }, []);
 
   const toggleSubmenu = (menuKey: string) => {
-    setActiveSubmenu(activeSubmenu === menuKey ? null : menuKey);
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [menuKey]: !prev[menuKey],
+    }));
   };
 
   return (
@@ -195,7 +199,7 @@ export default function Home() {
           {/* Navigation */}
           <nav className={`gnav ${mobileMenuOpen ? "active" : ""}`}>
             <ul className="gnav--menu flex flex-j-ctr">
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "ymd" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["ymd"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -207,7 +211,7 @@ export default function Home() {
                   <span>About Us</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "ymd" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["ymd"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
@@ -233,12 +237,12 @@ export default function Home() {
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "ymd" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["ymd"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("ymd")}
                 ></span>
               </li>
 
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "products" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["products"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -250,7 +254,7 @@ export default function Home() {
                   <span>Products</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "products" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["products"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
@@ -281,7 +285,7 @@ export default function Home() {
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "products" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["products"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("products")}
                 ></span>
               </li>
@@ -296,7 +300,7 @@ export default function Home() {
                 </a>
               </li>
 
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "company" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["company"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -308,7 +312,7 @@ export default function Home() {
                   <span>Company</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "company" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["company"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
@@ -329,12 +333,12 @@ export default function Home() {
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "company" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["company"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("company")}
                 ></span>
               </li>
 
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "recruit" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["recruit"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -346,7 +350,7 @@ export default function Home() {
                   <span>Careers</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "recruit" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["recruit"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
@@ -372,7 +376,7 @@ export default function Home() {
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "recruit" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["recruit"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("recruit")}
                 ></span>
               </li>

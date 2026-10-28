@@ -140,8 +140,9 @@ export default function Home() {
         .to(moveCont2, { right: 0, bottom: 0, ease: "none" }, "<")
         .to(colorCont, { opacity: 1, ease: "none" })
         .to(redCont, { opacity: 1, ease: "none" })
-        // zoom into the centre of the dark-red middle piece so the screen fills with red
-        .to(scaleCont, { scale: 35, transformOrigin: "70% 53%", ease: "none" })
+        // zoom into the centre of the light-red left piece (354,514 1055,995 818,1189 254,802)
+        // so the screen fills with the same orange-red as the catch panel behind it
+        .to(scaleCont, { scale: 35, transformOrigin: "30% 48%", ease: "none" })
         .to(visibleCont, { opacity: 1, ease: "none" });
     }
 

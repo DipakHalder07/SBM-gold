@@ -10,7 +10,6 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [cookieAccepted, setCookieAccepted] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const ymdContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -55,35 +54,7 @@ export default function Home() {
       (window as any).ScrollTrigger = ScrollTrigger;
     }
 
-    // 1. Custom Cursor tracking
-    const cursor = cursorRef.current;
-    const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-    const onMouseMove = (e: MouseEvent) => {
-      if (!cursor || isTouch) return;
-      cursor.style.opacity = "0.9";
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    };
-
-    const onMouseEnterMore = () => {
-      if (cursor) cursor.classList.add("is-click");
-    };
-
-    const onMouseLeaveMore = () => {
-      if (cursor) cursor.classList.remove("is-click");
-    };
-
-    if (!isTouch) {
-      window.addEventListener("mousemove", onMouseMove);
-      const moreElements = document.querySelectorAll(".more-cursor");
-      moreElements.forEach((el) => {
-        el.addEventListener("mouseenter", onMouseEnterMore);
-        el.addEventListener("mouseleave", onMouseLeaveMore);
-      });
-    }
-
-    // 2. Scroll Active Elements (Intersection Observer / ScrollTrigger)
+    // 1. Scroll Active Elements (Intersection Observer / ScrollTrigger)
     const activeElements = gsap.utils.toArray<HTMLElement>(".scroll_active");
     activeElements.forEach((el) => {
       ScrollTrigger.create({
@@ -177,7 +148,6 @@ export default function Home() {
     const timer2 = setTimeout(refreshST, 1500);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("load", refreshST);
       clearTimeout(timer1);
@@ -192,9 +162,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Custom Cursor */}
-      <div id="cursor" ref={cursorRef}></div>
-
       {/* Header */}
       <header className={`header ${mobileMenuOpen ? "active" : ""}`} ref={headerRef}>
         <div className="inner flex flex-j-between flex-a-ctr">
@@ -551,7 +518,7 @@ export default function Home() {
                 viewBox="0 0 88 134"
                 fill="none"
               >
-                <path d="M88 0L0 133.583H88L88 0Z" fill="#BA0303" />
+                <path d="M88 0L0 133.583H88L88 0Z" fill="#F04934" />
               </svg>
             </span>
           </section>
@@ -1003,7 +970,7 @@ export default function Home() {
             </div>
 
             <div className="contarea">
-              <div className="cont--wrap cont-01 pos-rel more-cursor">
+              <div className="cont--wrap cont-01 pos-rel">
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
@@ -1023,7 +990,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="cont--wrap cont-02 pos-rel more-cursor">
+              <div className="cont--wrap cont-02 pos-rel">
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
@@ -1041,7 +1008,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="cont--wrap cont-03 more-cursor">
+              <div className="cont--wrap cont-03">
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
@@ -1106,7 +1073,7 @@ export default function Home() {
             </div>
 
             <div className="contarea">
-              <div className="cont--wrap cont-01 more-cursor pos-rel">
+              <div className="cont--wrap cont-01 pos-rel">
                 <span className="num font-en">01</span>
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
@@ -1128,7 +1095,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="cont--wrap cont-02 more-cursor pos-rel">
+              <div className="cont--wrap cont-02 pos-rel">
                 <span className="num font-en">02</span>
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
@@ -1150,7 +1117,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="cont--wrap cont-03 more-cursor pos-rel">
+              <div className="cont--wrap cont-03 pos-rel">
                 <span className="num font-en">03</span>
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
@@ -1189,7 +1156,7 @@ export default function Home() {
 
           <div className="contarea">
             <div className="cont--row row-1">
-              <div className="cont--wrap cont-01 more-cursor">
+              <div className="cont--wrap cont-01">
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
@@ -1207,7 +1174,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="cont--wrap cont-02 more-cursor">
+              <div className="cont--wrap cont-02">
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
@@ -1225,7 +1192,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="cont--wrap cont-03 more-cursor">
+              <div className="cont--wrap cont-03">
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
@@ -1245,7 +1212,7 @@ export default function Home() {
             </div>
 
             <div className="cont--row">
-              <div className="cont--wrap cont-04 more-cursor">
+              <div className="cont--wrap cont-04">
                 <a
                   href="https://r16759029.theta360.biz/t/a4f2c6b0-1582-11ee-90d3-060182f6995f-1"
                   target="_blank"
@@ -1337,7 +1304,7 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#EE4124" strokeWidth="4" strokeLinejoin="round">
+                <g opacity="0.6" stroke="#951F17" strokeWidth="4" strokeLinejoin="round">
                   <polygon points="773,194 1016,0 2077,763 1663,829" />
                   <polygon points="768,199 1061,398 668,724 359,520" />
                   <polygon points="354,514 1055,995 818,1189 254,802" />
@@ -1507,7 +1474,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="posts posts-news">
-                <article className="post more-cursor">
+                <article className="post">
                   <div className="post--info flex flex-c-wrap flex-a-ctr">
                     <p className="post--date">2025.05.27</p>
                     <div className="cat_list">
@@ -1524,7 +1491,7 @@ export default function Home() {
                   </div>
                 </article>
 
-                <article className="post more-cursor">
+                <article className="post">
                   <div className="post--info flex flex-c-wrap flex-a-ctr">
                     <p className="post--date">2025.04.18</p>
                     <div className="cat_list">
@@ -1850,7 +1817,7 @@ export default function Home() {
                 id="cn-accept-cookie"
                 className="cn-set-cookie cn-button"
                 style={{
-                  backgroundColor: "#EE4124",
+                  backgroundColor: "#951F17",
                   color: "#fff",
                   border: "none",
                   padding: "8px 24px",

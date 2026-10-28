@@ -455,7 +455,7 @@ body .hero--cont .ttl .row-01 {
 
 body .hero--cont .ttl .row-02 {
   display: block;
-  padding-left: 0;
+  padding-left: 1.5rem;
   margin-top: 0.1em;
 }
 
@@ -467,6 +467,14 @@ body .hero--cont .ttl .txt-lg {
 
 body .hero--cont .ttl .ttl-dot {
   color: var(--clr-secondary-default);
+}
+
+body .hero--cont .ttl .hero-icon-img {
+  display: block;
+  margin-top: 1.25rem;
+  max-width: 380px;
+  width: 100%;
+  height: auto;
 }
 
 /* Soft halo in the hero background colour keeps copy legible where the
@@ -1067,45 +1075,45 @@ body .hero--cont .txt {
 }
 
 .anime-diag-rgt {
-  opacity: 0;
-  transform: translate(60px, -60px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translate(60px, -60px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-diag-rgt2 {
-  opacity: 0;
-  transform: translate(100px, -100px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translate(100px, -100px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-diag-lft {
-  opacity: 0;
-  transform: translate(-60px, -60px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translate(-60px, -60px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-diag-lft2 {
-  opacity: 0;
-  transform: translate(-100px, -100px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translate(-100px, -100px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-fade-lft {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translateX(-60px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-fade-rgt {
-  opacity: 0;
-  transform: translateX(60px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translateX(60px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .active.anime-diag-rgt,
@@ -1122,8 +1130,8 @@ body .hero--cont .txt {
 .active .anime-fade-lft,
 .active .anime-fade-rgt,
 .active .anime-fade-up {
-  opacity: 1;
-  transform: translate(0, 0);
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
 }
 
 .delay1 {
@@ -1821,7 +1829,7 @@ body .home_ymd .imgarea {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: min(54vw, 62vh);
+  width: min(72vw, 82vh);
   height: auto;
   aspect-ratio: 2077 / 1830;
   display: flex;
@@ -1879,7 +1887,7 @@ body .home_ymd .imgarea .ymd-lg-color .red-parts {
 
 @media screen and (max-width: 767px) {
   body .home_ymd .imgarea {
-    width: 76vw;
+    width: 88vw;
   }
   body .home_ymd .imgarea .ymd-line-red {
     left: -5vw;
@@ -1889,4 +1897,14 @@ body .home_ymd .imgarea .ymd-lg-color .red-parts {
     right: -5vw;
     bottom: -5vw;
   }
+}
+
+/* Section fade-outs: CSS gradients in brand colours instead of the
+   e-ymd PNGs (company-bg01.png was navy, recruit-bg01.png the old red) */
+body .home_company::after {
+  background-image: linear-gradient(to bottom, #951F17, #FFFFFF);
+}
+
+body .home_recruit::after {
+  background-image: linear-gradient(to bottom, #F04934, #F1F1F3);
 }

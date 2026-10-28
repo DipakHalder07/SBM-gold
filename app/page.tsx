@@ -54,9 +54,18 @@ export default function Home() {
       (window as any).ScrollTrigger = ScrollTrigger;
     }
 
-    // 1. Scroll Active Elements (Intersection Observer / ScrollTrigger)
+    // 1. Hero entrance animation triggered on page load (same as live site e-ymd.com)
+    const heroElements = document.querySelectorAll<HTMLElement>(".hero--cont, .hero--cont-sp");
+    const heroTimer = setTimeout(() => {
+      heroElements.forEach((el) => {
+        el.classList.add("active");
+      });
+    }, 120);
+
+    // 2. Scroll Active Elements for all other sections
     const activeElements = gsap.utils.toArray<HTMLElement>(".scroll_active");
     activeElements.forEach((el) => {
+      if (el.classList.contains("hero--cont") || el.classList.contains("hero--cont-sp")) return;
       ScrollTrigger.create({
         trigger: el,
         start: "top 75%",
@@ -148,6 +157,7 @@ export default function Home() {
     const timer2 = setTimeout(refreshST, 1500);
 
     return () => {
+      clearTimeout(heroTimer);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("load", refreshST);
       clearTimeout(timer1);
@@ -431,7 +441,7 @@ export default function Home() {
             </video>
           </div>
 
-          <section className="hero--cont scroll_active active">
+          <section className="hero--cont scroll_active">
             <span className="deco deco-1 fill gray md reverse anime-diag-lft">
               <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
                 <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
@@ -465,6 +475,13 @@ export default function Home() {
                     </span>
                   </span>
                 </span>
+                <img
+                  src="/images/logo/sbm-gold-logo-header.png"
+                  width="855"
+                  height="130"
+                  className="anime-fade-lft delay2 hero-icon-img"
+                  alt="SBM GOLD"
+                />
               </h2>
               <p className="txt anime-fade-up delay3 sp-none">
                 Your trusted partner in global procurement &amp; precision manufacturing. Delivering 99% custom-engineered solutions with guaranteed quality.
@@ -728,7 +745,7 @@ export default function Home() {
               <div className="cont--wrap cont-01 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/feature-img01.jpg"
+                    src="/wp/wp-content/themes/standard_sass/images/top/mission-slide05.png"
                     width="800"
                     height="600"
                     className="img-cover"
@@ -1314,13 +1331,80 @@ export default function Home() {
                 </g>
               </svg>
 
-              <img
-                src="/images/logo/sbm-gold-icon-img.png"
-                width="2077"
-                height="1830"
+              {/* each logo piece shows its own photo; swap a photo by changing its href */}
+              <svg
                 className="ymd-lg-img"
-                alt="SBM GOLD"
-              />
+                viewBox="0 0 2077 1830"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="SBM GOLD"
+              >
+                <defs>
+                  <clipPath id="ymd-piece-1">
+                    <polygon points="773,194 1016,0 2077,763 1663,829" />
+                  </clipPath>
+                  <clipPath id="ymd-piece-2">
+                    <polygon points="768,199 1061,398 668,724 359,520" />
+                  </clipPath>
+                  <clipPath id="ymd-piece-3">
+                    <polygon points="354,514 1055,995 818,1189 254,802" />
+                  </clipPath>
+                  <clipPath id="ymd-piece-4">
+                    <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
+                  </clipPath>
+                  <clipPath id="ymd-piece-5">
+                    <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
+                  </clipPath>
+                  <clipPath id="ymd-piece-6">
+                    <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
+                  </clipPath>
+                </defs>
+                <image
+                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide05.png"
+                  x="773" y="0" width="1304" height="829"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#ymd-piece-1)"
+                />
+                <image
+                  href="/wp/wp-content/themes/standard_sass/images/top/quality-img01.jpg"
+                  x="359" y="199" width="702" height="525"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#ymd-piece-2)"
+                />
+                <image
+                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide06.png"
+                  x="254" y="514" width="801" height="675"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#ymd-piece-3)"
+                />
+                <image
+                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide01.png"
+                  x="1011" y="641" width="823" height="702"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#ymd-piece-4)"
+                />
+                <image
+                  href="/wp/wp-content/themes/standard_sass/images/top/company-img01.jpg"
+                  x="0" y="1028" width="1309" height="802"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#ymd-piece-5)"
+                />
+                <image
+                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide03.png"
+                  x="1022" y="1155" width="663" height="487"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#ymd-piece-6)"
+                />
+                {/* thin white seams between neighbouring photos */}
+                <g fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinejoin="round">
+                  <polygon points="773,194 1016,0 2077,763 1663,829" />
+                  <polygon points="768,199 1061,398 668,724 359,520" />
+                  <polygon points="354,514 1055,995 818,1189 254,802" />
+                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
+                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
+                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
+                </g>
+              </svg>
             </div>
 
             <div className="contarea pos-rel">

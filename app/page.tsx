@@ -400,21 +400,6 @@ export default function Home() {
                 </Link>
               </li>
             </ul>
-
-            <div className="gnav--btm pc-none">
-              <ul className="gnav--btm--menu flex flex-col2">
-                <li>
-                  <Link href="#news" onClick={(e) => handleNavClick("#news", e)}>Milestones</Link>
-                </li>
-                <li>
-                  <Link href="#footer" onClick={(e) => handleNavClick("#footer", e)}>Privacy Policy</Link>
-                </li>
-                <li>
-                  <Link href="#footer" onClick={(e) => handleNavClick("#footer", e)}>Sitemap</Link>
-                </li>
-              </ul>
-              <div className="copyright">&copy; SBM GOLD ALL RIGHTS RESERVED.</div>
-            </div>
           </nav>
         </div>
       </header>
@@ -1892,7 +1877,7 @@ export default function Home() {
       </footer>
 
       {/* Cookie Notice Banner */}
-      {!cookieAccepted && (
+      {!cookieAccepted && !mobileMenuOpen && (
         <div
           id="cookie-notice"
           role="dialog"

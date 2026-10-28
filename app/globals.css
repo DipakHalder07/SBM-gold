@@ -917,7 +917,7 @@ body .hero--cont .txt {
     height: calc(100vh - 5.7142857143rem) !important;
     height: calc(100dvh - 5.7142857143rem) !important;
     background-color: #951F17 !important;
-    padding: 0 0 5rem !important;
+    padding: 0 0 2rem !important;
     margin: 0 !important;
     display: block !important;
     overflow-y: auto !important;
@@ -937,7 +937,9 @@ body .hero--cont .txt {
 
   .gnav--menu {
     display: block !important;
-    padding: 1.25rem 7% 0.5rem !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0.75rem 7% 0 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
     list-style: none !important;
     margin: 0 !important;
@@ -955,8 +957,9 @@ body .hero--cont .txt {
   .gnav--link {
     display: flex !important;
     align-items: center !important;
-    padding: 1.15rem 0.5rem 1.15rem 2.6rem !important;
-    font-size: 1.15rem !important;
+    height: auto !important;
+    padding: 0.95rem 0.5rem 0.95rem 2.6rem !important;
+    font-size: 1.12rem !important;
     font-weight: 600 !important;
     line-height: 1.4 !important;
     color: #ffffff !important;
@@ -1121,7 +1124,7 @@ body .hero--cont .txt {
 
   /* CTA on Mobile */
   .gnav--cta {
-    margin: 1.75rem 7% 0 !important;
+    margin: 1.5rem 7% 2rem !important;
     list-style: none !important;
     display: flex !important;
     width: auto !important;
@@ -1166,55 +1169,9 @@ body .hero--cont .txt {
     fill: #ffffff !important;
   }
 
-  /* Mobile Bottom Links */
+  /* Mobile Bottom Links - removed as per request */
   .gnav--btm {
-    margin: 2.25rem 7% 0 !important;
-    display: block !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-    padding-top: 1.75rem !important;
-  }
-
-  .gnav--btm ul,
-  .gnav--btm--menu {
-    max-width: 100% !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    flex-direction: row !important;
-    list-style: none !important;
-    padding: 0 !important;
-    gap: 0.5rem 0 !important;
-  }
-
-  .gnav--btm--menu li {
-    width: 50% !important;
-    margin: 0 !important;
-    padding: 0.35rem 0 !important;
-  }
-
-  .gnav--btm a {
-    font-size: 0.95rem !important;
-    font-weight: 500 !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    text-decoration: none !important;
-    letter-spacing: 0.04em !important;
-    display: inline-block !important;
-    transition: color 0.2s ease, opacity 0.2s ease !important;
-  }
-
-  .gnav--btm a:hover,
-  .gnav--btm a:active {
-    color: #ffffff !important;
-    opacity: 1 !important;
-  }
-
-  .gnav--btm .copyright {
-    margin-top: 2rem !important;
-    font-size: 0.78rem !important;
-    letter-spacing: 0.06em !important;
-    opacity: 0.5 !important;
-    text-align: center !important;
-    color: #ffffff !important;
+    display: none !important;
   }
 }
 

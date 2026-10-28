@@ -94,21 +94,34 @@ export default function Home() {
       });
     });
 
-    // 3. Header Scroll Behavior
-    const handleScroll = () => {
+    // 3. Header Scroll Behavior (rAF synchronized for 60fps/120fps smoothness)
+    let isHeaderSm = false;
+    let ticking = false;
+
+    const updateHeaderScroll = () => {
       if (!headerRef.current) return;
       const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const shouldBeSm = scrollY > 50;
 
-      if (scrollY > 60) {
-        headerRef.current.classList.add("header-sm");
-        headerRef.current.classList.add("header-sm-visible");
-      } else {
-        headerRef.current.classList.remove("header-sm");
-        headerRef.current.classList.remove("header-sm-visible");
+      if (shouldBeSm !== isHeaderSm) {
+        isHeaderSm = shouldBeSm;
+        if (shouldBeSm) {
+          headerRef.current.classList.add("header-sm", "header-sm-visible");
+        } else {
+          headerRef.current.classList.remove("header-sm", "header-sm-visible");
+        }
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeaderScroll);
+        ticking = true;
       }
     };
 
-    handleScroll();
+    updateHeaderScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     // 4. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
@@ -187,9 +200,9 @@ export default function Home() {
           <h1 className="header--logo">
             <Link href="/">
               <img
-                width="400"
-                height="294"
-                src="/images/logo/sbm-gold-logo.png"
+                width="855"
+                height="130"
+                src="/images/logo/sbm-gold-logo-header.png"
                 alt="SBM GOLD"
                 fetchPriority="high"
               />
@@ -1274,34 +1287,30 @@ export default function Home() {
               >
                 <polygon
                   className="red-parts"
-                  points="1019,1 2075,764 1668,831 769,203"
-                  fill="#EB4424"
+                  points="773,194 1016,0 2077,763 1663,829"
+                  fill="#EF4224"
                 />
                 <polygon
-                  points="763,199 1060,408 666,726 361,509"
-                  fill="#851A1D"
-                />
-                <polygon
-                  className="red-parts"
-                  points="359,511 1052,995 811,1190 295,830 253,799"
-                  fill="#EB4424"
-                />
-                <polygon
-                  points="1294,641 1832,1018 1687,1342 1009,878"
-                  fill="#851A1D"
-                />
-                <polygon
-                  points="1008,878 1108,948 1053,994 952,924"
-                  fill="#C6A028"
-                />
-                <polygon
-                  points="405,1028 1310,1642 1064,1829 0,1114"
-                  fill="#851A1D"
+                  points="768,199 1061,398 668,724 359,520"
+                  fill="#941711"
                 />
                 <polygon
                   className="red-parts"
-                  points="1404,1154 1686,1344 1311,1641 1020,1443"
-                  fill="#EB4424"
+                  points="354,514 1055,995 818,1189 254,802"
+                  fill="#EF4224"
+                />
+                <polygon
+                  points="1293,641 1834,1023 1679,1343 1011,874"
+                  fill="#941711"
+                />
+                <polygon
+                  points="0,1111 409,1028 1309,1642 1072,1830"
+                  fill="#941711"
+                />
+                <polygon
+                  className="red-parts"
+                  points="1414,1155 1685,1343 1315,1642 1022,1449"
+                  fill="#EF4224"
                 />
               </svg>
 
@@ -1311,14 +1320,13 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#EB4424" strokeWidth="4" strokeLinejoin="round">
-                  <polygon points="1019,1 2075,764 1668,831 769,203" />
-                  <polygon points="763,199 1060,408 666,726 361,509" />
-                  <polygon points="359,511 1052,995 811,1190 295,830 253,799" />
-                  <polygon points="1294,641 1832,1018 1687,1342 1009,878" />
-                  <polygon points="1008,878 1108,948 1053,994 952,924" />
-                  <polygon points="405,1028 1310,1642 1064,1829 0,1114" />
-                  <polygon points="1404,1154 1686,1344 1311,1641 1020,1443" />
+                <g opacity="0.6" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
+                  <polygon points="773,194 1016,0 2077,763 1663,829" />
+                  <polygon points="768,199 1061,398 668,724 359,520" />
+                  <polygon points="354,514 1055,995 818,1189 254,802" />
+                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
+                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
+                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
                 </g>
               </svg>
 
@@ -1329,18 +1337,17 @@ export default function Home() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g opacity="0.6" stroke="#182E66" strokeWidth="4" strokeLinejoin="round">
-                  <polygon points="1019,1 2075,764 1668,831 769,203" />
-                  <polygon points="763,199 1060,408 666,726 361,509" />
-                  <polygon points="359,511 1052,995 811,1190 295,830 253,799" />
-                  <polygon points="1294,641 1832,1018 1687,1342 1009,878" />
-                  <polygon points="1008,878 1108,948 1053,994 952,924" />
-                  <polygon points="405,1028 1310,1642 1064,1829 0,1114" />
-                  <polygon points="1404,1154 1686,1344 1311,1641 1020,1443" />
+                  <polygon points="773,194 1016,0 2077,763 1663,829" />
+                  <polygon points="768,199 1061,398 668,724 359,520" />
+                  <polygon points="354,514 1055,995 818,1189 254,802" />
+                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
+                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
+                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
                 </g>
               </svg>
 
               <img
-                src="/images/logo/sbm-gold-icon-img.png"
+                src="/images/logo/sbm-gold-icon.svg"
                 width="2077"
                 height="1830"
                 className="ymd-lg-img"
@@ -1623,9 +1630,9 @@ export default function Home() {
                 <h2 className="footer--logo">
                   <Link href="/">
                     <img
-                      src="/images/logo/sbm-gold-logo-white.png"
-                      width="215"
-                      height="158"
+                      src="/images/logo/sbm-gold-logo-stacked-white.png"
+                      width="622"
+                      height="454"
                       alt="SBM GOLD"
                     />
                   </Link>

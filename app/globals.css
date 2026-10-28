@@ -337,11 +337,11 @@ body footer .footer--tel {
   z-index: 9999;
   display: flex;
   align-items: center;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.4s ease,
-              box-shadow 0.4s ease,
-              height 0.3s ease,
-              opacity 0.4s ease;
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header > .inner {
@@ -370,7 +370,7 @@ body footer .footer--tel {
   opacity: 0.85;
 }
 
-/* 2. Scrolled Sticky State with White Background (After scrolling past 60px) */
+/* 2. Scrolled Sticky State with White Background (After scrolling past 50px) */
 .home .header.header-sm {
   transform: translateY(0) !important;
   opacity: 1 !important;
@@ -395,12 +395,6 @@ body footer .footer--tel {
   color: #e62320 !important;
 }
 
-.home .header.header-sm .header--logo img {
-  max-height: 58px;
-  width: auto;
-  max-width: 150px;
-}
-
 /* 4. Complete Hide during GSAP Zoom Section (.home_ymd) */
 .home .header.hide,
 .home .header.header-sm.hide,
@@ -410,33 +404,47 @@ body footer .footer--tel {
   pointer-events: none !important;
 }
 
-/* --- Header Logo --- */
+/* --- Header Logo (Liquid Smooth GPU-Accelerated Scaling) --- */
 .header--logo {
   z-index: 400;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-  max-width: 14rem;
+  max-width: 18rem;
+  margin: 0;
 }
 
 .header--logo a {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.header--logo a:hover {
+  opacity: 0.85;
 }
 
 .header--logo img {
-  max-height: 72px;
+  height: 40px;
   width: auto;
-  max-width: 180px;
+  max-width: 260px;
   object-fit: contain;
   display: block;
-  transition: transform 0.3s ease, filter 0.3s ease, max-height 0.3s ease;
+  transform-origin: left center;
+  transform: translateZ(0) scale(1);
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
+/* Scrolled Sticky State: Smooth hardware-accelerated shrink */
+.home .header.header-sm .header--logo img,
+.header.header-sm .header--logo img,
 .header.header-sm.header-sm-visible .header--logo img {
-  max-height: 62px;
-  width: auto;
-  max-width: 150px;
+  transform: translateZ(0) scale(0.85);
 }
 
 /* --- Hero Section Typography ---
@@ -781,8 +789,10 @@ body .hero--cont .txt {
    MOBILE NAVIGATION (<= 1080px)
    ========================================================================== */
 @media screen and (max-width: 1080px) {
-  .header {
-    height: 64px;
+  .header,
+  .home .header.header-sm,
+  .header.header-sm {
+    height: 64px !important;
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   }
@@ -800,9 +810,16 @@ body .hero--cont .txt {
   }
 
   .header--logo img {
-    max-height: 54px;
+    height: 28px;
+    max-height: 28px;
     width: auto;
-    max-width: 135px;
+    max-width: 180px;
+    transform: translateZ(0) scale(1);
+  }
+
+  .home .header.header-sm .header--logo img,
+  .header.header-sm .header--logo img {
+    transform: translateZ(0) scale(0.92);
   }
 
   /* Hamburger Toggle Button */
@@ -1396,9 +1413,9 @@ body .hero--cont .txt {
 }
 
 .footer--logo img {
-  max-height: 68px;
+  max-height: 120px;
   width: auto;
-  max-width: 215px;
+  max-width: 165px;
   object-fit: contain;
   display: block;
 }
@@ -1745,9 +1762,9 @@ body .hero--cont .txt {
   }
 
   .footer--logo img {
-    max-height: 85px;
+    max-height: 100px;
     width: auto;
-    max-width: 200px;
+    max-width: 137px;
     margin: 0 auto;
   }
 

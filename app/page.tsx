@@ -484,7 +484,9 @@ export default function Home() {
                 />
               </h2>
               <p className="txt anime-fade-up delay3 sp-none">
-                Your trusted partner in global procurement &amp; precision manufacturing. Delivering 99% custom-engineered solutions with guaranteed quality.
+                Your trusted partner in global procurement<br />
+                &amp; precision manufacturing. Delivering 99%<br className="sp-none" />
+                custom-engineered solutions with guaranteed quality.
               </p>
               <div className="btn anime-fade-up delay3 sp-none">
                 <a
@@ -544,8 +546,9 @@ export default function Home() {
           <div className="hero--cont-sp pc-none scroll_active">
             <div className="inner">
               <p className="txt anime-fade-up delay3">
-                Your trusted partner in global procurement &amp; precision manufacturing.
-                Delivering 99% custom-engineered solutions with guaranteed quality.
+                Your trusted partner in global procurement<br />
+                &amp; precision manufacturing. Delivering 99%<br />
+                custom-engineered solutions with guaranteed quality.
               </p>
               <div className="btn anime-fade-up delay3">
                 <a

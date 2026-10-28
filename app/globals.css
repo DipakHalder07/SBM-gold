@@ -484,14 +484,16 @@ body .hero--cont .txt {
   text-shadow: 0 0 12px rgba(241, 241, 243, 0.95), 0 0 2px rgba(241, 241, 243, 0.9);
 }
 
-.hero--cont .txt {
-  max-width: 30rem;
+.hero--cont .txt,
+.hero--cont-sp .txt {
+  max-width: 36rem;
   font-size: var(--fs-lead);
-  line-height: 1.7;
-  letter-spacing: var(--ls-body);
-  color: #951F17;
-  margin-top: 1.75rem;
+  line-height: 1.09;
+  letter-spacing: 0.055em;
+  color: #111111;
+  word-break: break-word;
   font-weight: 500;
+  margin-top: 1.75rem;
 }
 
 .hero--cont .btn {

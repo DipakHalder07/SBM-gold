@@ -1528,7 +1528,7 @@ export default function Home() {
             </div>
             <div className="imgarea">
               <img
-                src="/wp/wp-content/themes/standard_sass/images/top/recruit-img.png"
+                src="/images/sbm/partner-img.webp"
                 width="808"
                 height="800"
                 alt="Partner with SBM Gold in India"

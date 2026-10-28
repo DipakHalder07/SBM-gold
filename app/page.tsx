@@ -166,7 +166,8 @@ export default function Home() {
         .to(moveCont2, { right: 0, bottom: 0, ease: "none" }, "<")
         .to(colorCont, { opacity: 1, ease: "none" })
         .to(redCont, { opacity: 1, ease: "none" })
-        .to(scaleCont, { scale: 35, transformOrigin: "50% 50%", ease: "none" })
+        // zoom into the centre of the dark-red middle piece so the screen fills with red
+        .to(scaleCont, { scale: 35, transformOrigin: "70% 53%", ease: "none" })
         .to(visibleCont, { opacity: 1, ease: "none" });
     }
 
@@ -1347,7 +1348,7 @@ export default function Home() {
               </svg>
 
               <img
-                src="/images/logo/sbm-gold-icon.svg"
+                src="/images/logo/sbm-gold-icon-img.png"
                 width="2077"
                 height="1830"
                 className="ymd-lg-img"

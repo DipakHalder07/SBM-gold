@@ -347,7 +347,7 @@ export default function Home() {
                     toggleSubmenu("recruit");
                   }}
                 >
-                  <span>Careers</span>
+                  <span>Partner</span>
                 </a>
                 <div
                   className={`head_sub_nav--wrap ${openSubmenus["recruit"] ? "is-open" : ""}`}
@@ -355,22 +355,22 @@ export default function Home() {
                   <ul className="head_sub_nav">
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Careers Home</span>
+                        <span>Become a Partner</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Why SBM GOLD</span>
+                        <span>Partner with SBM Gold</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Life at SBM GOLD</span>
+                        <span>Distributor Network</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Job Openings</span>
+                      <Link href="#contact" className="gnav--link" onClick={(e) => handleNavClick("#contact", e)}>
+                        <span>Partner Inquiry</span>
                       </Link>
                     </li>
                   </ul>
@@ -1487,8 +1487,9 @@ export default function Home() {
           <div className="home_ymd--scrolltarget01"></div>
         </div>
 
-        {/* RECRUIT SECTION */}
+        {/* BECOME A PARTNER SECTION */}
         <section id="recruit" className="home_recruit pos-rel scroll_active">
+          <span id="partner" className="pos-abs" style={{ top: "-100px" }}></span>
           <span className="deco deco-1 fill wht xs reverse anime-diag-lft2">
             <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
               <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
@@ -1508,29 +1509,29 @@ export default function Home() {
           <div className="inner inner-xl flex flex-a-ctr flex-j-between flex-sp-block">
             <div className="txtarea">
               <h2 className="ttl ttl-01 txt-lft">
-                <span className="jp block">CAREERS</span>
+                <span className="jp block">BECOME A PARTNER</span>
               </h2>
               <h3 className="ttl-01-sub font-en">
-                <span className="txt">RECRUIT</span>
+                <span className="txt">PARTNER WITH SBM GOLD</span>
               </h3>
               <div className="txt">
                 <p>
-                  From one plant in Siliguri to a growing family of factories, SBM GOLD has grown because of the people behind every pipe, tank and profile we make.
+                  Partner with SBM Gold in India &mdash; Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors &amp; windows, WPC door frames, HDPE pipes, water tanks, and wall putty.
                 </p>
                 <p>
-                  Join us in production, quality, sales, installation and more, and grow with a company that is shaping modern living across North East India.
+                  As an authorized distributor, dealer, or project partner, scale your business with high-margin product lines, ISO &amp; ISI certified reliability, state-of-the-art extrusion, and dedicated technical &amp; marketing support.
                 </p>
               </div>
               <div className="btn btn-wh">
-                <Link href="#contact">View Career Opportunities</Link>
+                <Link href="#contact" onClick={(e) => handleNavClick("#contact", e)}>Become a Partner</Link>
               </div>
             </div>
             <div className="imgarea">
               <img
-                src="/images/sbm/recruit-img.png"
+                src="/wp/wp-content/themes/standard_sass/images/top/recruit-img.png"
                 width="808"
                 height="800"
-                alt=""
+                alt="Partner with SBM Gold in India"
               />
             </div>
           </div>
@@ -1796,19 +1797,19 @@ export default function Home() {
                     </ul>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="#no_link">Careers</a>
+                    <a href="#no_link">Partner</a>
                     <ul className="sub-menu">
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Careers Home</Link>
+                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Become a Partner</Link>
                       </li>
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Why SBM GOLD</Link>
+                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Partner in India</Link>
                       </li>
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Life at SBM GOLD</Link>
+                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Distributor Network</Link>
                       </li>
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Job Openings</Link>
+                        <Link href="#contact" onClick={(e) => handleNavClick("#contact", e)}>Partner Inquiry</Link>
                       </li>
                     </ul>
                   </li>

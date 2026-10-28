@@ -1337,7 +1337,7 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#182E66" strokeWidth="4" strokeLinejoin="round">
+                <g opacity="0.6" stroke="#EE4124" strokeWidth="4" strokeLinejoin="round">
                   <polygon points="773,194 1016,0 2077,763 1663,829" />
                   <polygon points="768,199 1061,398 668,724 359,520" />
                   <polygon points="354,514 1055,995 818,1189 254,802" />
@@ -1850,7 +1850,7 @@ export default function Home() {
                 id="cn-accept-cookie"
                 className="cn-set-cookie cn-button"
                 style={{
-                  backgroundColor: "#0d3387",
+                  backgroundColor: "#EE4124",
                   color: "#fff",
                   border: "none",
                   padding: "8px 24px",

@@ -184,7 +184,7 @@ body footer .footer--tel {
   height: 14px;
   margin: -7px 0 0 -7px;
   border-radius: 50%;
-  background: rgba(13, 51, 135, 0.85);
+  background: rgba(238, 65, 36, 0.85);
   pointer-events: none;
   z-index: 999999;
   opacity: 0;
@@ -383,12 +383,12 @@ body footer .footer--tel {
 }
 
 .home .header.header-sm .gnav--menu > li > .gnav--link {
-  color: #182e66 !important;
+  color: #EE4124 !important;
   text-shadow: none !important;
 }
 
 .home .header.header-sm .gnav--menu > li:hover > .gnav--link {
-  color: #0d3387 !important;
+  color: #EE4124 !important;
 }
 
 .home .header.header-sm .gnav--menu > li:hover > .gnav--link[href*="recruit"] {
@@ -513,7 +513,7 @@ body .hero--cont .txt {
   font-size: var(--fs-lead);
   line-height: 1.7;
   letter-spacing: var(--ls-body);
-  color: #182e66;
+  color: #EE4124;
   margin-top: 1.75rem;
   font-weight: 500;
 }
@@ -730,7 +730,7 @@ body .hero--cont .txt {
 @media print, screen and (min-width: 67.5625em) {
   .head_sub_nav a:hover,
   .head_sub_nav .gnav--link:hover {
-    color: #0D3387 !important;
+    color: #EE4124 !important;
     background-color: #ffffff !important;
     padding-left: 2.5rem !important;
   }
@@ -802,7 +802,7 @@ body .hero--cont .txt {
   }
 
   .header.active {
-    background-color: #182e66 !important;
+    background-color: #EE4124 !important;
   }
 
   .header.active .header--logo img {
@@ -896,7 +896,7 @@ body .hero--cont .txt {
     right: 0;
     width: 100%;
     height: calc(100vh - 64px);
-    background-color: #182e66;
+    background-color: #EE4124;
     padding: 1.5rem 10% 4rem;
     flex-direction: column;
     align-items: flex-start;
@@ -1371,7 +1371,7 @@ body .hero--cont .txt {
   max-width: 54.375rem;
   width: 100%;
   aspect-ratio: 1600/2310;
-  background-color: #182E66;
+  background-color: #EE4124;
   clip-path: polygon(0 0, 0% 100%, 100% 100%);
   position: absolute;
   left: 0;

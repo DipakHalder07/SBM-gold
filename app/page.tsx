@@ -1385,37 +1385,37 @@ export default function Home() {
                   </clipPath>
                 </defs>
                 <image
-                  href="/images/sbm/gallery-06.jpg"
+                  href="/images/sbm/emblem-01.jpg?v=2"
                   x="773" y="0" width="1304" height="829"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-1)"
                 />
                 <image
-                  href="/images/sbm/gallery-02.jpg"
+                  href="/images/sbm/emblem-02.jpg"
                   x="359" y="199" width="702" height="525"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-2)"
                 />
                 <image
-                  href="/images/sbm/gallery-04.jpg"
+                  href="/images/sbm/emblem-03.jpg"
                   x="254" y="514" width="801" height="675"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-3)"
                 />
                 <image
-                  href="/images/sbm/gallery-05.jpg"
+                  href="/images/sbm/emblem-04.jpg"
                   x="1011" y="641" width="823" height="702"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-4)"
                 />
                 <image
-                  href="/images/sbm/gallery-03.jpg"
+                  href="/images/sbm/emblem-05.jpg"
                   x="0" y="1028" width="1309" height="802"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-5)"
                 />
                 <image
-                  href="/images/sbm/feature-01.jpg"
+                  href="/images/sbm/emblem-06.jpg"
                   x="1022" y="1155" width="663" height="487"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-6)"

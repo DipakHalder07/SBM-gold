@@ -93,24 +93,19 @@ export default function Home() {
     // 3. Header Scroll Behavior
     const handleScroll = () => {
       if (!headerRef.current) return;
-      const scrollY = window.scrollY;
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
 
       if (scrollY > 60) {
         headerRef.current.classList.add("header-sm");
-      } else {
-        headerRef.current.classList.remove("header-sm");
-      }
-
-      const heroThreshold = window.innerHeight * 0.75;
-      if (scrollY > heroThreshold) {
         headerRef.current.classList.add("header-sm-visible");
       } else {
+        headerRef.current.classList.remove("header-sm");
         headerRef.current.classList.remove("header-sm-visible");
       }
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     // 4. GSAP YMD Sticky Zoom Animation & Header Hide
     const moveCont1 = document.querySelector(".ymd-line-red");
@@ -128,6 +123,15 @@ export default function Home() {
       trigger: ".home_ymd",
       start: "top 85%",
       end: "bottom 10%",
+      toggleClass: { targets: ".header", className: "hide" },
+    });
+
+    // Dedicated trigger to ensure header stays hidden throughout footer CTA and footer
+    ScrollTrigger.create({
+      trigger: ".foot_cta",
+      start: "top 80%",
+      endTrigger: "#footer",
+      end: "bottom bottom",
       toggleClass: { targets: ".header", className: "hide" },
     });
 
@@ -459,9 +463,6 @@ export default function Home() {
             </span>
 
             <div className="cont--inner">
-              <p className="hero-eyebrow anime-fade-lft">
-                Precision Parts &amp; Procurement
-              </p>
               <h2 className="ttl">
                 <span className="ttl--row">
                   <span className="row-01 anime-fade-lft">

@@ -13,17 +13,23 @@
 
 html {
   scroll-behavior: smooth;
+  height: auto !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 body {
   font-family: var(--font-base) !important;
   color: #111111;
-  overflow-x: hidden;
+  height: auto !important;
+  min-height: 100%;
   position: relative;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
 }
 
 *, *::before, *::after {
@@ -277,6 +283,49 @@ body footer .footer--tel {
 }
 
 /* ==========================================================================
+   CONTAINER SYSTEM (Pixel-Perfect match to e-ymd.com)
+   ========================================================================== */
+.inner {
+  width: 100%;
+  min-width: 1040px;
+  max-width: 87.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 47.9375em) {
+  .inner {
+    width: 86%;
+    min-width: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.inner-sm {
+  max-width: 45rem;
+}
+
+.inner-md {
+  max-width: 90rem;
+}
+
+.inner-lg {
+  max-width: 100rem;
+}
+
+.inner-xl {
+  max-width: 110rem;
+}
+
+.home_mission .inner {
+  max-width: 57.5rem;
+  min-width: auto;
+  width: 90%;
+}
+
+/* ==========================================================================
    HEADER & NAVIGATION SYSTEM
    ========================================================================== */
 
@@ -306,54 +355,51 @@ body footer .footer--tel {
   max-width: 100%;
 }
 
-/* 1. Desktop Initial Top State (scrollTop == 0) */
+/* 1. Initial Top State (scrollTop == 0) */
 .home .header:not(.header-sm):not(.active) {
-  background-color: transparent;
-  box-shadow: none;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .home .header:not(.header-sm):not(.active) .gnav--menu > li > .gnav--link {
-  color: #ffffff;
+  color: #ffffff !important;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 .home .header:not(.header-sm):not(.active) .gnav--menu > li:hover > .gnav--link {
-  color: #ffffff;
+  color: #ffffff !important;
   opacity: 0.85;
 }
 
-/* 2. Desktop Hidden State (Scrolling through Hero, 60px -> 80vh) */
-@media screen and (min-width: 1081px) {
-  .home .header.header-sm:not(.header-sm-visible) {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-  }
+/* 2. Scrolled Sticky State with White Background (After scrolling past 60px) */
+.home .header.header-sm {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  height: 80px;
+  background-color: #ffffff !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
 
-  /* 3. Desktop Scrolled Sticky State (Past Hero) */
-  .home .header.header-sm.header-sm-visible {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-    height: 80px;
-    background-color: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  }
+.home .header.header-sm .gnav--menu > li > .gnav--link {
+  color: #182e66 !important;
+  text-shadow: none !important;
+}
 
-  .home .header.header-sm.header-sm-visible .gnav--menu > li > .gnav--link {
-    color: #182e66 !important;
-    text-shadow: none;
-  }
+.home .header.header-sm .gnav--menu > li:hover > .gnav--link {
+  color: #0d3387 !important;
+}
 
-  .home .header.header-sm.header-sm-visible .gnav--menu > li:hover > .gnav--link {
-    color: #0d3387 !important;
-  }
+.home .header.header-sm .gnav--menu > li:hover > .gnav--link[href*="recruit"] {
+  color: #e62320 !important;
+}
 
-  .home .header.header-sm.header-sm-visible .gnav--menu > li:hover > .gnav--link[href*="recruit"] {
-    color: #e62320 !important;
-  }
+.home .header.header-sm .header--logo img {
+  max-height: 58px;
+  width: auto;
+  max-width: 150px;
 }
 
 /* 4. Complete Hide during GSAP Zoom Section (.home_ymd) */
@@ -715,14 +761,13 @@ body .hero--cont .txt {
   min-width: 10.5rem;
   border-radius: 999px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(230, 35, 32, 0.35);
+  transition: background-color 0.3s ease;
+  box-shadow: none;
 }
 
 .gnav--contact a:hover {
   background-color: #ba0303;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(230, 35, 32, 0.45);
+  box-shadow: none;
 }
 
 .gnav--contact a svg {
@@ -1120,9 +1165,6 @@ body .hero--cont .txt {
 .foot_cta .inner {
   position: relative;
   z-index: 2;
-  max-width: 100rem;
-  margin: 0 auto;
-  padding: 0 4rem;
 }
 
 .foot_cta--ttl {
@@ -1300,7 +1342,7 @@ body .hero--cont .txt {
   background-image: url("/wp/wp-content/themes/standard_sass/images/common/bg-red.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center;
+  background-position: left top;
   z-index: 0;
   pointer-events: none;
 }
@@ -1323,9 +1365,6 @@ body .hero--cont .txt {
 .footer > .inner {
   position: relative;
   z-index: 2;
-  max-width: 100rem;
-  margin: 0 auto;
-  padding: 0 4rem;
 }
 
 /* --- Footer Top (Info on Left, Navigation on Right) --- */
@@ -1334,9 +1373,6 @@ body .hero--cont .txt {
   padding-bottom: 3.125rem;
   position: relative;
   border-bottom: 1px solid #B1B4C5;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 .footer--info {
@@ -1346,7 +1382,7 @@ body .hero--cont .txt {
 }
 
 .footer--logo {
-  margin-bottom: 2.625rem;
+  margin-bottom: 2rem;
 }
 
 .footer--logo a {
@@ -1359,9 +1395,9 @@ body .hero--cont .txt {
 }
 
 .footer--logo img {
-  max-height: 105px;
+  max-height: 68px;
   width: auto;
-  max-width: 250px;
+  max-width: 215px;
   object-fit: contain;
   display: block;
 }
@@ -1641,10 +1677,6 @@ body .hero--cont .txt {
     padding-bottom: 5.7142857143rem;
   }
 
-  .foot_cta .inner {
-    padding: 0 1.5rem;
-  }
-
   .foot_cta--ttl {
     width: 100%;
     margin-bottom: 1.4285714286rem;
@@ -1694,14 +1726,9 @@ body .hero--cont .txt {
     display: none;
   }
 
-  .footer > .inner {
-    padding: 0 1.5rem;
-  }
-
   .footer_top {
     padding-top: 4.2857142857rem;
     padding-bottom: 1.4285714286rem;
-    flex-direction: column;
   }
 
   .footer--info {

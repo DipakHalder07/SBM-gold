@@ -569,8 +569,8 @@ export default function Home() {
               <h4 className="sub-ttl anime-fade-up">OUR MISSION</h4>
               <h3 className="ttl ttl-02 txt-ctr anime-fade-up delay1">
                 <span className="block">
-                  &ldquo;Count on SBM GOLD for Every Solution&rdquo;<br />
-                  Your Trusted Professional Partner in<br />
+                  &ldquo;Count on SBM GOLD&rdquo;<br />
+                  Your Trusted Partner in<br />
                   <span className="txt-lg">Precision Parts</span> &amp; <span className="txt-lg">Procurement</span>.
                 </span>
               </h3>

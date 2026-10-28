@@ -150,13 +150,18 @@ body .cta_tel a {
   letter-spacing: 0.02em;
 }
 
+body .home_mission .ttl,
+body .home_mission .ttl .txt-lg {
+  line-height: 1.15;
+}
+
 /* Larger intro copy for Mission and Careers */
 body .home_mission .txt,
 body .home_mission .txt p,
 body .home_recruit .txtarea .txt,
 body .home_recruit .txtarea .txt p {
   font-size: var(--fs-lead);
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 /* Keep "FEATURE 03" style numbers on one line beside the heading */

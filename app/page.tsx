@@ -449,7 +449,7 @@ export default function Home() {
               width="1920"
               height="1080"
               className="img-cover hero-photo"
-              alt="Home fitted with SBM GOLD uPVC windows and doors"
+              alt="Modern luxury residence fitted with SBM GOLD architectural uPVC sliding doors and panoramic windows"
               fetchPriority="high"
             />
           </div>

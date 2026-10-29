@@ -2109,6 +2109,35 @@ body .home_quality .cont--wrap.cont-03 .cont--bg::after {
   background: linear-gradient(to right, rgba(20, 5, 4, 0.88) 0%, rgba(20, 5, 4, 0.6) 42%, rgba(20, 5, 4, 0.15) 68%, transparent 88%);
 }
 
+/* Quality Section: Vertically center right cards text & reduce paragraph line spacing */
+body .home_quality .cont--wrap.cont-02,
+body .home_quality .cont--wrap.cont-03 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+body .home_quality .cont--wrap.cont-02 .cont--wrap--inner,
+body .home_quality .cont--wrap.cont-03 .cont--wrap--inner {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+}
+
+body .home_quality .cont--wrap.cont-02 .ttl,
+body .home_quality .cont--wrap.cont-03 .ttl {
+  margin-top: 0 !important;
+  margin-bottom: 0.6rem !important;
+}
+
+body .home_quality .cont--wrap .txt {
+  line-height: 1.45 !important;
+  margin-bottom: 0 !important;
+}
+
 /* --- Remove Hover Blur Effect Across All Cards --- */
 body .home_quality .cont--wrap .cont--bg::before,
 body .home_quality .cont--wrap:hover .cont--bg::before,

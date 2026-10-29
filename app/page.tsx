@@ -5,18 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   const headerRef = useRef<HTMLElement>(null);
   const ymdContainerRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     if (mobileMenuOpen) {
+      lenisRef.current?.stop();
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
+      lenisRef.current?.start();
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     }
@@ -30,8 +35,12 @@ export default function Home() {
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
         const headerH = window.innerWidth > 1080 ? 74 : 72;
-        const top = targetEl.getBoundingClientRect().top + window.scrollY - headerH;
-        window.scrollTo({ top, behavior: "smooth" });
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(targetEl, { offset: -headerH, duration: 1.2 });
+        } else {
+          const top = targetEl.getBoundingClientRect().top + window.scrollY - headerH;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
       }
     } else if (href.startsWith("#no_link")) {
       if (e) e.preventDefault();
@@ -46,6 +55,54 @@ export default function Home() {
       (window as any).gsap = gsap;
       (window as any).ScrollTrigger = ScrollTrigger;
     }
+
+    // Initialize Lenis for buttery-smooth momentum scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+    lenisRef.current = lenis;
+
+    // Header scroll state handler (synchronized with Lenis)
+    let isHeaderSm = false;
+    const updateHeaderScroll = (scrollYPos?: number) => {
+      if (!headerRef.current) return;
+      const scrollY = typeof scrollYPos === "number" ? scrollYPos : (window.scrollY || document.documentElement.scrollTop);
+      const shouldBeSm = scrollY > 50;
+
+      if (shouldBeSm !== isHeaderSm) {
+        isHeaderSm = shouldBeSm;
+        if (shouldBeSm) {
+          headerRef.current.classList.add("header-sm", "header-sm-visible");
+        } else {
+          headerRef.current.classList.remove("header-sm", "header-sm-visible");
+        }
+      }
+    };
+
+    // Synchronize Lenis scroll with GSAP ScrollTrigger and Header updates
+    lenis.on("scroll", (e: any) => {
+      ScrollTrigger.update();
+      updateHeaderScroll(e.scroll);
+    });
+
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
+
+    const handleWindowScroll = () => {
+      updateHeaderScroll();
+    };
+    window.addEventListener("scroll", handleWindowScroll, { passive: true });
+    updateHeaderScroll();
 
     // 1. Hero entrance animation triggered on page load (same as live site e-ymd.com)
     const heroElements = document.querySelectorAll<HTMLElement>(".hero--cont, .hero--cont-sp");
@@ -67,37 +124,7 @@ export default function Home() {
       });
     });
 
-    // 3. Header Scroll Behavior (rAF synchronized for 60fps/120fps smoothness)
-    let isHeaderSm = false;
-    let ticking = false;
-
-    const updateHeaderScroll = () => {
-      if (!headerRef.current) return;
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const shouldBeSm = scrollY > 50;
-
-      if (shouldBeSm !== isHeaderSm) {
-        isHeaderSm = shouldBeSm;
-        if (shouldBeSm) {
-          headerRef.current.classList.add("header-sm", "header-sm-visible");
-        } else {
-          headerRef.current.classList.remove("header-sm", "header-sm-visible");
-        }
-      }
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeaderScroll);
-        ticking = true;
-      }
-    };
-
-    updateHeaderScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    // 4. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
+    // 3. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
     const moveCont1 = document.querySelector(".ymd-line-red");
     const moveCont2 = document.querySelector(".ymd-line-blue");
     const scaleCont = document.querySelector(".home_ymd--sticky .imgarea");
@@ -128,7 +155,7 @@ export default function Home() {
         start: "top 80%",
         endTrigger: ".home_ymd--scrolltarget01",
         end: "center top",
-        scrub: true,
+        scrub: 1,
         toggleClass: { targets: ".header", className: "hide" },
       },
     });
@@ -152,10 +179,13 @@ export default function Home() {
 
     return () => {
       clearTimeout(heroTimer);
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleWindowScroll);
       window.removeEventListener("load", refreshST);
       clearTimeout(timer1);
       clearTimeout(timer2);
+      gsap.ticker.remove(updateLenis);
+      lenis.destroy();
+      lenisRef.current = null;
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -476,24 +506,32 @@ export default function Home() {
             <div className="scroll-txt pos_rel">
               <div className="scroll-txt--cont flex flex-a-ctr">
                 <img
+                loading="lazy"
+                decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
                   width="2144"
                   height="196"
                   alt="Nothing is impossible."
                 />
                 <img
+                loading="lazy"
+                decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
                   width="2144"
                   height="196"
                   alt="Nothing is impossible."
                 />
                 <img
+                loading="lazy"
+                decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
                   width="2144"
                   height="196"
                   alt="Nothing is impossible."
                 />
                 <img
+                loading="lazy"
+                decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
                   width="2144"
                   height="196"
@@ -579,6 +617,8 @@ export default function Home() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <div key={num} className="img pos-rel">
                     <img
+                loading="lazy"
+                decoding="async"
                       src={`/images/sbm/gallery-0${num}.jpg`}
                       width="640"
                       height="427"
@@ -591,6 +631,8 @@ export default function Home() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <div key={`dup-${num}`} className="img pos-rel">
                     <img
+                loading="lazy"
+                decoding="async"
                       src={`/images/sbm/gallery-0${num}.jpg`}
                       width="640"
                       height="427"
@@ -608,6 +650,8 @@ export default function Home() {
         <section id="about" className="home_about bg-primary-dark clr-wht pos-rel">
           <div className="ttl-en scroll_active">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/top/about-ttl.svg"
               width="1124"
               height="149"
@@ -644,6 +688,8 @@ export default function Home() {
                   <h4 className="ttl font-en">EXPERIENCE</h4>
                   <span className="icon">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn01.svg"
                       width="166"
                       height="176"
@@ -660,6 +706,8 @@ export default function Home() {
                   <h4 className="ttl font-en">MANUFACTURING</h4>
                   <span className="icon">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn02.svg"
                       width="176"
                       height="176"
@@ -674,6 +722,8 @@ export default function Home() {
                   <h4 className="ttl font-en">QUALITY ASSURANCE</h4>
                   <span className="icon">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn03.svg"
                       width="176"
                       height="176"
@@ -714,6 +764,8 @@ export default function Home() {
               <div className="cont--wrap cont-01 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/feature-01.jpg"
                     width="800"
                     height="600"
@@ -756,6 +808,8 @@ export default function Home() {
               <div className="cont--wrap cont-02 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/feature-02.jpg"
                     width="800"
                     height="600"
@@ -798,6 +852,8 @@ export default function Home() {
               <div className="cont--wrap cont-03 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/feature-03.jpg"
                     width="800"
                     height="600"
@@ -843,6 +899,8 @@ export default function Home() {
               <div className="cont--wrap cont-04 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/feature-04.jpg"
                     width="800"
                     height="600"
@@ -888,6 +946,8 @@ export default function Home() {
               <div className="cont--wrap cont-05 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/feature-05.jpg"
                     width="800"
                     height="600"
@@ -960,6 +1020,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/quality-01.jpg"
                     width="700"
                     height="480"
@@ -980,6 +1042,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/quality-02.jpg"
                     width="700"
                     height="220"
@@ -998,6 +1062,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/quality-03.jpg"
                     width="700"
                     height="220"
@@ -1040,6 +1106,8 @@ export default function Home() {
 
           <div className="ttl-en">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/top/products-ttl.svg"
               width="867"
               height="139"
@@ -1064,6 +1132,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/product-01.jpg"
                     width="398"
                     height="266"
@@ -1085,6 +1155,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/product-02.jpg"
                     width="398"
                     height="266"
@@ -1106,6 +1178,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/product-hdpe-pipes.jpg"
                     width="398"
                     height="266"
@@ -1127,6 +1201,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/product-upvc-pipes.jpg"
                     width="398"
                     height="266"
@@ -1148,6 +1224,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/product-water-tank.jpg"
                     width="398"
                     height="266"
@@ -1169,6 +1247,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/product-wall-putty.jpg"
                     width="398"
                     height="266"
@@ -1193,6 +1273,8 @@ export default function Home() {
         <section id="company" className="home_company scroll_active">
           <div className="ttl-en">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/top/company-ttl.svg"
               width="926"
               height="170"
@@ -1207,6 +1289,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/company-01.jpg"
                     width="597"
                     height="440"
@@ -1225,6 +1309,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/company-02.jpg"
                     width="597"
                     height="440"
@@ -1243,6 +1329,8 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/company-03.jpg"
                     width="597"
                     height="440"
@@ -1263,6 +1351,8 @@ export default function Home() {
                 <Link href="#news" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/images/sbm/company-04.jpg"
                     width="1792"
                     height="440"
@@ -1437,18 +1527,24 @@ export default function Home() {
               <div className="scroll-txt top">
                 <div className="scroll-txt--cont flex flex-a-ctr">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
                     width="2194"
                     height="145"
                     alt=""
                   />
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
                     width="2194"
                     height="145"
                     alt=""
                   />
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
                     width="2194"
                     height="145"
@@ -1463,18 +1559,24 @@ export default function Home() {
               <div className="scroll-txt bottom">
                 <div className="scroll-txt--cont reverse flex flex-a-ctr">
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
                     width="2194"
                     height="145"
                     alt=""
                   />
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
                     width="2194"
                     height="145"
                     alt=""
                   />
                   <img
+                loading="lazy"
+                decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
                     width="2194"
                     height="145"
@@ -1528,6 +1630,8 @@ export default function Home() {
             </div>
             <div className="imgarea">
               <img
+                loading="lazy"
+                decoding="async"
                 src="/images/sbm/partner-img.webp?v=2"
                 width="808"
                 height="800"
@@ -1541,6 +1645,8 @@ export default function Home() {
               {[1, 2, 3, 4, 5, 6].map((num) => (
                 <div key={num} className="img pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src={`/images/sbm/recruit-slide-0${num}.jpg`}
                     width="640"
                     height="427"
@@ -1552,6 +1658,8 @@ export default function Home() {
               {[1, 2, 3, 4, 5, 6].map((num) => (
                 <div key={`dup-${num}`} className="img pos-rel">
                   <img
+                loading="lazy"
+                decoding="async"
                     src={`/images/sbm/recruit-slide-0${num}.jpg`}
                     width="640"
                     height="427"
@@ -1670,24 +1778,32 @@ export default function Home() {
         <div className="scroll-txt">
           <div className="scroll-txt--cont flex flex-a-ctr">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
               width="2144"
               height="196"
               alt="Nothing is impossible."
             />
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
               width="2144"
               height="196"
               alt="Nothing is impossible."
             />
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
               width="2144"
               height="196"
               alt="Nothing is impossible."
             />
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
               width="2144"
               height="196"
@@ -1707,6 +1823,8 @@ export default function Home() {
                 <h2 className="footer--logo">
                   <Link href="/">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/images/logo/sbm-gold-logo-stacked-white.png"
                       width="622"
                       height="454"

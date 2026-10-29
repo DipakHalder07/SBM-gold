@@ -1058,8 +1058,8 @@ export default function Home() {
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">Automated Extrusion Lines</h4>
-                  <p className="txt">Advanced PLC-controlled machinery ensures uniform wall thickness and flawless precision.</p>
+                  <h4 className="ttl font-en">Automated Extrusion</h4>
+                  <p className="txt">PLC-controlled lines ensure uniform profile wall precision.</p>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1078,8 +1078,8 @@ export default function Home() {
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">Protective Surface Shield</h4>
-                  <p className="txt">Branded UV-resistant protective film ensures zero transit scratches and preserves a pristine surface finish.</p>
+                  <h4 className="ttl font-en">Protective Shield</h4>
+                  <p className="txt">Branded protective film ensures scratch-free transit.</p>
                   <span className="circle"></span>
                 </div>
               </div>

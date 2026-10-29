@@ -36,7 +36,7 @@ export default function Home() {
       if (targetEl) {
         const headerH = window.innerWidth > 1080 ? 74 : 72;
         if (lenisRef.current) {
-          lenisRef.current.scrollTo(targetEl, { offset: -headerH, duration: 1.2 });
+          lenisRef.current.scrollTo(targetEl, { offset: -headerH, duration: 0.75 });
         } else {
           const top = targetEl.getBoundingClientRect().top + window.scrollY - headerH;
           window.scrollTo({ top, behavior: "smooth" });
@@ -56,15 +56,15 @@ export default function Home() {
       (window as any).ScrollTrigger = ScrollTrigger;
     }
 
-    // Initialize Lenis for buttery-smooth momentum scrolling
+    // Initialize Lenis for fast, responsive, buttery-smooth scrolling
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.25,
+      touchMultiplier: 1.5,
     });
     lenisRef.current = lenis;
 
@@ -155,7 +155,7 @@ export default function Home() {
         start: "top 80%",
         endTrigger: ".home_ymd--scrolltarget01",
         end: "center top",
-        scrub: 1,
+        scrub: 0.5,
         toggleClass: { targets: ".header", className: "hide" },
       },
     });

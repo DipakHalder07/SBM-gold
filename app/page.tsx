@@ -132,6 +132,12 @@ export default function Home() {
     const redCont = document.querySelectorAll(".ymd-lg-color .red-parts");
     const visibleCont = document.querySelector(".home_ymd--sticky .contarea");
 
+    // Initialize outline parts at top-left and bottom-right corners
+    if (moveCont1 && moveCont2) {
+      gsap.set(moveCont1, { x: "-46vw", y: "-40vh", left: 0, top: 0, opacity: 0.7 });
+      gsap.set(moveCont2, { x: "46vw", y: "40vh", left: 0, top: 0, opacity: 0.7 });
+    }
+
     // Dedicated trigger to ensure header stays hidden throughout entire home_ymd section
     ScrollTrigger.create({
       trigger: ".home_ymd",
@@ -162,8 +168,8 @@ export default function Home() {
 
     if (moveCont1 && moveCont2 && colorCont && redCont.length > 0 && scaleCont && visibleCont) {
       tlYmd
-        .to(moveCont1, { left: 0, top: 0, ease: "none" })
-        .to(moveCont2, { right: 0, bottom: 0, ease: "none" }, "<")
+        .to(moveCont1, { x: 0, y: 0, opacity: 1, ease: "none" })
+        .to(moveCont2, { x: 0, y: 0, opacity: 1, ease: "none" }, "<")
         .to(colorCont, { opacity: 1, ease: "none" })
         .to(redCont, { opacity: 1, ease: "none" })
         // zoom into the centre of the light-red left piece (354,514 1055,995 818,1189 254,802)
@@ -352,12 +358,12 @@ export default function Home() {
                     </li>
                     <li>
                       <Link href="#company" className="gnav--link" onClick={(e) => handleNavClick("#company", e)}>
-                        <span>Our Journey</span>
+                        <span>CEO Message</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#company" className="gnav--link" onClick={(e) => handleNavClick("#company", e)}>
-                        <span>Sustainability</span>
+                        <span>Our Team</span>
                       </Link>
                     </li>
                   </ul>
@@ -1299,8 +1305,8 @@ export default function Home() {
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h3 className="ttl font-en">Our Journey</h3>
-                  <h4 className="sub-ttl font-en">SINCE 2014</h4>
+                  <h3 className="ttl font-en">CEO Message</h3>
+                  <h4 className="sub-ttl font-en">MESSAGE</h4>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1309,13 +1315,13 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                loading="lazy"
-                decoding="async"
+                    loading="lazy"
+                    decoding="async"
                     src="/images/sbm/company-02.jpg"
                     width="597"
                     height="440"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Headquarters"
                   />
                 </div>
                 <div className="cont--wrap--inner">
@@ -1329,18 +1335,18 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                loading="lazy"
-                decoding="async"
+                    loading="lazy"
+                    decoding="async"
                     src="/images/sbm/company-03.jpg"
                     width="597"
                     height="440"
                     className="img-cover"
-                    alt=""
+                    alt="Our Team"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h3 className="ttl font-en">Sustainability</h3>
-                  <h4 className="sub-ttl font-en">SUSTAINABILITY</h4>
+                  <h3 className="ttl font-en">Our Team</h3>
+                  <h4 className="sub-ttl font-en">TEAM</h4>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1351,13 +1357,13 @@ export default function Home() {
                 <Link href="#news" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                loading="lazy"
-                decoding="async"
+                    loading="lazy"
+                    decoding="async"
                     src="/images/sbm/company-04.jpg"
                     width="1792"
                     height="440"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD 2,25,000 sq ft Manufacturing Facility"
                   />
                 </div>
                 <div className="cont--wrap--inner">
@@ -1420,13 +1426,10 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
+                <g opacity="0.85" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
                   <polygon points="773,194 1016,0 2077,763 1663,829" />
                   <polygon points="768,199 1061,398 668,724 359,520" />
                   <polygon points="354,514 1055,995 818,1189 254,802" />
-                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
                 </g>
               </svg>
 
@@ -1436,10 +1439,7 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#951F17" strokeWidth="4" strokeLinejoin="round">
-                  <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  <polygon points="768,199 1061,398 668,724 359,520" />
-                  <polygon points="354,514 1055,995 818,1189 254,802" />
+                <g opacity="0.85" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
                   <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
                   <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
                   <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
@@ -1907,10 +1907,10 @@ export default function Home() {
                         <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>Overview</Link>
                       </li>
                       <li>
-                        <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>Our Journey</Link>
+                        <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>CEO Message</Link>
                       </li>
                       <li>
-                        <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>Sustainability</Link>
+                        <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>Our Team</Link>
                       </li>
                     </ul>
                   </li>

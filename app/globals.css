@@ -2098,6 +2098,16 @@ body .home_company .cont--wrap .cont--bg::after {
 body .home_company .cont--wrap.cont-04 .cont--bg::after {
   background: linear-gradient(to right, rgba(40, 10, 8, 0.78) 0%, rgba(40, 10, 8, 0.45) 60%, rgba(40, 10, 8, 0.2) 100%);
 }
+body .home_quality .cont--wrap.cont-01 .cont--bg::after {
+  background: linear-gradient(to top, rgba(20, 5, 4, 0.92) 0%, rgba(20, 5, 4, 0.65) 22%, rgba(20, 5, 4, 0.1) 36%, transparent 48%);
+}
+body .home_quality .cont--wrap.cont-01 .cont--bg img {
+  object-position: center center;
+}
+body .home_quality .cont--wrap.cont-02 .cont--bg::after,
+body .home_quality .cont--wrap.cont-03 .cont--bg::after {
+  background: linear-gradient(to right, rgba(20, 5, 4, 0.88) 0%, rgba(20, 5, 4, 0.6) 42%, rgba(20, 5, 4, 0.15) 68%, transparent 88%);
+}
 
 /* --- Remove Hover Blur Effect Across All Cards --- */
 body .home_quality .cont--wrap .cont--bg::before,

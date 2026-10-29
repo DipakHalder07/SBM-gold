@@ -1026,19 +1026,19 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                loading="lazy"
-                decoding="async"
+                    loading="lazy"
+                    decoding="async"
                     src="/images/sbm/quality-01.jpg"
                     width="700"
                     height="480"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Quality Inspector measuring uPVC profile dimensions with precision caliper"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">ISO Certified Manufacturing</h4>
+                  <h4 className="ttl font-en">ISO Certified Quality</h4>
                   <p className="txt">
-                    Certified to ISO 9001:2015 and ISO 4427. Every profile is extruded with German technology and automated precision for consistent, world-class quality.
+                    Certified to ISO 9001:2015 &amp; ISO 4427. Precision caliper &amp; wall-thickness inspection guarantees zero-defect uPVC profiles.
                   </p>
                   <span className="circle"></span>
                 </div>
@@ -1048,18 +1048,18 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                loading="lazy"
-                decoding="async"
+                    loading="lazy"
+                    decoding="async"
                     src="/images/sbm/quality-02.jpg"
                     width="700"
                     height="220"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Automated Extrusion Lines and PLC Control Systems"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">Colour Shades</h4>
-                  <p className="txt">White, Oak Wood, Walnut, Black and Grey finishes to match every home.</p>
+                  <h4 className="ttl font-en">Automated Extrusion Lines</h4>
+                  <p className="txt">Advanced PLC-controlled machinery ensures uniform wall thickness and flawless precision.</p>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1068,18 +1068,18 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                loading="lazy"
-                decoding="async"
+                    loading="lazy"
+                    decoding="async"
                     src="/images/sbm/quality-03.jpg"
                     width="700"
                     height="220"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Online Protective Film Lamination on uPVC Profile"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">20 Years Warranty</h4>
-                  <p className="txt">Long-lasting profiles backed by reliable after-sales support.</p>
+                  <h4 className="ttl font-en">Protective Surface Shield</h4>
+                  <p className="txt">Branded UV-resistant protective film ensures zero transit scratches and preserves a pristine surface finish.</p>
                   <span className="circle"></span>
                 </div>
               </div>

@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
-  const [cookieAccepted, setCookieAccepted] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const ymdContainerRef = useRef<HTMLDivElement>(null);
 
@@ -1860,65 +1859,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Cookie Notice Banner */}
-      {!cookieAccepted && !mobileMenuOpen && (
-        <div
-          id="cookie-notice"
-          role="dialog"
-          className="cn-position-bottom"
-          aria-label="Cookie Notice"
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            backgroundColor: "rgba(17, 17, 17, 0.88)",
-            padding: "16px 24px",
-            zIndex: 99999,
-            display: "flex",
-            justifyContent: "center",
-            backdropFilter: "blur(6px)",
-          }}
-        >
-          <div
-            className="cookie-notice-container"
-            style={{
-              color: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: "100%",
-              maxWidth: "1200px",
-              flexWrap: "wrap",
-              gap: "12px",
-            }}
-          >
-            <span id="cn-notice-text" className="cn-text-container" style={{ fontSize: "13px" }}>
-              We use cookies to ensure you get the best experience on our website. By continuing to browse, you agree to our use of cookies.
-            </span>
-            <span id="cn-notice-buttons" className="cn-buttons-container" style={{ display: "flex", gap: "8px" }}>
-              <button
-                id="cn-accept-cookie"
-                className="cn-set-cookie cn-button"
-                style={{
-                  backgroundColor: "#951F17",
-                  color: "#fff",
-                  border: "none",
-                  padding: "8px 24px",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                }}
-                onClick={() => setCookieAccepted(true)}
-              >
-                OK
-              </button>
-            </span>
-          </div>
-        </div>
-      )}
     </>
   );
 }

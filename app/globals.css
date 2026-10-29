@@ -345,6 +345,30 @@ body footer .footer--tel {
   opacity: 0.85;
 }
 
+/* Non-sticky Initial State: CONTACT button is White with Dark Red text and icon */
+.home .header:not(.header-sm):not(.active) .gnav--contact a,
+.header:not(.header-sm):not(.active) .gnav--contact a {
+  background-color: #ffffff !important;
+  color: #951F17 !important;
+  box-shadow: none !important;
+}
+
+.home .header:not(.header-sm):not(.active) .gnav--contact a svg,
+.header:not(.header-sm):not(.active) .gnav--contact a svg {
+  fill: #951F17 !important;
+}
+
+.home .header:not(.header-sm):not(.active) .gnav--contact a:hover,
+.header:not(.header-sm):not(.active) .gnav--contact a:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #951F17 !important;
+}
+
+.home .header:not(.header-sm):not(.active) .gnav--contact a:hover svg,
+.header:not(.header-sm):not(.active) .gnav--contact a:hover svg {
+  fill: #951F17 !important;
+}
+
 /* 2. Scrolled Sticky State with White Background (After scrolling past 50px) */
 .home .header.header-sm {
   transform: translateY(0) !important;
@@ -368,6 +392,30 @@ body footer .footer--tel {
 
 .home .header.header-sm .gnav--menu > li:hover > .gnav--link[href*="recruit"] {
   color: #e62320 !important;
+}
+
+/* Sticky Scrolled State: CONTACT button is Dark Red with White text and icon */
+.home .header.header-sm .gnav--contact a,
+.header.header-sm .gnav--contact a {
+  background-color: #951F17 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.home .header.header-sm .gnav--contact a svg,
+.header.header-sm .gnav--contact a svg {
+  fill: #ffffff !important;
+}
+
+.home .header.header-sm .gnav--contact a:hover,
+.header.header-sm .gnav--contact a:hover {
+  background-color: #7a1712 !important;
+  color: #ffffff !important;
+}
+
+.home .header.header-sm .gnav--contact a:hover svg,
+.header.header-sm .gnav--contact a:hover svg {
+  fill: #ffffff !important;
 }
 
 /* 4. Complete Hide during GSAP Zoom Section (.home_ymd) */
@@ -744,8 +792,8 @@ body .hero--cont .txt {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background-color: #e62320;
-  color: #ffffff !important;
+  background-color: #ffffff;
+  color: #951F17 !important;
   padding: 0.75rem 1.6rem;
   height: 2.85rem;
   font-family: var(--font-en);
@@ -755,19 +803,20 @@ body .hero--cont .txt {
   min-width: 10.5rem;
   border-radius: 999px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: none;
 }
 
 .gnav--contact a:hover {
-  background-color: #F04934;
+  background-color: rgba(255, 255, 255, 0.9);
   box-shadow: none;
 }
 
 .gnav--contact a svg {
   width: 16px;
   height: 16px;
-  fill: #ffffff;
+  fill: #951F17;
+  transition: fill 0.3s ease;
 }
 
 /* ==========================================================================

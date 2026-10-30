@@ -452,11 +452,11 @@ export default function Home() {
         <div className="hero">
           <div className="hero--movie pos-rel">
             <img
-              src="/images/sbm/hero.jpg"
-              width="1920"
-              height="1080"
+              src="/images/sbm/hero-products.jpg"
+              width="2560"
+              height="1448"
               className="img-cover hero-photo sp-none"
-              alt="Modern luxury residence fitted with SBM GOLD architectural uPVC sliding doors and panoramic windows"
+              alt="SBM GOLD product range: uPVC windows, WPC door frame, HDPE and uPVC pipes, wall putty and water tanks"
               fetchPriority="high"
             />
             <video

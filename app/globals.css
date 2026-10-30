@@ -2050,6 +2050,8 @@ body .home_recruit::after {
 /* hero still photo replaces the old video on desktop; mobile plays optimized vertical video */
 .hero--movie .hero-photo {
   animation: hero-photo-zoom 18s ease-out both;
+  /* products sit on the right of the banner; crop the empty left side first on narrower screens */
+  object-position: right center;
 }
 @keyframes hero-photo-zoom {
   from { transform: scale(1.12); }

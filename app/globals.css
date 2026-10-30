@@ -468,71 +468,35 @@ body footer .footer--tel {
   transform: translateZ(0) scale(0.85);
 }
 
-/* --- Hero Section Typography ---
-   The theme's stepped two-row title suits Japanese; English reads better
-   flush-left with a small eyebrow above and a tight, heavy headline. */
-body .hero--cont .hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem;
-  font-size: var(--fs-eyebrow);
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: var(--ls-eyebrow);
-  text-transform: uppercase;
-  color: var(--clr-secondary-default);
-}
-
-body .hero--cont .hero-eyebrow::before {
-  content: "";
-  width: 2rem;
-  height: 2px;
-  background: currentColor;
-  flex-shrink: 0;
-}
-
+/* --- Hero Section Typography --- */
 body .hero--cont .ttl {
   font-family: var(--font-heading);
   font-weight: 800;
   letter-spacing: -0.035em;
-  line-height: 1;
+  line-height: 1.1;
 }
 
-body .hero--cont .ttl .row-01 {
+body .hero--cont .ttl .row-01,
+body .hero--cont .ttl .row-02,
+body .hero--cont .ttl .txt-lg {
   display: block;
   font-size: clamp(36px, 3.75vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 body .hero--cont .ttl .row-02 {
-  display: block;
-  padding-left: 1.5rem;
-  margin-top: 0.1em;
-}
-
-body .hero--cont .ttl .txt-lg {
-  font-size: clamp(56px, 6.25vw, 108px);
-  font-weight: 800;
-  letter-spacing: -0.045em;
+  padding-left: 0 !important;
+  margin-top: 0.15em;
 }
 
 body .hero--cont .ttl .ttl-dot {
   color: var(--clr-secondary-default);
 }
 
-body .hero--cont .ttl .hero-icon-img {
-  display: block;
-  margin-top: 1.25rem;
-  max-width: 380px;
-  width: 100%;
-  height: auto;
-}
-
 /* Soft halo in the hero background colour keeps copy legible where the
    diagonal video edge passes behind it */
-body .hero--cont .hero-eyebrow,
 body .hero--cont .txt {
   text-shadow: 0 0 12px rgba(241, 241, 243, 0.95), 0 0 2px rgba(241, 241, 243, 0.9);
 }
@@ -541,8 +505,8 @@ body .hero--cont .txt {
 .hero--cont-sp .txt {
   max-width: 36rem;
   font-size: var(--fs-lead);
-  line-height: 1.09;
-  letter-spacing: 0.055em;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
   color: #111111;
   word-break: break-word;
   font-weight: 500;
@@ -554,32 +518,28 @@ body .hero--cont .txt {
 }
 
 @media screen and (max-width: 767px) {
-  body .hero--cont .hero-eyebrow {
-    justify-content: center;
-    margin-bottom: 0.875rem;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-  }
-  body .hero--cont .ttl .row-01 {
-    font-size: 30px;
-  }
+  body .hero--cont .ttl .row-01,
+  body .hero--cont .ttl .row-02,
   body .hero--cont .ttl .txt-lg {
-    font-size: 30px;
-    letter-spacing: -0.035em;
+    font-size: clamp(26px, 6.5vw, 32px);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
   }
   .hero--cont .txt {
     max-width: 100%;
     margin-top: 1.25rem;
+    line-height: 1.4;
   }
   /* Theme lays both rows out inline in a flex row, which drops the space */
   body .hero--cont .ttl--row {
     flex-wrap: wrap;
     justify-content: center;
     align-items: baseline;
-    column-gap: 0.3em;
+    column-gap: 0.35em;
   }
   body .hero--cont .ttl .row-02 {
     padding-left: 0;
+    margin-top: 0;
   }
 }
 

@@ -763,11 +763,11 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/images/sbm/feature-01.jpg"
+                    src="/images/sbm/feature-01.jpg?v=2"
                     width="800"
                     height="600"
                     className="img-cover"
-                    alt=""
+                    alt="uPVC window profiles designed to European standards - SBM GOLD"
                   />
                 </div>
                 <div className="txtarea">
@@ -807,11 +807,11 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/images/sbm/feature-02.jpg"
+                    src="/images/sbm/feature-02.jpg?v=2"
                     width="800"
                     height="600"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD water tanks and piping systems"
                   />
                 </div>
                 <div className="txtarea">

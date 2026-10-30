@@ -396,7 +396,7 @@ export default function Home() {
                     </li>
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Partner with SBM Gold</span>
+                        <span>Partner with SBM GOLD</span>
                       </Link>
                     </li>
                     <li>
@@ -480,10 +480,10 @@ export default function Home() {
               <h2 className="ttl">
                 <span className="ttl--row">
                   <span className="row-01 anime-fade-lft">
-                    Precision Engineered
+                    Engineered for
                   </span>
                   <span className="row-02 anime-fade-lft delay1">
-                    Profiles<span className="ttl-dot">.</span>
+                    Indian Homes<span className="ttl-dot">.</span>
                   </span>
                 </span>
               </h2>
@@ -506,33 +506,33 @@ export default function Home() {
                 loading="lazy"
                 decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Nothing is impossible."
+                  width="2331"
+                  height="137"
+                  alt=""
                 />
                 <img
                 loading="lazy"
                 decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Nothing is impossible."
+                  width="2331"
+                  height="137"
+                  alt=""
                 />
                 <img
                 loading="lazy"
                 decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Nothing is impossible."
+                  width="2331"
+                  height="137"
+                  alt=""
                 />
                 <img
                 loading="lazy"
                 decoding="async"
                   src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Nothing is impossible."
+                  width="2331"
+                  height="137"
+                  alt=""
                 />
               </div>
             </div>
@@ -867,7 +867,7 @@ export default function Home() {
                     Built for Every Indian<br />Climate Extreme
                   </h4>
                   <p className="txt">
-                    Weather-sealed, termite-proof and low maintenance. Our profiles resist sun, rain and humidity for a long lifespan, backed by a 20 years warranty.
+                    Weather-sealed, termite-proof and low maintenance. Our profiles resist sun, rain and humidity for a long lifespan, backed by a 20-year warranty.
                   </p>
                   <div className="btn">
                     <Link href="#quality">Learn About Quality Control</Link>
@@ -1029,7 +1029,7 @@ export default function Home() {
                 <div className="cont--wrap--inner">
                   <h4 className="ttl font-en">ISO Certified Quality</h4>
                   <p className="txt">
-                    Certified to ISO 9001:2015 &amp; ISO 4427. Precision caliper &amp; wall-thickness inspection guarantees zero-defect uPVC profiles.
+                    Certified to ISO 9001:2015 &amp; ISO 4427. Caliper and wall-thickness checks on every batch keep each profile true to spec.
                   </p>
                   <span className="circle"></span>
                 </div>
@@ -1050,7 +1050,7 @@ export default function Home() {
                 </div>
                 <div className="cont--wrap--inner">
                   <h4 className="ttl font-en">Automated Extrusion</h4>
-                  <p className="txt">PLC-controlled lines ensure uniform profile wall precision.</p>
+                  <p className="txt">PLC-controlled lines hold every profile wall uniform, metre after metre.</p>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1070,7 +1070,7 @@ export default function Home() {
                 </div>
                 <div className="cont--wrap--inner">
                   <h4 className="ttl font-en">Protective Shield</h4>
-                  <p className="txt">Branded protective film ensures scratch-free transit.</p>
+                  <p className="txt">Factory-applied film keeps profiles scratch-free from our plant to your site.</p>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1521,31 +1521,31 @@ export default function Home() {
                 loading="lazy"
                 decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                    width="1962"
+                    height="127"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                    width="1962"
+                    height="127"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                    width="1962"
+                    height="127"
                     alt=""
                   />
                 </div>
               </div>
               <h3 className="catch font-en txt-ctr">
-                <span className="txt-lg">BUILDING</span>&nbsp;A{" "}<br className="pc-none" />
-                <span className="txt-lg">LEGACY</span>
+                <span className="txt-lg">GROW</span>&nbsp;WITH{" "}<br className="pc-none" />
+                <span className="txt-lg">US</span>
               </h3>
               <div className="scroll-txt bottom">
                 <div className="scroll-txt--cont reverse flex flex-a-ctr">
@@ -1553,24 +1553,24 @@ export default function Home() {
                 loading="lazy"
                 decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                    width="1962"
+                    height="127"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                    width="1962"
+                    height="127"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
                     src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                    width="1962"
+                    height="127"
                     alt=""
                   />
                 </div>
@@ -1609,7 +1609,7 @@ export default function Home() {
               </h3>
               <div className="txt">
                 <p>
-                  Partner with SBM Gold in India &mdash; Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors &amp; windows, WPC door frames, HDPE pipes, water tanks, and wall putty.
+                  Partner with SBM GOLD in India &mdash; Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors &amp; windows, WPC door frames, HDPE pipes, water tanks, and wall putty.
                 </p>
                 <p>
                   As an authorized distributor, dealer, or project partner, scale your business with high-margin product lines, ISO &amp; ISI certified reliability, state-of-the-art extrusion, and dedicated technical &amp; marketing support.
@@ -1626,7 +1626,7 @@ export default function Home() {
                 src="/images/sbm/partner-img.webp?v=2"
                 width="808"
                 height="800"
-                alt="Partner with SBM Gold in India"
+                alt="Partner with SBM GOLD in India"
               />
             </div>
           </div>
@@ -1772,33 +1772,33 @@ export default function Home() {
                 loading="lazy"
                 decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Nothing is impossible."
+              width="2331"
+              height="137"
+              alt=""
             />
             <img
                 loading="lazy"
                 decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Nothing is impossible."
+              width="2331"
+              height="137"
+              alt=""
             />
             <img
                 loading="lazy"
                 decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Nothing is impossible."
+              width="2331"
+              height="137"
+              alt=""
             />
             <img
                 loading="lazy"
                 decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Nothing is impossible."
+              width="2331"
+              height="137"
+              alt=""
             />
           </div>
         </div>

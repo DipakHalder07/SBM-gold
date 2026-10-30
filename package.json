@@ -1,5 +1,5 @@
 {
-  "name": "ymd-site",
+  "name": "sbm-gold-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,15 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.3.27",
     "next": "^14.2.15",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "gsap": "^3.12.5"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "opentype.js": "^2.0.0",
     "typescript": "^5.5.3"
   }
 }

@@ -5,20 +5,32 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const [cookieAccepted, setCookieAccepted] = useState(false);
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   const headerRef = useRef<HTMLElement>(null);
   const ymdContainerRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
+  useEffect(() => {
     if (mobileMenuOpen) {
+      lenisRef.current?.stop();
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
+      lenisRef.current?.start();
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
   }, [mobileMenuOpen]);
 
@@ -26,13 +38,16 @@ export default function Home() {
     if (href.startsWith("#") && href !== "#no_link") {
       if (e) e.preventDefault();
       setMobileMenuOpen(false);
-      setActiveSubmenu(null);
       const targetId = href.substring(1);
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
-        const headerH = window.innerWidth > 1080 ? 74 : 64;
-        const top = targetEl.getBoundingClientRect().top + window.scrollY - headerH;
-        window.scrollTo({ top, behavior: "smooth" });
+        const headerH = window.innerWidth > 1080 ? 74 : 72;
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(targetEl, { offset: -headerH, duration: 0.75 });
+        } else {
+          const top = targetEl.getBoundingClientRect().top + window.scrollY - headerH;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
       }
     } else if (href.startsWith("#no_link")) {
       if (e) e.preventDefault();
@@ -42,17 +57,59 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
-    }
-
     gsap.registerPlugin(ScrollTrigger);
     if (typeof window !== "undefined") {
       (window as any).gsap = gsap;
       (window as any).ScrollTrigger = ScrollTrigger;
     }
+
+    // Initialize Lenis for fast, responsive, buttery-smooth scrolling
+    const lenis = new Lenis({
+      duration: 0.7,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1.25,
+      touchMultiplier: 1.5,
+    });
+    lenisRef.current = lenis;
+
+    // Header scroll state handler (synchronized with Lenis)
+    let isHeaderSm = false;
+    const updateHeaderScroll = (scrollYPos?: number) => {
+      if (!headerRef.current) return;
+      const scrollY = typeof scrollYPos === "number" ? scrollYPos : (window.scrollY || document.documentElement.scrollTop);
+      const shouldBeSm = scrollY > 50;
+
+      if (shouldBeSm !== isHeaderSm) {
+        isHeaderSm = shouldBeSm;
+        if (shouldBeSm) {
+          headerRef.current.classList.add("header-sm", "header-sm-visible");
+        } else {
+          headerRef.current.classList.remove("header-sm", "header-sm-visible");
+        }
+      }
+    };
+
+    // Synchronize Lenis scroll with GSAP ScrollTrigger and Header updates
+    lenis.on("scroll", (e: any) => {
+      ScrollTrigger.update();
+      updateHeaderScroll(e.scroll);
+    });
+
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
+
+    const handleWindowScroll = () => {
+      updateHeaderScroll();
+    };
+    window.addEventListener("scroll", handleWindowScroll, { passive: true });
+    updateHeaderScroll();
 
     // 1. Hero entrance animation triggered on page load (same as live site e-ymd.com)
     const heroElements = document.querySelectorAll<HTMLElement>(".hero--cont, .hero--cont-sp");
@@ -74,43 +131,19 @@ export default function Home() {
       });
     });
 
-    // 3. Header Scroll Behavior (rAF synchronized for 60fps/120fps smoothness)
-    let isHeaderSm = false;
-    let ticking = false;
-
-    const updateHeaderScroll = () => {
-      if (!headerRef.current) return;
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const shouldBeSm = scrollY > 50;
-
-      if (shouldBeSm !== isHeaderSm) {
-        isHeaderSm = shouldBeSm;
-        if (shouldBeSm) {
-          headerRef.current.classList.add("header-sm", "header-sm-visible");
-        } else {
-          headerRef.current.classList.remove("header-sm", "header-sm-visible");
-        }
-      }
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeaderScroll);
-        ticking = true;
-      }
-    };
-
-    updateHeaderScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    // 4. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
+    // 3. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
     const moveCont1 = document.querySelector(".ymd-line-red");
     const moveCont2 = document.querySelector(".ymd-line-blue");
     const scaleCont = document.querySelector(".home_ymd--sticky .imgarea");
     const colorCont = document.querySelector(".ymd-lg-color");
     const redCont = document.querySelectorAll(".ymd-lg-color .red-parts");
     const visibleCont = document.querySelector(".home_ymd--sticky .contarea");
+
+    // Initialize outline parts at top-left and bottom-right corners
+    if (moveCont1 && moveCont2) {
+      gsap.set(moveCont1, { x: "-46vw", y: "-40vh", left: 0, top: 0, opacity: 0.7 });
+      gsap.set(moveCont2, { x: "46vw", y: "40vh", left: 0, top: 0, opacity: 0.7 });
+    }
 
     // Dedicated trigger to ensure header stays hidden throughout entire home_ymd section
     ScrollTrigger.create({
@@ -135,19 +168,20 @@ export default function Home() {
         start: "top 80%",
         endTrigger: ".home_ymd--scrolltarget01",
         end: "center top",
-        scrub: true,
+        scrub: 0.5,
         toggleClass: { targets: ".header", className: "hide" },
       },
     });
 
     if (moveCont1 && moveCont2 && colorCont && redCont.length > 0 && scaleCont && visibleCont) {
       tlYmd
-        .to(moveCont1, { left: 0, top: 0, ease: "none" })
-        .to(moveCont2, { right: 0, bottom: 0, ease: "none" }, "<")
+        .to(moveCont1, { x: 0, y: 0, opacity: 1, ease: "none" })
+        .to(moveCont2, { x: 0, y: 0, opacity: 1, ease: "none" }, "<")
         .to(colorCont, { opacity: 1, ease: "none" })
         .to(redCont, { opacity: 1, ease: "none" })
-        // zoom into the centre of the dark-red middle piece so the screen fills with red
-        .to(scaleCont, { scale: 35, transformOrigin: "70% 53%", ease: "none" })
+        // zoom into the centre of the light-red left piece (354,514 1055,995 818,1189 254,802)
+        // so the screen fills with the same orange-red as the catch panel behind it
+        .to(scaleCont, { scale: 35, transformOrigin: "30% 48%", ease: "none" })
         .to(visibleCont, { opacity: 1, ease: "none" });
     }
 
@@ -158,16 +192,22 @@ export default function Home() {
 
     return () => {
       clearTimeout(heroTimer);
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleWindowScroll);
       window.removeEventListener("load", refreshST);
       clearTimeout(timer1);
       clearTimeout(timer2);
+      gsap.ticker.remove(updateLenis);
+      lenis.destroy();
+      lenisRef.current = null;
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   const toggleSubmenu = (menuKey: string) => {
-    setActiveSubmenu(activeSubmenu === menuKey ? null : menuKey);
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [menuKey]: !prev[menuKey],
+    }));
   };
 
   return (
@@ -202,7 +242,7 @@ export default function Home() {
           {/* Navigation */}
           <nav className={`gnav ${mobileMenuOpen ? "active" : ""}`}>
             <ul className="gnav--menu flex flex-j-ctr">
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "ymd" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["ymd"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -214,7 +254,7 @@ export default function Home() {
                   <span>About Us</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "ymd" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["ymd"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
@@ -224,28 +264,28 @@ export default function Home() {
                     </li>
                     <li>
                       <Link href="#quality" className="gnav--link" onClick={(e) => handleNavClick("#quality", e)}>
-                        <span>Equipment</span>
+                        <span>Colour Shades</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#quality" className="gnav--link" onClick={(e) => handleNavClick("#quality", e)}>
-                        <span>Manufacturing Plant</span>
+                        <span>Certifications</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#quality" className="gnav--link" onClick={(e) => handleNavClick("#quality", e)}>
-                        <span>Quality Control</span>
+                        <span>Warranty</span>
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "ymd" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["ymd"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("ymd")}
                 ></span>
               </li>
 
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "products" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["products"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -257,45 +297,53 @@ export default function Home() {
                   <span>Products</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "products" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["products"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
                       <Link href="#products" className="gnav--link" onClick={(e) => handleNavClick("#products", e)}>
-                        <span>Custom Parts</span>
+                        <span>uPVC Windows &amp; Doors</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#products" className="gnav--link" onClick={(e) => handleNavClick("#products", e)}>
-                        <span>Production Equipment</span>
+                        <span>WPC Door Frames</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#products" className="gnav--link" onClick={(e) => handleNavClick("#products", e)}>
-                        <span>Other Components</span>
+                        <span>HDPE &amp; uPVC Pipes</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#products" className="gnav--link" onClick={(e) => handleNavClick("#products", e)}>
+                        <span>Water Tanks</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#products" className="gnav--link" onClick={(e) => handleNavClick("#products", e)}>
+                        <span>Wall Putty</span>
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "products" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["products"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("products")}
                 ></span>
               </li>
 
               <li className="menu-item">
                 <a
-                  href="https://r16759029.theta360.biz/t/a4f2c6b0-1582-11ee-90d3-060182f6995f-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#news"
                   className="gnav--link"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick("#news", e)}
                 >
-                  <span>360° Tour</span>
+                  <span>Milestones</span>
                 </a>
               </li>
 
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "company" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["company"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -307,7 +355,7 @@ export default function Home() {
                   <span>Company</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "company" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["company"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
@@ -322,18 +370,18 @@ export default function Home() {
                     </li>
                     <li>
                       <Link href="#company" className="gnav--link" onClick={(e) => handleNavClick("#company", e)}>
-                        <span>Sustainability</span>
+                        <span>Our Team</span>
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "company" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["company"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("company")}
                 ></span>
               </li>
 
-              <li className={`menu-item menu-item-has-children ${activeSubmenu === "recruit" ? "active" : ""}`}>
+              <li className={`menu-item menu-item-has-children ${openSubmenus["recruit"] ? "active" : ""}`}>
                 <a
                   href="#no_link"
                   className="gnav--link"
@@ -342,45 +390,40 @@ export default function Home() {
                     toggleSubmenu("recruit");
                   }}
                 >
-                  <span>Careers</span>
+                  <span>Partner</span>
                 </a>
                 <div
-                  className={`head_sub_nav--wrap ${activeSubmenu === "recruit" ? "is-open" : ""}`}
+                  className={`head_sub_nav--wrap ${openSubmenus["recruit"] ? "is-open" : ""}`}
                 >
                   <ul className="head_sub_nav">
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Careers Home</span>
+                        <span>Become a Partner</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Why SBM GOLD</span>
+                        <span>Partner with SBM GOLD</span>
                       </Link>
                     </li>
                     <li>
                       <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Interviews</span>
+                        <span>Distributor Network</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href="#recruit" className="gnav--link" onClick={(e) => handleNavClick("#recruit", e)}>
-                        <span>Job Openings</span>
+                      <Link href="#contact" className="gnav--link" onClick={(e) => handleNavClick("#contact", e)}>
+                        <span>Partner Inquiry</span>
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <span
-                  className={`gnav_sub_toggle ${activeSubmenu === "recruit" ? "active" : ""}`}
+                  className={`gnav_sub_toggle ${openSubmenus["recruit"] ? "active" : ""}`}
                   onClick={() => toggleSubmenu("recruit")}
                 ></span>
               </li>
 
-              <li className="menu-item">
-                <Link href="#about" className="gnav--link" onClick={(e) => handleNavClick("#about", e)}>
-                  <span>Global</span>
-                </Link>
-              </li>
             </ul>
 
             <ul className="gnav--cta flex">
@@ -400,21 +443,6 @@ export default function Home() {
                 </Link>
               </li>
             </ul>
-
-            <div className="gnav--btm pc-none">
-              <ul className="gnav--btm--menu flex flex-col2">
-                <li>
-                  <Link href="#news" onClick={(e) => handleNavClick("#news", e)}>News</Link>
-                </li>
-                <li>
-                  <Link href="#footer" onClick={(e) => handleNavClick("#footer", e)}>Privacy Policy</Link>
-                </li>
-                <li>
-                  <Link href="#footer" onClick={(e) => handleNavClick("#footer", e)}>Sitemap</Link>
-                </li>
-              </ul>
-              <div className="copyright">&copy; SBM GOLD ALL RIGHTS RESERVED.</div>
-            </div>
           </nav>
         </div>
       </header>
@@ -423,21 +451,27 @@ export default function Home() {
         {/* HERO SECTION */}
         <div className="hero">
           <div className="hero--movie pos-rel">
+            <img
+              src="/images/sbm/hero-products.jpg"
+              width="2560"
+              height="1448"
+              className="img-cover hero-photo sp-none"
+              alt="SBM GOLD product range: uPVC windows, WPC door frame, HDPE and uPVC pipes, wall putty and water tanks"
+              fetchPriority="high"
+            />
             <video
               ref={videoRef}
-              id="responsive-video"
-              muted
-              playsInline
+              className="img-cover hero-video pc-none"
               autoPlay
+              muted
               loop
-              width="1920"
-              height="1080"
-              className="img-cover"
+              playsInline
+              poster="/images/sbm/hero-mobile-thumb.jpg"
+              width="720"
+              height="1280"
+              preload="auto"
             >
-              <source
-                src="/wp/wp-content/themes/standard_sass/video/fv01.mp4"
-                type="video/mp4"
-              />
+              <source src="/videos/hero-mobile.mp4" type="video/mp4" />
             </video>
           </div>
 
@@ -467,35 +501,22 @@ export default function Home() {
               <h2 className="ttl">
                 <span className="ttl--row">
                   <span className="row-01 anime-fade-lft">
-                    The Optimal
+                    Engineered for
                   </span>
                   <span className="row-02 anime-fade-lft delay1">
-                    <span className="txt-lg">
-                      Solution<span className="ttl-dot">.</span>
-                    </span>
+                    Indian Homes<span className="ttl-dot">.</span>
                   </span>
                 </span>
-                <img
-                  src="/images/logo/sbm-gold-logo-header.png"
-                  width="855"
-                  height="130"
-                  className="anime-fade-lft delay2 hero-icon-img"
-                  alt="SBM GOLD"
-                />
               </h2>
-              <p className="txt anime-fade-up delay3 sp-none">
-                Your trusted partner in global procurement<br />
-                &amp; precision manufacturing. Delivering 99%<br className="sp-none" />
-                custom-engineered solutions with guaranteed quality.
+              <p className="txt anime-fade-up delay2 sp-none">
+                Manufacturers of uPVC doors &amp; windows<br />
+                profiles, WPC door frames, water tanks<br className="sp-none" />
+                &amp; pipes, crafted with German technology.
               </p>
               <div className="btn anime-fade-up delay3 sp-none">
-                <a
-                  href="https://r16759029.theta360.biz/t/a4f2c6b0-1582-11ee-90d3-060182f6995f-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>360° Factory Tour</span>
-                </a>
+                <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>
+                  <span>Explore Products</span>
+                </Link>
               </div>
             </div>
 
@@ -503,28 +524,36 @@ export default function Home() {
             <div className="scroll-txt pos_rel">
               <div className="scroll-txt--cont flex flex-a-ctr">
                 <img
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
+                  alt=""
                 />
                 <img
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
+                  alt=""
                 />
                 <img
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
+                  alt=""
                 />
                 <img
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2144"
-                  height="196"
-                  alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
+                  alt=""
                 />
               </div>
             </div>
@@ -545,19 +574,13 @@ export default function Home() {
           {/* SP Hero */}
           <div className="hero--cont-sp pc-none scroll_active">
             <div className="inner">
-              <p className="txt anime-fade-up delay3">
-                Your trusted partner in global procurement<br />
-                &amp; precision manufacturing. Delivering 99%<br />
-                custom-engineered solutions with guaranteed quality.
+              <p className="txt anime-fade-up delay2">
+                Manufacturers of uPVC doors &amp; windows profiles, WPC door frames, water tanks &amp; pipes, crafted with German technology.
               </p>
               <div className="btn anime-fade-up delay3">
-                <a
-                  href="https://r16759029.theta360.biz/t/a4f2c6b0-1582-11ee-90d3-060182f6995f-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>360° Factory Tour</span>
-                </a>
+                <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>
+                  <span>Explore Products</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -569,18 +592,18 @@ export default function Home() {
               <h4 className="sub-ttl anime-fade-up">OUR MISSION</h4>
               <h3 className="ttl ttl-02 txt-ctr anime-fade-up delay1">
                 <span className="block">
-                  &ldquo;Count on SBM GOLD&rdquo;<br />
-                  Your Trusted Partner in<br />
-                  <span className="txt-lg">Precision Parts</span> &amp; <span className="txt-lg">Procurement</span>.
+                  &ldquo;Bringing nature&rsquo;s serenity&rdquo;<br />
+                  straight to you with<br />
+                  <span className="txt-lg">Doors</span> &amp; <span className="txt-lg">Windows</span>.
                 </span>
               </h3>
               <div className="txt anime-fade-up delay2">
                 <p>
-                  We are more than just an industrial parts supplier.<br />
-                  <span className="bold">99% of our delivered components are custom-made.</span><br />
-                  Empowering modern manufacturing with precision and limitless potential.<br className="pc-none" />
-                  Expanding our global procurement network to deliver unmatched quality.<br className="pc-none" />
-                  Committed to driving your business forward every step of the way.
+                  Every big achievement starts with a small dream.<br />
+                  <span className="bold">From a humble beginning at SBM Plaza, Jaigaon to a trusted name in building materials.</span><br />
+                  From plumbing systems to modern living solutions, we keep evolving.<br className="pc-none" />
+                  Building trust, innovation and durability for every home and business.<br className="pc-none" />
+                  Not just products, but a legacy.
                 </p>
               </div>
             </div>
@@ -612,11 +635,13 @@ export default function Home() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <div key={num} className="img pos-rel">
                     <img
-                      src={`/wp/wp-content/themes/standard_sass/images/top/mission-slide0${num}.png`}
+                      loading="lazy"
+                      decoding="async"
+                      src={`/images/sbm/gallery-0${num}.jpg?v=2`}
                       width="640"
                       height="427"
                       className="img-cover"
-                      alt={`Mission slide 0${num}`}
+                      alt="SBM GOLD Manufacturing and Product Gallery"
                     />
                   </div>
                 ))}
@@ -624,11 +649,13 @@ export default function Home() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <div key={`dup-${num}`} className="img pos-rel">
                     <img
-                      src={`/wp/wp-content/themes/standard_sass/images/top/mission-slide0${num}.png`}
+                      loading="lazy"
+                      decoding="async"
+                      src={`/images/sbm/gallery-0${num}.jpg?v=2`}
                       width="640"
                       height="427"
                       className="img-cover"
-                      alt={`Mission slide 0${num}`}
+                      alt="SBM GOLD Manufacturing and Product Gallery"
                     />
                   </div>
                 ))}
@@ -641,6 +668,8 @@ export default function Home() {
         <section id="about" className="home_about bg-primary-dark clr-wht pos-rel">
           <div className="ttl-en scroll_active">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/top/about-ttl.svg"
               width="1124"
               height="149"
@@ -657,11 +686,11 @@ export default function Home() {
                 <span className="txt">ABOUT</span>
               </h3>
               <h3 className="catch font-en">
-                99% Custom-Made Precision.<br />
-                Tailored Quality &amp; Speed.
+                From Pipes to Profiles.<br />
+                A Legacy of Precision Extrusion.
               </h3>
               <p className="txt">
-                As an integrated trader and manufacturer, SBM GOLD delivers custom-engineered precision parts — from technical drawing analysis to machining and rigorous QA inspection. Your trusted one-stop partner.
+                Backed by SBM GOLD&rsquo;s legacy of quality and innovation, our uPVC doors and windows profiles offer world-class, custom solutions for Indian homes. Crafted with German technology and automated precision, they ensure all-weather durability and superior noise and heat insulation.
               </p>
               <div className="btn btn-wh">
                 <Link href="#feature">Explore SBM GOLD</Link>
@@ -672,11 +701,13 @@ export default function Home() {
               <div className="contarea--row1 flex flex-j-ctr">
                 <div className="cont--wrap cont-01 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale">
                   <span className="sub-ttl font-en">
-                    100+ Global &amp; Domestic<br />Procurement Sources
+                    10+ Years of<br />Extrusion Expertise
                   </span>
-                  <h4 className="ttl font-en">TRADING</h4>
+                  <h4 className="ttl font-en">EXPERIENCE</h4>
                   <span className="icon">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn01.svg"
                       width="166"
                       height="176"
@@ -688,11 +719,13 @@ export default function Home() {
               <div className="contarea--row2 flex flex-j-ctr">
                 <div className="cont--wrap cont-02 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay1">
                   <span className="sub-ttl font-en">
-                    Custom-Engineered<br />Parts Manufacturing
+                    22,000 MT<br />Yearly Capacity
                   </span>
-                  <h4 className="ttl font-en">MAKER</h4>
+                  <h4 className="ttl font-en">MANUFACTURING</h4>
                   <span className="icon">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn02.svg"
                       width="176"
                       height="176"
@@ -702,11 +735,13 @@ export default function Home() {
                 </div>
                 <div className="cont--wrap cont-03 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay2">
                   <span className="sub-ttl font-en">
-                    Certified QA Inspectors &amp;<br />Advanced Inspection Tech
+                    ISO &amp; BIS<br />Certified
                   </span>
                   <h4 className="ttl font-en">QUALITY ASSURANCE</h4>
                   <span className="icon">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn03.svg"
                       width="176"
                       height="176"
@@ -747,11 +782,13 @@ export default function Home() {
               <div className="cont--wrap cont-01 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/mission-slide05.png"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/feature-01.jpg?v=2"
                     width="800"
                     height="600"
                     className="img-cover"
-                    alt=""
+                    alt="uPVC window profiles designed to European standards - SBM GOLD"
                   />
                 </div>
                 <div className="txtarea">
@@ -760,10 +797,10 @@ export default function Home() {
                       <span className="txt">FEATURE</span>
                       <span className="num">01</span>
                     </span>
-                    Meeting Diverse Needs with<br />Custom-Engineered Parts
+                    Profiles Designed to<br />European Standards
                   </h4>
                   <p className="txt">
-                    99% of our components are custom-engineered to order. Beyond fulfilling exact specifications, we proactively propose optimized manufacturing solutions trusted by global leaders.
+                    Sleek aesthetics with robust engineering. Our multi-chambered profiles work with European hardware systems and come with advanced locking systems for enhanced security.
                   </p>
                 </div>
                 <span className="deco deco-1 stroke wht md reverse">
@@ -789,11 +826,13 @@ export default function Home() {
               <div className="cont--wrap cont-02 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/feature-img02.png"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/feature-02.jpg?v=2"
                     width="800"
                     height="600"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD water tanks and piping systems"
                   />
                 </div>
                 <div className="txtarea">
@@ -802,10 +841,10 @@ export default function Home() {
                       <span className="txt">FEATURE</span>
                       <span className="num">02</span>
                     </span>
-                    Global Sourcing Network<br />Delivering Optimal Procurement
+                    Thermal Insulation for<br />Quieter, Cooler Homes
                   </h4>
                   <p className="txt">
-                    With 100+ trusted partners across Asia, Europe, and America, plus partner facilities worldwide, we combine international engineering expertise with rapid delivery to handle any custom challenge.
+                    Multi-chambered profiles give superior heat insulation and cut outdoor noise, keeping your rooms calm and comfortable through every season.
                   </p>
                 </div>
                 <span className="deco deco-1 stroke wht md reverse">
@@ -831,7 +870,9 @@ export default function Home() {
               <div className="cont--wrap cont-03 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/feature-img04.png"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/feature-03.jpg"
                     width="800"
                     height="600"
                     className="img-cover"
@@ -844,10 +885,10 @@ export default function Home() {
                       <span className="txt">FEATURE</span>
                       <span className="num">03</span>
                     </span>
-                    Rigorous Inspection Guaranteeing<br />Superior Quality
+                    Built for Every Indian<br />Climate Extreme
                   </h4>
                   <p className="txt">
-                    Every manufactured component undergoes thorough inspection under strict QA standards by certified engineers using 3D coordinate measuring machines (CMM) and optical instruments.
+                    Weather-sealed, termite-proof and low maintenance. Our profiles resist sun, rain and humidity for a long lifespan, backed by a 20-year warranty.
                   </p>
                   <div className="btn">
                     <Link href="#quality">Learn About Quality Control</Link>
@@ -876,7 +917,9 @@ export default function Home() {
               <div className="cont--wrap cont-04 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/feature-img05.png"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/feature-04.jpg"
                     width="800"
                     height="600"
                     className="img-cover"
@@ -889,13 +932,13 @@ export default function Home() {
                       <span className="txt">FEATURE</span>
                       <span className="num">04</span>
                     </span>
-                    Integrated Machining &amp; Assembly<br />Under One Roof
+                    Your All-in-One Solution,<br />From Profile to Installation
                   </h4>
                   <p className="txt">
-                    Our dedicated assembly plant seamlessly integrates machining, sub-assembly, and finishing in-house — cutting lead times, reducing supply chain costs, and delivering turnkey reliability.
+                    End-to-end expertise with customizable styles and finishes, professional installation by our own team and reliable after-sales support.
                   </p>
                   <div className="btn">
-                    <Link href="#quality">Explore Assembly Plant</Link>
+                    <Link href="#products">Explore Our Range</Link>
                   </div>
                 </div>
                 <span className="deco deco-1 stroke wht md reverse">
@@ -921,7 +964,9 @@ export default function Home() {
               <div className="cont--wrap cont-05 pos-rel flex">
                 <div className="imgarea pos-rel">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/feature-img03.png"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/feature-05.jpg"
                     width="800"
                     height="600"
                     className="img-cover"
@@ -934,13 +979,13 @@ export default function Home() {
                       <span className="txt">FEATURE</span>
                       <span className="num">05</span>
                     </span>
-                    Expert Sales Engineers<br />Providing Technical Solutions
+                    Trusted by Builders,<br />Backed by Industry Veterans
                   </h4>
                   <p className="txt">
-                    Our seasoned sales engineers analyze engineering drawings and tolerances directly, making rapid, precise recommendations. From initial quote to final delivery, we manage every step with full accountability.
+                    With 10+ years of extrusion expertise, SBM GOLD is a trusted name for builders and homeowners. Our eco-friendly, recyclable uPVC is made to last.
                   </p>
                   <div className="btn">
-                    <Link href="#contact">View Case Studies</Link>
+                    <Link href="#contact">Talk to Our Team</Link>
                   </div>
                 </div>
                 <span className="deco deco-1 stroke wht md reverse">
@@ -993,17 +1038,19 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/quality-img01.jpg"
+                    loading="lazy"
+                    decoding="async"
+                    src="/images/sbm/quality-01.jpg"
                     width="700"
                     height="480"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Quality Inspector measuring uPVC profile dimensions with precision caliper"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">Commitment to Quality</h4>
+                  <h4 className="ttl font-en">ISO Certified Quality</h4>
                   <p className="txt">
-                    As precision manufacturing specialists, quality is our bedrock. We maintain state-of-the-art CMM measuring facilities and rigorous inspection protocols for 100% defect-free delivery.
+                    Certified to ISO 9001:2015 &amp; ISO 4427. Caliper and wall-thickness checks on every batch keep each profile true to spec.
                   </p>
                   <span className="circle"></span>
                 </div>
@@ -1013,16 +1060,18 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/quality-img02.jpg"
+                    loading="lazy"
+                    decoding="async"
+                    src="/images/sbm/quality-02.jpg"
                     width="700"
                     height="220"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Automated Extrusion Lines and PLC Control Systems"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">Equipment List</h4>
-                  <p className="txt">Explore our advanced testing, inspection, and machining equipment.</p>
+                  <h4 className="ttl font-en">Automated Extrusion</h4>
+                  <p className="txt">PLC-controlled lines hold every profile wall uniform, metre after metre.</p>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1031,16 +1080,18 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/quality-img03.jpg"
+                    loading="lazy"
+                    decoding="async"
+                    src="/images/sbm/quality-03.jpg"
                     width="700"
                     height="220"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Online Protective Film Lamination on uPVC Profile"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h4 className="ttl font-en">Assembly Plant</h4>
-                  <p className="txt">Tour our modern processing and sub-assembly facility.</p>
+                  <h4 className="ttl font-en">Protective Shield</h4>
+                  <p className="txt">Factory-applied film keeps profiles scratch-free from our plant to your site.</p>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1073,6 +1124,8 @@ export default function Home() {
 
           <div className="ttl-en">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/top/products-ttl.svg"
               width="867"
               height="139"
@@ -1097,63 +1150,136 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/product-img01.png"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/product-01.jpg"
                     width="398"
                     height="266"
-                    alt=""
+                    alt="SBM GOLD uPVC windows"
                   />
                 </div>
                 <div className="txtarea">
                   <h4 className="ttl font-en">
-                    Custom Parts
+                    uPVC Windows &amp; Doors
                     <span className="arrow"></span>
                   </h4>
                   <div className="txt">
-                    High-precision parts, mold &amp; die components, and mechanical assemblies engineered to exact tolerances.
+                    Sliding, casement, tilt &amp; turn and villa windows, plus slide &amp; fold, sliding and internal doors, built on our Sliding, Casement and Accessories profile series.
                   </div>
                 </div>
               </div>
-
               <div className="cont--wrap cont-02 pos-rel">
                 <span className="num font-en">02</span>
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/product-img02.jpg"
-                    width="399"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/product-02.jpg"
+                    width="398"
                     height="266"
-                    alt=""
+                    alt="SBM GOLD WPC door frame"
                   />
                 </div>
                 <div className="txtarea">
                   <h4 className="ttl font-en">
-                    Equipment
+                    WPC Door Frames
                     <span className="arrow"></span>
                   </h4>
                   <div className="txt">
-                    Custom automation machinery, specialized equipment, and labor-saving systems boosting factory productivity.
+                    100% waterproof and termite-proof Wood Plastic Composite frames, ready to install and paint. Sizes 5&times;2.5, 4&times;2.5 and 3&times;2 inches.
                   </div>
                 </div>
               </div>
-
               <div className="cont--wrap cont-03 pos-rel">
                 <span className="num font-en">03</span>
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="imgarea">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/product-img03.png"
-                    width="399"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/product-hdpe-pipes.jpg"
+                    width="398"
                     height="266"
-                    alt=""
+                    alt="SBM GOLD HDPE pipes"
                   />
                 </div>
                 <div className="txtarea">
                   <h4 className="ttl font-en">
-                    Components
+                    HDPE Pipes
                     <span className="arrow"></span>
                   </h4>
                   <div className="txt">
-                    Industrial leaf springs, coil springs, washers, hardware, and automotive parts across diverse sectors.
+                    Resilient, reliable and leak-free HDPE pipes from 20mm to 630mm (IS:4984), with butt-welded seamless joints for water supply, industry and infrastructure.
+                  </div>
+                </div>
+              </div>
+              <div className="cont--wrap cont-01 pos-rel">
+                <span className="num font-en">04</span>
+                <Link href="#contact" className="cont--link"></Link>
+                <div className="imgarea">
+                  <img
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/product-upvc-pipes.jpg"
+                    width="398"
+                    height="266"
+                    alt="SBM GOLD uPVC pipes"
+                  />
+                </div>
+                <div className="txtarea">
+                  <h4 className="ttl font-en">
+                    uPVC &amp; Agri Pipes
+                    <span className="arrow"></span>
+                  </h4>
+                  <div className="txt">
+                    High-pressure solvent weld plumbing (IS:4985), MCGM approved for potable water and 40&ndash;50% cheaper than G.I. Plus agri, boring and drip irrigation pipes.
+                  </div>
+                </div>
+              </div>
+              <div className="cont--wrap cont-02 pos-rel">
+                <span className="num font-en">05</span>
+                <Link href="#contact" className="cont--link"></Link>
+                <div className="imgarea">
+                  <img
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/product-water-tank.jpg"
+                    width="398"
+                    height="266"
+                    alt="SBM GOLD water tanks in green, blue, black and white"
+                  />
+                </div>
+                <div className="txtarea">
+                  <h4 className="ttl font-en">
+                    Water Tanks
+                    <span className="arrow"></span>
+                  </h4>
+                  <div className="txt">
+                    Roto-moulded, food-grade, UV-resistant and anti-bacterial tanks from 100L to 10,000L in 2, 3 and 4 layers. Green, blue, black and white.
+                  </div>
+                </div>
+              </div>
+              <div className="cont--wrap cont-03 pos-rel">
+                <span className="num font-en">06</span>
+                <Link href="#contact" className="cont--link"></Link>
+                <div className="imgarea">
+                  <img
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/product-wall-putty.jpg"
+                    width="398"
+                    height="266"
+                    alt="SBM GOLD wall putty bags"
+                  />
+                </div>
+                <div className="txtarea">
+                  <h4 className="ttl font-en">
+                    Wall Putty
+                    <span className="arrow"></span>
+                  </h4>
+                  <div className="txt">
+                    White cement based putty for interior and exterior walls: a smooth, refined finish with excellent spread and adhesion. From rough to refined.
                   </div>
                 </div>
               </div>
@@ -1165,6 +1291,8 @@ export default function Home() {
         <section id="company" className="home_company scroll_active">
           <div className="ttl-en">
             <img
+                loading="lazy"
+                decoding="async"
               src="/wp/wp-content/themes/standard_sass/images/top/company-ttl.svg"
               width="926"
               height="170"
@@ -1179,7 +1307,9 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/company-img01.jpg"
+                loading="lazy"
+                decoding="async"
+                    src="/images/sbm/company-01.jpg"
                     width="597"
                     height="440"
                     className="img-cover"
@@ -1197,11 +1327,13 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/company-img02.jpg"
+                    loading="lazy"
+                    decoding="async"
+                    src="/images/sbm/company-02.jpg"
                     width="597"
                     height="440"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD Headquarters"
                   />
                 </div>
                 <div className="cont--wrap--inner">
@@ -1215,16 +1347,18 @@ export default function Home() {
                 <Link href="#contact" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/company-img03.jpg"
+                    loading="lazy"
+                    decoding="async"
+                    src="/images/sbm/company-03.jpg"
                     width="597"
                     height="440"
                     className="img-cover"
-                    alt=""
+                    alt="Our Team"
                   />
                 </div>
                 <div className="cont--wrap--inner">
-                  <h3 className="ttl font-en">Sustainability</h3>
-                  <h4 className="sub-ttl font-en">SUSTAINABILITY</h4>
+                  <h3 className="ttl font-en">Our Team</h3>
+                  <h4 className="sub-ttl font-en">TEAM</h4>
                   <span className="circle"></span>
                 </div>
               </div>
@@ -1232,28 +1366,25 @@ export default function Home() {
 
             <div className="cont--row">
               <div className="cont--wrap cont-04">
-                <a
-                  href="https://r16759029.theta360.biz/t/a4f2c6b0-1582-11ee-90d3-060182f6995f-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cont--link"
-                ></a>
+                <Link href="#news" className="cont--link"></Link>
                 <div className="cont--bg">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/company-img04.jpg"
+                    loading="lazy"
+                    decoding="async"
+                    src="/images/sbm/company-04.jpg"
                     width="1792"
                     height="440"
                     className="img-cover"
-                    alt=""
+                    alt="SBM GOLD 2,25,000 sq ft Manufacturing Facility"
                   />
                 </div>
                 <div className="cont--wrap--inner">
                   <div className="ttlarea">
-                    <h3 className="ttl font-en">360° Factory Tour</h3>
-                    <h4 className="sub-ttl font-en">FACTORY TOUR</h4>
+                    <h3 className="ttl font-en">Growth &amp; Excellence</h3>
+                    <h4 className="sub-ttl font-en">DREAMS · DEDICATION · GROWTH</h4>
                   </div>
                   <p className="txt">
-                    Take an immersive virtual tour through our modern manufacturing and assembly floors. Discover our cutting-edge machinery and precision inspection facilities.
+                    A 2,25,000 sq ft modern manufacturing facility, 22,000 MT capacity, and a trusted network of 300+ dealers.
                   </p>
                   <span className="circle"></span>
                 </div>
@@ -1307,13 +1438,10 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
+                <g opacity="0.85" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
                   <polygon points="773,194 1016,0 2077,763 1663,829" />
                   <polygon points="768,199 1061,398 668,724 359,520" />
                   <polygon points="354,514 1055,995 818,1189 254,802" />
-                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
                 </g>
               </svg>
 
@@ -1323,10 +1451,7 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g opacity="0.6" stroke="#951F17" strokeWidth="4" strokeLinejoin="round">
-                  <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  <polygon points="768,199 1061,398 668,724 359,520" />
-                  <polygon points="354,514 1055,995 818,1189 254,802" />
+                <g opacity="0.85" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
                   <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
                   <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
                   <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
@@ -1362,37 +1487,37 @@ export default function Home() {
                   </clipPath>
                 </defs>
                 <image
-                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide05.png"
+                  href="/images/sbm/emblem-01.jpg?v=2"
                   x="773" y="0" width="1304" height="829"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-1)"
                 />
                 <image
-                  href="/wp/wp-content/themes/standard_sass/images/top/quality-img01.jpg"
+                  href="/images/sbm/emblem-02.jpg"
                   x="359" y="199" width="702" height="525"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-2)"
                 />
                 <image
-                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide06.png"
+                  href="/images/sbm/emblem-03.jpg"
                   x="254" y="514" width="801" height="675"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-3)"
                 />
                 <image
-                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide01.png"
+                  href="/images/sbm/emblem-04.jpg"
                   x="1011" y="641" width="823" height="702"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-4)"
                 />
                 <image
-                  href="/wp/wp-content/themes/standard_sass/images/top/company-img01.jpg"
+                  href="/images/sbm/emblem-05.jpg"
                   x="0" y="1028" width="1309" height="802"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-5)"
                 />
                 <image
-                  href="/wp/wp-content/themes/standard_sass/images/top/mission-slide03.png"
+                  href="/images/sbm/emblem-06.jpg"
                   x="1022" y="1155" width="663" height="487"
                   preserveAspectRatio="xMidYMid slice"
                   clipPath="url(#ymd-piece-6)"
@@ -1414,48 +1539,59 @@ export default function Home() {
               <div className="scroll-txt top">
                 <div className="scroll-txt--cont flex flex-a-ctr">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                loading="lazy"
+                decoding="async"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                loading="lazy"
+                decoding="async"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                loading="lazy"
+                decoding="async"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                 </div>
               </div>
               <h3 className="catch font-en txt-ctr">
-                <span className="txt-lg">CREATE</span> YOUR<br className="pc-none" />
-                <span className="txt-lg">OWN</span>
-                <span className="txt-lg">VALUE</span>
+                <span className="txt-lg">GROW</span>&nbsp;WITH{" "}<br className="pc-none" />
+                <span className="txt-lg">US</span>
               </h3>
               <div className="scroll-txt bottom">
                 <div className="scroll-txt--cont reverse flex flex-a-ctr">
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                loading="lazy"
+                decoding="async"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                loading="lazy"
+                decoding="async"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="2194"
-                    height="145"
+                loading="lazy"
+                decoding="async"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                 </div>
@@ -1465,8 +1601,9 @@ export default function Home() {
           <div className="home_ymd--scrolltarget01"></div>
         </div>
 
-        {/* RECRUIT SECTION */}
+        {/* BECOME A PARTNER SECTION */}
         <section id="recruit" className="home_recruit pos-rel scroll_active">
+          <span id="partner" className="pos-abs" style={{ top: "-100px" }}></span>
           <span className="deco deco-1 fill wht xs reverse anime-diag-lft2">
             <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
               <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
@@ -1486,29 +1623,31 @@ export default function Home() {
           <div className="inner inner-xl flex flex-a-ctr flex-j-between flex-sp-block">
             <div className="txtarea">
               <h2 className="ttl ttl-01 txt-lft">
-                <span className="jp block">CAREERS</span>
+                <span className="jp block">BECOME A PARTNER</span>
               </h2>
               <h3 className="ttl-01-sub font-en">
-                <span className="txt">RECRUIT</span>
+                <span className="txt">PARTNER WITH SBM GOLD</span>
               </h3>
               <div className="txt">
                 <p>
-                  We celebrate individual initiative, creativity, and personal growth. With diverse global clients, our team members have the autonomy to innovate, build trusted partnerships, and shape the future of manufacturing.
+                  Partner with SBM GOLD in India &mdash; Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors &amp; windows, WPC door frames, HDPE pipes, water tanks, and wall putty.
                 </p>
                 <p>
-                  Through continuous professional development, skill certification programs, and merit-based rewards, we empower our team to thrive in an inclusive, forward-thinking workplace. Explore your potential with SBM GOLD.
+                  As an authorized distributor, dealer, or project partner, scale your business with high-margin product lines, ISO &amp; ISI certified reliability, state-of-the-art extrusion, and dedicated technical &amp; marketing support.
                 </p>
               </div>
               <div className="btn btn-wh">
-                <Link href="#contact">View Career Opportunities</Link>
+                <Link href="#contact" onClick={(e) => handleNavClick("#contact", e)}>Become a Partner</Link>
               </div>
             </div>
             <div className="imgarea">
               <img
-                src="/wp/wp-content/themes/standard_sass/images/top/recruit-img.png"
+                loading="lazy"
+                decoding="async"
+                src="/images/sbm/partner-img.webp?v=2"
                 width="808"
                 height="800"
-                alt=""
+                alt="Partner with SBM GOLD in India"
               />
             </div>
           </div>
@@ -1518,22 +1657,26 @@ export default function Home() {
               {[1, 2, 3, 4, 5, 6].map((num) => (
                 <div key={num} className="img pos-rel">
                   <img
-                    src={`/wp/wp-content/themes/standard_sass/images/top/recruit-slide0${num}.png`}
+                loading="lazy"
+                decoding="async"
+                    src={`/images/sbm/recruit-slide-0${num}.jpg`}
                     width="640"
                     height="427"
                     className="img-cover"
-                    alt={`Recruit slide 0${num}`}
+                    alt=""
                   />
                 </div>
               ))}
               {[1, 2, 3, 4, 5, 6].map((num) => (
                 <div key={`dup-${num}`} className="img pos-rel">
                   <img
-                    src={`/wp/wp-content/themes/standard_sass/images/top/recruit-slide0${num}.png`}
+                loading="lazy"
+                decoding="async"
+                    src={`/images/sbm/recruit-slide-0${num}.jpg`}
                     width="640"
                     height="427"
                     className="img-cover"
-                    alt={`Recruit slide 0${num}`}
+                    alt=""
                   />
                 </div>
               ))}
@@ -1547,14 +1690,14 @@ export default function Home() {
             <div className="home_news--wrap flex flex-sp-block">
               <div className="ttlarea">
                 <h2 className="ttl ttl-01 txt-lft">
-                  <span className="jp block">LATEST NEWS</span>
+                  <span className="jp block">MILESTONES</span>
                 </h2>
                 <h3 className="ttl-01-sub font-en">
                   <span className="txt">NEWS</span>
                 </h3>
                 <div className="btn btn-arrow">
-                  <Link href="#news">
-                    <span className="txt--wrap">View All News</span>
+                  <Link href="https://www.instagram.com/sbmgold_/" target="_blank" rel="noopener noreferrer">
+                    <span className="txt--wrap">Follow @sbmgold_</span>
                     <span className="circle"></span>
                   </Link>
                 </div>
@@ -1562,15 +1705,15 @@ export default function Home() {
               <div className="posts posts-news">
                 <article className="post">
                   <div className="post--info flex flex-c-wrap flex-a-ctr">
-                    <p className="post--date">2025.05.27</p>
+                    <p className="post--date">2025</p>
                     <div className="cat_list">
-                      <span className="tag">Update</span>
+                      <span className="tag">Launch</span>
                     </div>
                   </div>
                   <div className="post--txtarea">
                     <h2 className="post--ttl">
                       <Link href="#news" className="post--link">
-                        SBM GOLD official social media channels launched!
+                        Launched uPVC profiles for windows &amp; doors and WPC door frames
                       </Link>
                     </h2>
                     <span className="circle"></span>
@@ -1579,15 +1722,15 @@ export default function Home() {
 
                 <article className="post">
                   <div className="post--info flex flex-c-wrap flex-a-ctr">
-                    <p className="post--date">2025.04.18</p>
+                    <p className="post--date">2023</p>
                     <div className="cat_list">
-                      <span className="tag">Update</span>
+                      <span className="tag">Milestone</span>
                     </div>
                   </div>
                   <div className="post--txtarea">
                     <h2 className="post--ttl">
                       <Link href="#news" className="post--link">
-                        Our corporate website has been nominated on Awwwards!
+                        First company in North East India to manufacture 450mm HDPE pipes
                       </Link>
                     </h2>
                     <span className="circle"></span>
@@ -1609,10 +1752,10 @@ export default function Home() {
             <h3 className="ttl-01-sub font-en txt-lft mgn-btm42">
               <span className="txt">CONTACT</span>
             </h3>
-            <p className="txt">
-              For custom precision parts, global procurement, and production equipment, partner with SBM GOLD.<br />
-              We deliver optimal solutions tailored to your technical and operational requirements.<br />
-              We also warmly welcome passionate candidates to explore global career opportunities with us.
+            <p className="txt foot_cta--copy">
+              <span className="foot_cta_line">Get in touch with the future of doors &amp; windows.</span>
+              <span className="foot_cta_line">For uPVC windows and doors, WPC door frames, water tanks, pipes and wall putty, talk to SBM GOLD.</span>
+              <span className="foot_cta_line">Builders, dealers and homeowners are all welcome: Yahi Hai #AsliCommitment.</span>
             </p>
           </div>
           <div className="foot_cta--contact pos-rel">
@@ -1633,11 +1776,11 @@ export default function Home() {
                 </Link>
               </li>
               <li className="cta_tel">
-                <a href="tel:0527763311">
+                <a href="tel:18008893850">
                   <span className="tel">
-                    TEL.<span className="num">052-776-3311</span>
+                    TEL.<span className="num">1800-8893-850</span>
                   </span>
-                  <span className="hours">[Hours] Mon - Fri 9:00 AM – 5:00 PM</span>
+                  <span className="hours">Toll-free customer support</span>
                 </a>
               </li>
             </ul>
@@ -1647,28 +1790,36 @@ export default function Home() {
         <div className="scroll-txt">
           <div className="scroll-txt--cont flex flex-a-ctr">
             <img
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
+              alt=""
             />
             <img
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
+              alt=""
             />
             <img
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
+              alt=""
             />
             <img
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2144"
-              height="196"
-              alt="Noting is impossible."
+                loading="lazy"
+                decoding="async"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
+              alt=""
             />
           </div>
         </div>
@@ -1684,6 +1835,8 @@ export default function Home() {
                 <h2 className="footer--logo">
                   <Link href="/">
                     <img
+                loading="lazy"
+                decoding="async"
                       src="/images/logo/sbm-gold-logo-stacked-white.png"
                       width="622"
                       height="454"
@@ -1692,30 +1845,19 @@ export default function Home() {
                   </Link>
                 </h2>
                 <address className="footer--address">
-                  <p>SBM GOLD</p>
-                  <p>1-152 Hongo, Meito-ku, Nagoya, Aichi 465-0024 Japan</p>
+                  <p>SBM Pipe Industries Private Limited</p>
+                  <p>2nd Floor, Metro Plaza, SF Road, Siliguri, West Bengal, India – 734005</p>
                 </address>
                 <p className="footer--tel">
-                  TEL:<a href="tel:0527763311">+81-52-776-3311</a> / FAX:+81-52-776-3609
+                  TOLL FREE:<a href="tel:18008893850">1800-8893-850</a><br />
+                  EMAIL:<a href="mailto:sbmpipeindustries@gmail.com">sbmpipeindustries@gmail.com</a>
                 </p>
                 <aside className="sns_area">
                   <ul className="flex flex-a-ctr">
                     <li>
                       <a
-                        className="facebook"
-                        href="https://www.facebook.com/share/1HTMEX7Ukq/?mibextid=wwXIfr"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <svg className="icon-facebook">
-                          <use xlinkHref="#icon-facebook"></use>
-                        </svg>
-                      </a>
-                    </li>
-                    <li>
-                      <a
                         className="instagram"
-                        href="https://www.instagram.com/ymd_inc_official?igsh=cTh6YjVzNzU4Zm03&utm_source=qr"
+                        href="https://www.instagram.com/sbmgold_/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -1737,22 +1879,16 @@ export default function Home() {
                         <Link href="#feature" onClick={(e) => handleNavClick("#feature", e)}>Our Strengths</Link>
                       </li>
                       <li>
-                        <Link href="#quality" onClick={(e) => handleNavClick("#quality", e)}>Equipment</Link>
+                        <Link href="#quality" onClick={(e) => handleNavClick("#quality", e)}>Colour Shades</Link>
                       </li>
                       <li>
-                        <Link href="#quality" onClick={(e) => handleNavClick("#quality", e)}>Manufacturing Plant</Link>
+                        <Link href="#quality" onClick={(e) => handleNavClick("#quality", e)}>Certifications</Link>
                       </li>
                       <li>
-                        <Link href="#quality" onClick={(e) => handleNavClick("#quality", e)}>Quality Control</Link>
+                        <Link href="#quality" onClick={(e) => handleNavClick("#quality", e)}>Warranty</Link>
                       </li>
                       <li>
-                        <a
-                          href="https://r16759029.theta360.biz/t/a4f2c6b0-1582-11ee-90d3-060182f6995f-1"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          360° Tour
-                        </a>
+                        <Link href="#news" onClick={(e) => handleNavClick("#news", e)}>Milestones</Link>
                       </li>
                     </ul>
                   </li>
@@ -1760,13 +1896,19 @@ export default function Home() {
                     <a href="#no_link">Products</a>
                     <ul className="sub-menu">
                       <li>
-                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>Custom Parts</Link>
+                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>uPVC Windows &amp; Doors</Link>
                       </li>
                       <li>
-                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>Production Equipment</Link>
+                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>WPC Door Frames</Link>
                       </li>
                       <li>
-                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>Other Components</Link>
+                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>HDPE &amp; uPVC Pipes</Link>
+                      </li>
+                      <li>
+                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>Water Tanks</Link>
+                      </li>
+                      <li>
+                        <Link href="#products" onClick={(e) => handleNavClick("#products", e)}>Wall Putty</Link>
                       </li>
                     </ul>
                   </li>
@@ -1780,24 +1922,24 @@ export default function Home() {
                         <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>CEO Message</Link>
                       </li>
                       <li>
-                        <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>Sustainability</Link>
+                        <Link href="#company" onClick={(e) => handleNavClick("#company", e)}>Our Team</Link>
                       </li>
                     </ul>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="#no_link">Careers</a>
+                    <a href="#no_link">Partner</a>
                     <ul className="sub-menu">
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Careers Home</Link>
+                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Become a Partner</Link>
                       </li>
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Why SBM GOLD</Link>
+                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Partner in India</Link>
                       </li>
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Interviews</Link>
+                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Distributor Network</Link>
                       </li>
                       <li>
-                        <Link href="#recruit" onClick={(e) => handleNavClick("#recruit", e)}>Job Openings</Link>
+                        <Link href="#contact" onClick={(e) => handleNavClick("#contact", e)}>Partner Inquiry</Link>
                       </li>
                     </ul>
                   </li>
@@ -1812,7 +1954,7 @@ export default function Home() {
             <div className="footer_btm--lft">
               <ul className="footer_btm--menu flex">
                 <li>
-                  <Link href="#news" onClick={(e) => handleNavClick("#news", e)}>News</Link>
+                  <Link href="#news" onClick={(e) => handleNavClick("#news", e)}>Milestones</Link>
                 </li>
                 <li>
                   <Link href="#footer" onClick={(e) => handleNavClick("#footer", e)}>Privacy Policy</Link>
@@ -1823,20 +1965,6 @@ export default function Home() {
               </ul>
               <div className="copyright flex flex-a-ctr flex-sp-block font-en">
                 <small>&copy; SBM GOLD ALL RIGHTS RESERVED.</small>
-                <p className="pbl">
-                  <a
-                    href="https://leapy.jp/website-production/corporate-site/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src="/wp/wp-content/themes/standard_sass/images/common/pbl-wh.svg"
-                      alt="Website Production"
-                      width="120"
-                      height="13"
-                    />
-                  </a>
-                </p>
               </div>
             </div>
             <div className="footer_btm--rgt">
@@ -1861,65 +1989,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Cookie Notice Banner */}
-      {!cookieAccepted && (
-        <div
-          id="cookie-notice"
-          role="dialog"
-          className="cn-position-bottom"
-          aria-label="Cookie Notice"
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            backgroundColor: "rgba(17, 17, 17, 0.88)",
-            padding: "16px 24px",
-            zIndex: 99999,
-            display: "flex",
-            justifyContent: "center",
-            backdropFilter: "blur(6px)",
-          }}
-        >
-          <div
-            className="cookie-notice-container"
-            style={{
-              color: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: "100%",
-              maxWidth: "1200px",
-              flexWrap: "wrap",
-              gap: "12px",
-            }}
-          >
-            <span id="cn-notice-text" className="cn-text-container" style={{ fontSize: "13px" }}>
-              We use cookies to ensure you get the best experience on our website. By continuing to browse, you agree to our use of cookies.
-            </span>
-            <span id="cn-notice-buttons" className="cn-buttons-container" style={{ display: "flex", gap: "8px" }}>
-              <button
-                id="cn-accept-cookie"
-                className="cn-set-cookie cn-button"
-                style={{
-                  backgroundColor: "#951F17",
-                  color: "#fff",
-                  border: "none",
-                  padding: "8px 24px",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                }}
-                onClick={() => setCookieAccepted(true)}
-              >
-                OK
-              </button>
-            </span>
-          </div>
-        </div>
-      )}
     </>
   );
 }

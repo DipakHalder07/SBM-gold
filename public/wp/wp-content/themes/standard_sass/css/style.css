@@ -33317,14 +33317,9 @@ body.home {
   opacity: 0;
   transition: all .4s ease-out;
   transition: var(--transit-default);
-  -webkit-backdrop-filter: blur(1px);
-          backdrop-filter: blur(1px);
 }
 .home_quality .cont--wrap:hover .cont--bg {
   transform: scale(1.05);
-}
-.home_quality .cont--wrap:hover .cont--bg::before {
-  opacity: 1;
 }
 
 .home_quality .cont--wrap .cont--link {
@@ -33741,14 +33736,9 @@ body.home {
   opacity: 0;
   transition: all .4s ease-out;
   transition: var(--transit-default);
-  -webkit-backdrop-filter: blur(1px);
-          backdrop-filter: blur(1px);
 }
 .home_company .cont--wrap:hover .cont--bg {
   transform: scale(1.05);
-}
-.home_company .cont--wrap:hover .cont--bg::before {
-  opacity: 1;
 }
 
 .home_company .cont--wrap .cont--link {

@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-base",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sbmgold.com"),
-  title: "SBM GOLD | Custom Precision Parts & Equipment Procurement",
+  title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
   description:
-    "99% Custom-Made Precision Components. SBM GOLD delivers optimal procurement and engineering solutions across global supply networks with unmatched precision and quality assurance.",
+    "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
   openGraph: {
     title: "SBM GOLD",
     description:
-      "99% Custom-Made Precision Components. SBM GOLD delivers optimal procurement and engineering solutions across global supply networks with unmatched precision and quality assurance.",
+      "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
     url: "https://www.sbmgold.com/",
     siteName: "SBM GOLD",
     images: [
@@ -20,8 +28,20 @@ export const metadata: Metadata = {
         alt: "SBM GOLD",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=2", sizes: "any" },
+      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png?v=2", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico?v=2",
   },
 };
 
@@ -40,22 +60,18 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"
         />
         <meta name="format-detection" content="telephone=no" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+        <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <link
           rel="stylesheet"
           href="/wp/wp-content/themes/standard_sass/css/style.css"
         />
       </head>
-      <body className="home" id="top">
+      <body className={`home ${plusJakartaSans.className}`} id="top">
         {/* SVG definitions for icons */}
         <svg
           aria-hidden="true"

@@ -614,13 +614,13 @@ export default function Home() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <div key={num} className="img pos-rel">
                     <img
-                loading="lazy"
-                decoding="async"
-                      src={`/images/sbm/gallery-0${num}.jpg`}
+                      loading="lazy"
+                      decoding="async"
+                      src={`/images/sbm/gallery-0${num}.jpg?v=2`}
                       width="640"
                       height="427"
                       className="img-cover"
-                      alt=""
+                      alt="SBM GOLD Manufacturing and Product Gallery"
                     />
                   </div>
                 ))}
@@ -628,13 +628,13 @@ export default function Home() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <div key={`dup-${num}`} className="img pos-rel">
                     <img
-                loading="lazy"
-                decoding="async"
-                      src={`/images/sbm/gallery-0${num}.jpg`}
+                      loading="lazy"
+                      decoding="async"
+                      src={`/images/sbm/gallery-0${num}.jpg?v=2`}
                       width="640"
                       height="427"
                       className="img-cover"
-                      alt=""
+                      alt="SBM GOLD Manufacturing and Product Gallery"
                     />
                   </div>
                 ))}

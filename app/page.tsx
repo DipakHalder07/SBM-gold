@@ -637,7 +637,7 @@ export default function Home() {
                     <img
                       loading="lazy"
                       decoding="async"
-                      src={`/images/sbm/gallery-0${num}.jpg?v=2`}
+                      src={`/images/sbm/gallery-0${num}.jpg?v=3`}
                       width="640"
                       height="427"
                       className="img-cover"
@@ -651,7 +651,7 @@ export default function Home() {
                     <img
                       loading="lazy"
                       decoding="async"
-                      src={`/images/sbm/gallery-0${num}.jpg?v=2`}
+                      src={`/images/sbm/gallery-0${num}.jpg?v=3`}
                       width="640"
                       height="427"
                       className="img-cover"

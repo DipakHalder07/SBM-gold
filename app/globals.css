@@ -2047,13 +2047,40 @@ body .home_recruit::after {
   background-image: linear-gradient(to bottom, #F04934, #F1F1F3);
 }
 
-/* hero still photo replaces the old video; a slow push-in keeps it from feeling static */
+/* hero still photo replaces the old video on desktop; mobile plays optimized vertical video */
 .hero--movie .hero-photo {
   animation: hero-photo-zoom 18s ease-out both;
 }
 @keyframes hero-photo-zoom {
   from { transform: scale(1.12); }
   to { transform: scale(1); }
+}
+
+.hero--movie .hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 47.9376em) {
+  .hero--movie .hero-video {
+    display: none !important;
+  }
+  .hero--movie .hero-photo {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 47.9375em) {
+  .hero--movie .hero-photo {
+    display: none !important;
+  }
+  .hero--movie .hero-video {
+    display: block !important;
+  }
 }
 
 /* the brochure photos are bright, so card text needs a dark wash behind it */

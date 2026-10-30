@@ -14,6 +14,13 @@ export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
   const ymdContainerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -448,10 +455,24 @@ export default function Home() {
               src="/images/sbm/hero.jpg"
               width="1920"
               height="1080"
-              className="img-cover hero-photo"
+              className="img-cover hero-photo sp-none"
               alt="Modern luxury residence fitted with SBM GOLD architectural uPVC sliding doors and panoramic windows"
               fetchPriority="high"
             />
+            <video
+              ref={videoRef}
+              className="img-cover hero-video pc-none"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/images/sbm/hero-mobile-thumb.jpg"
+              width="720"
+              height="1280"
+              preload="auto"
+            >
+              <source src="/videos/hero-mobile.mp4" type="video/mp4" />
+            </video>
           </div>
 
           <section className="hero--cont scroll_active">

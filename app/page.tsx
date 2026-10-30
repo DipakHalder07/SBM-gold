@@ -505,33 +505,33 @@ export default function Home() {
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2331"
-                  height="137"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
                   alt=""
                 />
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2331"
-                  height="137"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
                   alt=""
                 />
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2331"
-                  height="137"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
                   alt=""
                 />
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg"
-                  width="2331"
-                  height="137"
+                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  width="4590"
+                  height="183"
                   alt=""
                 />
               </div>
@@ -1520,25 +1520,25 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="1962"
-                    height="127"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="1962"
-                    height="127"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="1962"
-                    height="127"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                 </div>
@@ -1552,25 +1552,25 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="1962"
-                    height="127"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="1962"
-                    height="127"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg"
-                    width="1962"
-                    height="127"
+                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    width="4594"
+                    height="147"
                     alt=""
                   />
                 </div>
@@ -1731,10 +1731,10 @@ export default function Home() {
             <h3 className="ttl-01-sub font-en txt-lft mgn-btm42">
               <span className="txt">CONTACT</span>
             </h3>
-            <p className="txt">
-              Get in touch with the future of doors &amp; windows.<br />
-              For uPVC windows and doors, WPC door frames, water tanks, pipes and wall putty, talk to SBM GOLD.<br />
-              Builders, dealers and homeowners are all welcome: Yahi Hai #AsliCommitment.
+            <p className="txt foot_cta--copy">
+              <span className="foot_cta_line">Get in touch with the future of doors &amp; windows.</span>
+              <span className="foot_cta_line">For uPVC windows and doors, WPC door frames, water tanks, pipes and wall putty, talk to SBM GOLD.</span>
+              <span className="foot_cta_line">Builders, dealers and homeowners are all welcome: Yahi Hai #AsliCommitment.</span>
             </p>
           </div>
           <div className="foot_cta--contact pos-rel">
@@ -1771,33 +1771,33 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2331"
-              height="137"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
               alt=""
             />
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2331"
-              height="137"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
               alt=""
             />
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2331"
-              height="137"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
               alt=""
             />
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg"
-              width="2331"
-              height="137"
+              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              width="4590"
+              height="183"
               alt=""
             />
           </div>

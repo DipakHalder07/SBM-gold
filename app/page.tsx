@@ -1363,7 +1363,7 @@ export default function Home() {
                     <h4 className="sub-ttl font-en">DREAMS · DEDICATION · GROWTH</h4>
                   </div>
                   <p className="txt">
-                    From our first land in Fulbari, Siliguri to North East India&rsquo;s first 450mm HDPE pipes and our new uPVC profiles line. Today: a 2,25,000 sq ft factory, 22,000 MT installed capacity and 300+ dealers. Yahi Hai #AsliCommitment.
+                    A 2,25,000 sq ft modern manufacturing facility, 22,000 MT capacity, and a trusted network of 300+ dealers.
                   </p>
                   <span className="circle"></span>
                 </div>

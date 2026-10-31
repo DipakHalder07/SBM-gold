@@ -182,6 +182,38 @@ body .home_mission .txt p {
   word-spacing: normal;
 }
 
+/* Clean, minimalist styling for ABOUT US */
+body .home_about .txtarea .sub-ttl {
+  font-size: clamp(0.8125rem, 0.9vw, 0.9375rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ff8a80;
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+body .home_about .catch {
+  font-size: clamp(1.875rem, 2.75vw, 2.625rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+body .home_about .txt {
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 2.25rem;
+  text-align: left;
+}
+
+body .home_about .btn {
+  margin-top: 0;
+}
+
 /* Larger intro copy for Careers */
 body .home_recruit .txtarea .txt,
 body .home_recruit .txtarea .txt p {

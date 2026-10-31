@@ -600,33 +600,17 @@ export default function Home() {
 
         {/* ABOUT SECTION */}
         <section id="about" className="home_about bg-primary-dark clr-wht pos-rel">
-          <div className="ttl-en scroll_active">
-            <img
-                loading="lazy"
-                decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/top/about-ttl.svg"
-              width="1124"
-              height="149"
-              className="anime-fade-lft img-specif"
-              alt="Our Service"
-            />
-          </div>
           <div className="inner inner-md home_about--cont scroll_active">
             <div className="txtarea">
-              <h2 className="ttl ttl-01 txt-lft">
-                <span className="jp block">ABOUT US</span>
-              </h2>
-              <h3 className="ttl-01-sub font-en txt-ctr mgn-btm64">
-                <span className="txt">ABOUT</span>
-              </h3>
-              <h3 className="catch font-en">
+              <span className="sub-ttl font-en anime-fade-up">ABOUT US</span>
+              <h2 className="catch font-en anime-fade-up delay1">
                 From Pipes to Profiles.<br />
                 A Legacy of Precision Extrusion.
-              </h3>
-              <p className="txt">
-                Backed by SBM GOLD&rsquo;s legacy of quality and innovation, our uPVC doors and windows profiles offer world-class, custom solutions for Indian homes. Crafted with German technology and automated precision, they ensure all-weather durability and superior noise and heat insulation.
+              </h2>
+              <p className="txt anime-fade-up delay2">
+                Backed by a proven track record in manufacturing excellence, SBM GOLD delivers high-performance uPVC doors and windows profiles, WPC frames, water tanks, and plumbing systems across India. Engineered with German technology and automated precision, our products provide superior weather resistance, thermal and acoustic insulation, and lifelong reliability.
               </p>
-              <div className="btn btn-wh">
+              <div className="btn btn-wh anime-fade-up delay3">
                 <Link href="#feature">Explore SBM GOLD</Link>
               </div>
             </div>
@@ -635,13 +619,13 @@ export default function Home() {
               <div className="contarea--row1 flex flex-j-ctr">
                 <div className="cont--wrap cont-01 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale">
                   <span className="sub-ttl font-en">
-                    10+ Years of<br />Extrusion Expertise
+                    10+ Years<br />Extrusion Expertise
                   </span>
                   <h4 className="ttl font-en">EXPERIENCE</h4>
                   <span className="icon">
                     <img
-                loading="lazy"
-                decoding="async"
+                      loading="lazy"
+                      decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn01.svg"
                       width="166"
                       height="176"
@@ -653,13 +637,13 @@ export default function Home() {
               <div className="contarea--row2 flex flex-j-ctr">
                 <div className="cont--wrap cont-02 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay1">
                   <span className="sub-ttl font-en">
-                    22,000 MT<br />Yearly Capacity
+                    22,000 MT<br />Annual Capacity
                   </span>
                   <h4 className="ttl font-en">MANUFACTURING</h4>
                   <span className="icon">
                     <img
-                loading="lazy"
-                decoding="async"
+                      loading="lazy"
+                      decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn02.svg"
                       width="176"
                       height="176"
@@ -671,11 +655,11 @@ export default function Home() {
                   <span className="sub-ttl font-en">
                     ISO &amp; BIS<br />Certified
                   </span>
-                  <h4 className="ttl font-en">QUALITY ASSURANCE</h4>
+                  <h4 className="ttl font-en">QUALITY</h4>
                   <span className="icon">
                     <img
-                loading="lazy"
-                decoding="async"
+                      loading="lazy"
+                      decoding="async"
                       src="/wp/wp-content/themes/standard_sass/images/top/about-icn03.svg"
                       width="176"
                       height="176"
@@ -686,17 +670,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <span className="deco deco-1 stroke wht lg scroll_active anime-diag-rgt delay1">
-            <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-              <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-            </svg>
-          </span>
-          <span className="deco deco-2 fill red xs scroll_active anime-diag-rgt2">
-            <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-              <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-            </svg>
-          </span>
         </section>
 
         {/* FEATURE SECTION */}

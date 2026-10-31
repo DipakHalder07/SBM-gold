@@ -520,43 +520,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Marquee Ticker */}
-            <div className="scroll-txt pos_rel">
-              <div className="scroll-txt--cont flex flex-a-ctr">
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-              </div>
-            </div>
 
             <span className="bg-deco pc-none">
               <svg
@@ -591,43 +554,14 @@ export default function Home() {
             <div className="inner">
               <h4 className="sub-ttl anime-fade-up">OUR MISSION</h4>
               <h3 className="ttl ttl-02 txt-ctr anime-fade-up delay1">
-                <span className="block">
-                  &ldquo;Bringing nature&rsquo;s serenity&rdquo;<br />
-                  straight to you with<br />
-                  <span className="txt-lg">Doors</span> &amp; <span className="txt-lg">Windows</span>.
-                </span>
+                Precision Engineering &amp; Durability<br className="sp-none" /> for Modern Spaces.
               </h3>
               <div className="txt anime-fade-up delay2">
                 <p>
-                  Every big achievement starts with a small dream.<br />
-                  <span className="bold">From a humble beginning at SBM Plaza, Jaigaon to a trusted name in building materials.</span><br />
-                  From plumbing systems to modern living solutions, we keep evolving.<br className="pc-none" />
-                  Building trust, innovation and durability for every home and business.<br className="pc-none" />
-                  Not just products, but a legacy.
+                  At SBM GOLD, our mission is to empower homes and architectural projects with world-class building solutions. Combining German technology with automated precision, we deliver lasting durability, superior energy efficiency, and peace of mind for every space.
                 </p>
               </div>
             </div>
-
-            <span className="deco deco-1 fill blue xs anime-diag-rgt2 delay1">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 stroke blue lg anime-diag-rgt delay2">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-3 stroke blue lg anime-diag-rgt">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-4 fill wht sm anime-diag-rgt2 delay1">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
 
             {/* Seamless Infinite Scrolling Gallery */}
             <div className="imgarea scroll-img">

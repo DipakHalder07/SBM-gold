@@ -148,15 +148,41 @@ body .cta_tel a {
   letter-spacing: 0.02em;
 }
 
-body .home_mission .ttl,
-body .home_mission .ttl .txt-lg {
-  line-height: 1.15;
-  word-spacing: 0.08em;
+/* Clean, minimalist styling for OUR MISSION */
+body .home_mission .inner {
+  max-width: 52rem;
+  margin: 0 auto;
 }
 
-/* Larger intro copy for Mission and Careers */
-body .home_mission .txt,
-body .home_mission .txt p,
+body .home_mission .sub-ttl {
+  font-size: clamp(0.8125rem, 0.9vw, 0.9375rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-secondary-default, #E62320);
+  margin-bottom: 1.25rem;
+}
+
+body .home_mission .ttl {
+  font-size: clamp(1.875rem, 2.75vw, 2.625rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: var(--clr-text-primary, #111111);
+  margin-bottom: 1.75rem;
+  word-spacing: normal;
+}
+
+body .home_mission .txt p {
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  line-height: 1.8;
+  color: #4a4a4a;
+  max-width: 44rem;
+  margin: 0 auto;
+  word-spacing: normal;
+}
+
+/* Larger intro copy for Careers */
 body .home_recruit .txtarea .txt,
 body .home_recruit .txtarea .txt p {
   font-size: var(--fs-lead);

@@ -68,7 +68,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <link
           rel="stylesheet"
-          href="/wp/wp-content/themes/standard_sass/css/style.css"
+          href="/theme/css/style.css"
         />
       </head>
       <body className={`home ${plusJakartaSans.className}`} id="top">

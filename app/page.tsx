@@ -526,7 +526,7 @@ export default function Home() {
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  src="/theme/images/common/deco-txt-wht.svg?v=4"
                   width="4590"
                   height="183"
                   alt=""
@@ -534,7 +534,7 @@ export default function Home() {
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  src="/theme/images/common/deco-txt-wht.svg?v=4"
                   width="4590"
                   height="183"
                   alt=""
@@ -542,7 +542,7 @@ export default function Home() {
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  src="/theme/images/common/deco-txt-wht.svg?v=4"
                   width="4590"
                   height="183"
                   alt=""
@@ -550,7 +550,7 @@ export default function Home() {
                 <img
                 loading="lazy"
                 decoding="async"
-                  src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-wht.svg?v=4"
+                  src="/theme/images/common/deco-txt-wht.svg?v=4"
                   width="4590"
                   height="183"
                   alt=""
@@ -670,7 +670,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/top/about-ttl.svg"
+              src="/theme/images/top/about-ttl.svg"
               width="1124"
               height="149"
               className="anime-fade-lft img-specif"
@@ -708,7 +708,7 @@ export default function Home() {
                     <img
                 loading="lazy"
                 decoding="async"
-                      src="/wp/wp-content/themes/standard_sass/images/top/about-icn01.svg"
+                      src="/theme/images/top/about-icn01.svg"
                       width="166"
                       height="176"
                       alt=""
@@ -726,7 +726,7 @@ export default function Home() {
                     <img
                 loading="lazy"
                 decoding="async"
-                      src="/wp/wp-content/themes/standard_sass/images/top/about-icn02.svg"
+                      src="/theme/images/top/about-icn02.svg"
                       width="176"
                       height="176"
                       alt=""
@@ -742,7 +742,7 @@ export default function Home() {
                     <img
                 loading="lazy"
                 decoding="async"
-                      src="/wp/wp-content/themes/standard_sass/images/top/about-icn03.svg"
+                      src="/theme/images/top/about-icn03.svg"
                       width="176"
                       height="176"
                       alt=""
@@ -1126,7 +1126,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/top/products-ttl.svg"
+              src="/theme/images/top/products-ttl.svg"
               width="867"
               height="139"
               className="anime-fade-lft img-specif"
@@ -1293,7 +1293,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/top/company-ttl.svg"
+              src="/theme/images/top/company-ttl.svg"
               width="926"
               height="170"
               className="anime-fade-rgt img-specif"
@@ -1541,7 +1541,7 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    src="/theme/images/top/recruit-txt.svg?v=4"
                     width="4594"
                     height="147"
                     alt=""
@@ -1549,7 +1549,7 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    src="/theme/images/top/recruit-txt.svg?v=4"
                     width="4594"
                     height="147"
                     alt=""
@@ -1557,7 +1557,7 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    src="/theme/images/top/recruit-txt.svg?v=4"
                     width="4594"
                     height="147"
                     alt=""
@@ -1573,7 +1573,7 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    src="/theme/images/top/recruit-txt.svg?v=4"
                     width="4594"
                     height="147"
                     alt=""
@@ -1581,7 +1581,7 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    src="/theme/images/top/recruit-txt.svg?v=4"
                     width="4594"
                     height="147"
                     alt=""
@@ -1589,7 +1589,7 @@ export default function Home() {
                   <img
                 loading="lazy"
                 decoding="async"
-                    src="/wp/wp-content/themes/standard_sass/images/top/recruit-txt.svg?v=4"
+                    src="/theme/images/top/recruit-txt.svg?v=4"
                     width="4594"
                     height="147"
                     alt=""
@@ -1792,7 +1792,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              src="/theme/images/common/deco-txt-gray.svg?v=4"
               width="4590"
               height="183"
               alt=""
@@ -1800,7 +1800,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              src="/theme/images/common/deco-txt-gray.svg?v=4"
               width="4590"
               height="183"
               alt=""
@@ -1808,7 +1808,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              src="/theme/images/common/deco-txt-gray.svg?v=4"
               width="4590"
               height="183"
               alt=""
@@ -1816,7 +1816,7 @@ export default function Home() {
             <img
                 loading="lazy"
                 decoding="async"
-              src="/wp/wp-content/themes/standard_sass/images/common/deco-txt-gray.svg?v=4"
+              src="/theme/images/common/deco-txt-gray.svg?v=4"
               width="4590"
               height="183"
               alt=""

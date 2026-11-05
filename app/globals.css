@@ -2329,3 +2329,34 @@ body .footer--contact a {
     max-width: 7em;
   }
 }
+
+/* ==========================================================================
+   MILESTONES: the theme's roomy spacing, with the year and tag on one centred line
+   ========================================================================== */
+body .home_news .post--info {
+  align-items: center;
+  line-height: 1.5;
+}
+
+/* The general paragraph margin was lifting the year above the tag */
+body .home_news .post--date {
+  margin: 0;
+  line-height: 1.5;
+}
+
+body .home_news .cat_list,
+body .home_news .cat_list .tag {
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 48em) {
+  /* The heading lost its small label, so this keeps Follow level with the second milestone */
+  body .home_news .ttlarea .btn {
+    margin-top: 12rem;
+  }
+
+  /* Keep the contact copy clear of the outlined text below it */
+  body .foot_cta {
+    padding-bottom: 14rem;
+  }
+}

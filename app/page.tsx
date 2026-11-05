@@ -520,43 +520,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Marquee Ticker */}
-            <div className="scroll-txt pos_rel">
-              <div className="scroll-txt--cont flex flex-a-ctr">
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/theme/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/theme/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/theme/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-                <img
-                loading="lazy"
-                decoding="async"
-                  src="/theme/images/common/deco-txt-wht.svg?v=4"
-                  width="4590"
-                  height="183"
-                  alt=""
-                />
-              </div>
-            </div>
+
 
             <span className="bg-deco pc-none">
               <svg

@@ -34,7 +34,8 @@ export default function SiteHeader() {
     window.addEventListener("scroll", updateHeader, { passive: true });
     updateHeader();
     return () => window.removeEventListener("scroll", updateHeader);
-  }, [isHome]);
+    // Opening or closing the menu re-renders the header's classes, so restore the scrolled state
+  }, [isHome, menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
   const toggleSubmenu = (key: string) => setOpenSubmenus((prev) => ({ ...prev, [key]: !prev[key] }));

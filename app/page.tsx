@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,12 +18,24 @@ import { scrollToHash } from "@/lib/smoothScroll";
 export default function Home() {
   const ymdContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [showVideo, setShowVideo] = useState(false);
+
+  // Only phones get the video element, so larger screens never download it
+  useEffect(() => {
+    const phone = window.matchMedia("(max-width: 47.9375em)");
+    const sync = () => setShowVideo(phone.matches);
+    sync();
+    phone.addEventListener("change", sync);
+    return () => phone.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.play().catch(() => {});
     }
-  }, []);
+  }, [showVideo]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -82,28 +94,38 @@ export default function Home() {
     <SiteLayout>
         <div className="hero">
           <div className="hero--movie pos-rel">
-            <img
-              src="/images/sbm/hero-products.jpg"
-              width="2560"
-              height="1448"
-              className="img-cover hero-photo sp-none"
-              alt="SBM GOLD product range: uPVC windows, WPC door frame, HDPE and uPVC pipes, wall putty and water tanks"
-              fetchPriority="high"
-            />
-            <video
-              ref={videoRef}
-              className="img-cover hero-video pc-none"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/images/sbm/hero-mobile-thumb.jpg"
-              width="720"
-              height="1280"
-              preload="auto"
-            >
-              <source src="/videos/hero-mobile.mp4" type="video/mp4" />
-            </video>
+            {/* Each screen size downloads one image; on phones it shows until the video starts */}
+            <picture className="hero-picture">
+              <source
+                media="(max-width: 47.9375em)"
+                srcSet="/images/sbm/hero-mobile-thumb.jpg"
+                width="720"
+                height="1280"
+              />
+              <img
+                src="/images/sbm/hero-products.jpg"
+                width="2560"
+                height="1448"
+                className="img-cover hero-photo"
+                alt="SBM GOLD product range: uPVC windows, WPC door frame, HDPE and uPVC pipes, wall putty and water tanks"
+                fetchPriority="high"
+              />
+            </picture>
+            {showVideo && (
+              <video
+                ref={videoRef}
+                className="img-cover hero-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                width="720"
+                height="1280"
+                preload="auto"
+              >
+                <source src="/videos/hero-mobile.mp4" type="video/mp4" />
+              </video>
+            )}
           </div>
 
           <section className="hero--cont scroll_active">

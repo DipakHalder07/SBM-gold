@@ -183,7 +183,7 @@ export default function AboutPage() {
           </p>
           <p>
             As an authorized distributor, dealer or project partner, scale your business with high-margin product lines,
-            ISO and ISI certified reliability, state-of-the-art extrusion, and dedicated technical and marketing support.
+            ISO and BIS certified reliability, state-of-the-art extrusion, and dedicated technical and marketing support.
           </p>
         </div>
         <div className="ip-actions">

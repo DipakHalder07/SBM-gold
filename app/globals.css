@@ -813,6 +813,19 @@ body .hero--cont .txt {
     box-shadow: none !important;
   }
 
+  /* Every page's body has the .home class, so the open menu must beat the white scrolled header */
+  html body .header.header-sm.active {
+    background-color: #951F17 !important;
+    box-shadow: none !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .home .header.header-sm.active .gnav--menu > li > .gnav--link,
+  .home .header.header-sm.active .gnav--menu > li:hover > .gnav--link {
+    color: #ffffff !important;
+  }
+
   .header.active .header--logo img {
     filter: brightness(0) invert(1) !important;
   }
@@ -1161,28 +1174,36 @@ body .hero--cont .txt {
     gap: 0.75rem !important;
     padding: 0 1.5rem !important;
     height: 3.85rem !important;
-    color: #ffffff !important;
-    background: linear-gradient(135deg, #e62320 0%, #ce1e1c 100%) !important;
     border-radius: 999px !important;
     font-size: 1.15rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.12em !important;
     text-decoration: none !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    transition: transform 0.2s ease !important;
     width: 100% !important;
   }
 
   .gnav--contact a:active {
     transform: scale(0.98) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
   }
 
   .gnav--contact a svg {
     max-width: 1.35rem !important;
     width: 1.35rem !important;
     height: auto !important;
-    fill: #ffffff !important;
+  }
+
+  /* White button in the open menu; specific enough to beat the desktop header's button states */
+  html body.home .header .gnav .gnav--cta .gnav--contact a,
+  html body.home .header .gnav .gnav--cta .gnav--contact a:hover {
+    color: #951F17 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  html body.home .header .gnav .gnav--cta .gnav--contact a svg,
+  html body.home .header .gnav .gnav--cta .gnav--contact a:hover svg {
+    fill: #951F17 !important;
   }
 
   /* Mobile Bottom Links - removed as per request */
@@ -2057,10 +2078,15 @@ body .home_recruit::after {
 }
 
 /* hero still photo replaces the old video on desktop; mobile plays optimized vertical video */
-.hero--movie .hero-photo {
-  animation: hero-photo-zoom 18s ease-out both;
-  /* products sit on the right of the banner; crop the empty left side first on narrower screens */
-  object-position: right center;
+.hero--movie .hero-picture {
+  display: contents;
+}
+@media screen and (min-width: 47.9376em) {
+  .hero--movie .hero-photo {
+    animation: hero-photo-zoom 18s ease-out both;
+    /* products sit on the right of the banner; crop the empty left side first on narrower screens */
+    object-position: right center;
+  }
 }
 @keyframes hero-photo-zoom {
   from { transform: scale(1.12); }
@@ -2076,21 +2102,117 @@ body .home_recruit::after {
   object-fit: cover;
 }
 
-@media screen and (min-width: 47.9376em) {
-  .hero--movie .hero-video {
-    display: none !important;
+/* The theme forces a wide page on tablets, which made the home page scroll sideways */
+@media screen and (min-width: 48em) and (max-width: 67.5em) {
+  /* Layout sizes follow the screen width here, as they do on desktop; text uses the --fs-* tokens */
+  html {
+    font-size: 1.04vw !important;
   }
-  .hero--movie .hero-photo {
-    display: block !important;
+  body:not(.mce-content-body) {
+    min-width: 0 !important;
+  }
+  body .inner {
+    min-width: 0;
+  }
+  /* The link columns do not fit beside the address at this width */
+  body .footer_top > .flex {
+    flex-wrap: wrap;
+    row-gap: 2.5rem;
+  }
+  body .footer .fnav--menu {
+    margin-right: 0;
+  }
+  /* The decorative triangle behind the footer is wider than a tablet screen */
+  body .footer {
+    overflow-x: clip;
+  }
+  /* These two sections have no side margin of their own on tablets */
+  body .footer > .inner,
+  body .home_recruit > .inner {
+    width: 92%;
+  }
+  /* Fixed sizes so the smaller rem does not shrink the header's tap target or this label */
+  body .header,
+  body .header > .inner {
+    height: 60px !important;
+    min-height: 60px;
+  }
+  body .gnav_btn {
+    top: 8px !important;
+    right: 16px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+  html body .home_about .cont--wrap .ttl {
+    font-size: 14px;
+  }
+  /* Keep these narrow card titles clear of their arrow button */
+  body .home_company .cont--row.row-1 .ttl {
+    padding-right: 48px;
+  }
+  /* The open menu keeps comfortable tap sizes whatever the rem is */
+  body .gnav {
+    top: 60px !important;
+    height: calc(100vh - 60px) !important;
+    height: calc(100dvh - 60px) !important;
+  }
+  body .gnav--link {
+    padding: 14px 8px 14px 36px !important;
+    font-size: 16px !important;
+  }
+  body .gnav--link::before {
+    width: 15px !important;
+    height: 18px !important;
+    left: 8px !important;
+  }
+  body .gnav_sub_toggle {
+    width: 52px !important;
+    max-height: 52px !important;
+  }
+  body .gnav_sub_toggle::before,
+  body .gnav_sub_toggle::after {
+    width: 12px !important;
+  }
+  body .head_sub_nav a,
+  body .head_sub_nav .gnav--link {
+    padding: 10px 14px 10px 40px !important;
+    font-size: 15px !important;
+  }
+  body .head_sub_nav a::before,
+  body .head_sub_nav .gnav--link::before {
+    left: 24px !important;
+  }
+  body .head_sub_nav a:active,
+  body .head_sub_nav a:hover {
+    padding-left: 44px !important;
+  }
+  body .gnav--cta {
+    margin: 20px 7% 28px !important;
+  }
+  body .gnav--contact a {
+    gap: 10px !important;
+    height: 54px !important;
+    font-size: 16px !important;
+  }
+  /* Keep the heading clear of the list beside it */
+  body .home_news .ttlarea {
+    flex-shrink: 0;
+    margin-right: 28px;
   }
 }
 
+/* Keep the dark heading on the light background, clear of the red curve on its right */
 @media screen and (max-width: 47.9375em) {
-  .hero--movie .hero-photo {
-    display: none !important;
+  body .home_feature .ttlarea .ttl {
+    text-align: left;
   }
-  .hero--movie .hero-video {
-    display: block !important;
+  body .home_feature .ttlarea .ttl .jp {
+    font-size: min(6.2vw, 30px);
+  }
+}
+@media screen and (min-width: 47.9376em) {
+  body .home_feature .ttlarea .ttl {
+    padding-right: 7rem;
   }
 }
 

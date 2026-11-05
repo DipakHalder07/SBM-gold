@@ -36,7 +36,7 @@ const BENEFITS = [
   },
   {
     title: "Certified reliability",
-    text: "Sell products backed by ISO and ISI certified quality, with checks on every batch.",
+    text: "Sell products backed by ISO and BIS certified quality, with checks on every batch.",
   },
   {
     title: "State-of-the-art extrusion",

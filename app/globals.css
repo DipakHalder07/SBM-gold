@@ -41,10 +41,12 @@ body {
    `body` to win on specificity instead of relying on !important.
    ========================================================================== */
 :root {
-  --fs-body: clamp(15px, 1.111vw, 17px);   /* 16px @ 1440 */
-  --fs-lead: clamp(16px, 1.25vw, 19px);    /* 18px @ 1440 */
-  --fs-small: clamp(13px, 0.903vw, 14px);  /* 13px @ 1440 */
-  --fs-eyebrow: clamp(13px, 0.972vw, 15px);
+  /* The whole site's text sizes. Use these instead of rem for anything people read. */
+  --fs-body: clamp(16px, 1.111vw, 18px);   /* paragraphs */
+  --fs-lead: clamp(18px, 1.3vw, 20px);     /* intro copy */
+  --fs-ui: 15px;                           /* menus and buttons */
+  --fs-small: 14px;                        /* footers, labels, dates: the smallest size used */
+  --fs-eyebrow: 14px;
   --lh-body: 1.75;
   --lh-heading: 1.2;
   --ls-body: 0.005em;
@@ -162,6 +164,13 @@ body .home_recruit .txtarea .txt p {
   font-size: var(--fs-lead);
   line-height: 1.6;
   word-spacing: 0.04em;
+}
+
+body .home_mission .txt {
+  max-width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
 }
 
 /* Keep "FEATURE 03" style numbers on one line beside the heading */
@@ -546,7 +555,7 @@ body .hero--cont .txt {
 /* --- Products Section Single-Line Card Titles with Arrow --- */
 .home_products .cont--wrap .txtarea .ttl {
   white-space: nowrap !important;
-  font-size: 1.45rem !important;
+  font-size: max(16px, 1.45rem) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -655,7 +664,7 @@ body .hero--cont .txt {
     content: "";
     width: 1.375rem;
     height: 0.75rem;
-    background-image: url("/wp/wp-content/themes/standard_sass/images/common/polygon.svg");
+    background-image: url("/theme/images/common/polygon.svg");
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
@@ -1465,7 +1474,7 @@ body .footer .bg {
   position: absolute !important;
   left: 0 !important;
   top: 0 !important;
-  background-image: url("/wp/wp-content/themes/standard_sass/images/common/bg-darkred.svg") !important;
+  background-image: url("/theme/images/common/bg-darkred.svg") !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: left top !important;
@@ -2152,3 +2161,269 @@ body .home_company .cont--wrap:hover .cont--bg::before,
   filter: none !important;
 }
 
+/* ==========================================================================
+   READABLE TEXT
+   The theme sizes text in rem, and its rem follows screen width (12px at 1440,
+   9px near 1080), so these rules hold every piece of copy to the scale above.
+   ========================================================================== */
+
+/* Paragraphs */
+body .home_products .cont--wrap .txtarea .txt,
+body .home_quality .cont--wrap .txt,
+body .home_company .cont--wrap.cont-04 .txt,
+body .foot_cta--ttl .txt,
+body .foot_cta--copy,
+body .foot_cta--copy .foot_cta_line {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+/* Longer text needs to wrap in the footer call to action */
+body .foot_cta--copy .foot_cta_line {
+  white-space: normal;
+}
+
+/* Menus and buttons */
+body .gnav--link,
+body .head_sub_nav a,
+body .head_sub_nav .gnav--link,
+body .gnav--contact a,
+body .btn a {
+  font-size: var(--fs-ui) !important;
+}
+
+body .fnav--menu .menu-item-has-children > a {
+  font-size: var(--fs-ui);
+}
+
+/* Labels, dates and footer text: never below 14px */
+body .home_feature .cont--wrap .num-decoration .txt,
+body .home_about .cont--wrap .sub-ttl,
+body .home_company .cont--wrap .sub-ttl,
+body .post--date,
+body .cat_list .tag,
+body .foot_cta--contact .cta_tel .hours,
+body .footer--address,
+body .footer--tel,
+body .footer--tel a,
+body .footer .footer--address p,
+body .fnav--menu .sub-menu a,
+body .footer_btm--menu a,
+body .copyright,
+body .copyright small {
+  font-size: var(--fs-small);
+}
+
+/* "MANUFACTURING" was cut off by the neighbouring circle */
+body .home_about .cont--wrap .ttl {
+  font-size: 1.6rem;
+  letter-spacing: 0;
+}
+
+body .home_about .cont--wrap .sub-ttl {
+  letter-spacing: 0.04em;
+}
+
+/* Hero copy needs the width for its three lines when rem shrinks on small laptops */
+body .hero--cont .txt {
+  max-width: max(36rem, 430px);
+}
+
+/* Keep this card's copy clear of its arrow button */
+@media screen and (min-width: 48em) {
+  body .home_company .cont--wrap.cont-04 .txt {
+    padding-right: 6rem;
+  }
+}
+
+/* Footer: keep the link columns on one row */
+@media screen and (min-width: 48em) {
+  body .footer .fnav--menu {
+    flex-wrap: nowrap;
+  }
+
+  body .footer .fnav--menu > li {
+    min-width: 0;
+  }
+
+  body .footer .fnav--menu .sub-menu a,
+  body .footer .fnav--menu .menu-item-has-children > a {
+    white-space: nowrap;
+  }
+}
+
+/* Below 1440 the footer's grey notch runs behind the address and links, where
+   white text can't be read, so the footer becomes solid red */
+@media screen and (max-width: 89.9375em) {
+  body .footer {
+    background-color: #951f17;
+  }
+
+  body .footer .bg {
+    display: none !important;
+  }
+
+  body .footer_top {
+    padding-top: 6rem;
+  }
+}
+
+/* Phone hero: red text was lost against the video */
+@media screen and (max-width: 47.9375em) {
+  body .hero--cont .ttl {
+    color: #ffffff;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+  }
+
+  body .home_about .cont--wrap .ttl {
+    font-size: 15px;
+  }
+
+  body .home_about .cont--wrap .sub-ttl {
+    letter-spacing: 0;
+  }
+}
+
+/* Text sets the height of these cards, so bigger copy can't overflow them */
+body .home_quality .contarea {
+  grid-template-rows: minmax(13.75rem, auto) minmax(13.75rem, auto);
+}
+
+@media screen and (min-width: 48em) {
+  body .home_feature .cont--wrap {
+    height: auto;
+    min-height: 37.5rem;
+  }
+}
+
+@media screen and (max-width: 47.9375em) {
+  body .home_company .cont--row {
+    height: auto;
+    min-height: 320px;
+  }
+
+  body .home_company .cont--row.row-1 .cont--wrap {
+    min-height: 320px;
+  }
+
+  body .home_company .cont--wrap.cont-04 {
+    min-height: 320px;
+  }
+}
+
+/* Footer contact button: same floor on small laptops */
+body .footer--contact a {
+  font-size: max(15px, 1.5rem);
+}
+
+/* The staggered cards rise beside the heading, so it needs room to stay clear of them */
+@media screen and (min-width: 48em) {
+  body .home_products .ttlarea {
+    margin-bottom: 9rem;
+  }
+}
+
+/* Two lines, so it doesn't run into "MANUFACTURING" in the next circle */
+@media screen and (max-width: 47.9375em) {
+  body .home_about .cont--wrap.cont-03 .ttl {
+    max-width: 7em;
+  }
+}
+
+/* ==========================================================================
+   MILESTONES: the theme's roomy spacing, with the year and tag on one centred line
+   ========================================================================== */
+body .home_news .post--info {
+  align-items: center;
+  line-height: 1.5;
+}
+
+/* The general paragraph margin was lifting the year above the tag */
+body .home_news .post--date {
+  margin: 0;
+  line-height: 1.5;
+}
+
+body .home_news .cat_list,
+body .home_news .cat_list .tag {
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 48em) {
+  /* The heading lost its small label, so this keeps Follow level with the second milestone */
+  body .home_news .ttlarea .btn {
+    margin-top: 12rem;
+  }
+
+  /* Keep the contact copy clear of the outlined text below it */
+  body .foot_cta {
+    padding-bottom: 14rem;
+  }
+}
+
+/* ==========================================================================
+   HEADER LOGO: stays on the grey part of the home hero
+   The red shape's edge moves with screen height (35.24vh at the top) and the grey
+   slash with screen width (about 23vw), so the logo's width follows both.
+   ========================================================================== */
+@media screen and (min-width: 67.5625em) {
+  body .header--logo {
+    max-width: none;
+  }
+
+  body .header--logo img {
+    width: 260px;
+    height: auto;
+    max-width: none;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease;
+  }
+
+  body.home .header:not(.header-sm) .header--logo img {
+    width: max(150px, min(260px, calc(35.24vh + 5px - 4rem), calc(19.6vw - 12px)));
+  }
+}
+
+/* ==========================================================================
+   PRODUCTS SECTION: red shape moved 10% right so the heading stays on white.
+   The drawing's diagonal runs further down to reach the page edge, so these
+   layers are taller than the theme's 62.5vw (1489 / 1920 of the width).
+   ========================================================================== */
+@media screen and (min-width: 48em) {
+  body .home_products::before {
+    height: 77.55vw;
+    background-image: url("/theme/images/common/section-bg-products.svg");
+    background-size: 100% 100%;
+  }
+
+  body .home_products::after {
+    height: 77.55vw;
+  }
+}
+
+/* ==========================================================================
+   HOME FOOTER: orange shape above the dark red, and reaching further right.
+   Only its width grows, so its point at the top stays where it was and no
+   flat edge shows over the contact section.
+   ========================================================================== */
+@media screen and (min-width: 48em) {
+  /* Layers the orange and red within the footer, keeping both under the outlined text above */
+  body .footer {
+    z-index: 0;
+  }
+
+  body .footer::before {
+    z-index: 1 !important;
+    width: 72rem !important;
+    max-width: 72rem !important;
+    aspect-ratio: 72 / 78.5 !important;
+  }
+
+  /* Grey was too faint on orange */
+  body .footer .copyright,
+  body .footer .copyright small {
+    color: #ffffff;
+  }
+}

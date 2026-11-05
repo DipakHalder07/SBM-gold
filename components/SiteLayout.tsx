@@ -26,13 +26,13 @@ export default function SiteLayout({
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 0.7,
+      duration: 0.45,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.25,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.8,
+      touchMultiplier: 2,
     });
     setLenis(lenis);
     lenis.on("scroll", () => ScrollTrigger.update());

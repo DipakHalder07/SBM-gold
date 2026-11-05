@@ -15,7 +15,7 @@ export function scrollToHash(hash: string, e?: { preventDefault(): void }) {
   e?.preventDefault();
   const headerHeight = window.innerWidth > 1080 ? 74 : 72;
   if (lenis) {
-    lenis.scrollTo(target, { offset: -headerHeight, duration: 0.75 });
+    lenis.scrollTo(target, { offset: -headerHeight, duration: 0.5 });
   } else {
     const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
     window.scrollTo({ top, behavior: "smooth" });

@@ -77,10 +77,10 @@ export default function SiteFooter() {
                 <Link href="/about#news">Milestones</Link>
               </li>
               <li>
-                <Link href="#footer">Privacy Policy</Link>
+                <Link href="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="#footer">Sitemap</Link>
+                <Link href="/sitemap">Sitemap</Link>
               </li>
             </ul>
             <div className="copyright flex flex-a-ctr flex-sp-block font-en">

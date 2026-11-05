@@ -47,6 +47,8 @@ export default function InnerFooter() {
         </div>
         <div className="ip-footer--btm">
           <small>&copy; SBM GOLD. All rights reserved.</small>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/sitemap">Sitemap</Link>
           <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">
             Instagram {CONTACT.instagramHandle}
           </a>

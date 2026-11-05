@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | SBM GOLD",
+  alternates: { canonical: null },
+  robots: { index: false },
+};
 
 export default function NotFound() {
   return (
@@ -18,7 +25,7 @@ export default function NotFound() {
     >
       <h1
         style={{
-          fontSize: "6rem",
+          fontSize: "96px",
           fontWeight: 800,
           color: "#951F17",
           lineHeight: 1,
@@ -29,7 +36,7 @@ export default function NotFound() {
       </h1>
       <h2
         style={{
-          fontSize: "1.75rem",
+          fontSize: "28px",
           fontWeight: 700,
           marginBottom: "1rem",
         }}
@@ -38,7 +45,7 @@ export default function NotFound() {
       </h2>
       <p
         style={{
-          fontSize: "1rem",
+          fontSize: "var(--fs-body)",
           color: "#666666",
           maxWidth: "480px",
           marginBottom: "2rem",
@@ -57,7 +64,7 @@ export default function NotFound() {
           color: "#ffffff",
           borderRadius: "999px",
           fontWeight: 700,
-          fontSize: "1rem",
+          fontSize: "var(--fs-ui)",
           textDecoration: "none",
           transition: "background-color 0.2s ease",
         }}

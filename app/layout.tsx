@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
   description:
     "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "SBM GOLD",
     description:
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
       {
         url: "/images/logo/sbm-gold-logo.png",
         width: 1200,
-        height: 630,
+        height: 883,
         alt: "SBM GOLD",
       },
     ],

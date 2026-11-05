@@ -30,7 +30,7 @@ export default function Partner() {
               Partner with SBM GOLD in India &mdash; Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors &amp; windows, WPC door frames, HDPE pipes, water tanks, and wall putty.
             </p>
             <p>
-              As an authorized distributor, dealer, or project partner, scale your business with high-margin product lines, ISO &amp; ISI certified reliability, state-of-the-art extrusion, and dedicated technical &amp; marketing support.
+              As an authorized distributor, dealer, or project partner, scale your business with high-margin product lines, ISO &amp; BIS certified reliability, state-of-the-art extrusion, and dedicated technical &amp; marketing support.
             </p>
           </div>
           <div className="btn btn-wh">

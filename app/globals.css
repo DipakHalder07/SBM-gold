@@ -41,10 +41,12 @@ body {
    `body` to win on specificity instead of relying on !important.
    ========================================================================== */
 :root {
-  --fs-body: clamp(15px, 1.111vw, 17px);   /* 16px @ 1440 */
-  --fs-lead: clamp(16px, 1.25vw, 19px);    /* 18px @ 1440 */
-  --fs-small: clamp(13px, 0.903vw, 14px);  /* 13px @ 1440 */
-  --fs-eyebrow: clamp(13px, 0.972vw, 15px);
+  /* The whole site's text sizes. Use these instead of rem for anything people read. */
+  --fs-body: clamp(16px, 1.111vw, 18px);   /* paragraphs */
+  --fs-lead: clamp(18px, 1.3vw, 20px);     /* intro copy */
+  --fs-ui: 15px;                           /* menus and buttons */
+  --fs-small: 14px;                        /* footers, labels, dates: the smallest size used */
+  --fs-eyebrow: 14px;
   --lh-body: 1.75;
   --lh-heading: 1.2;
   --ls-body: 0.005em;
@@ -553,7 +555,7 @@ body .hero--cont .txt {
 /* --- Products Section Single-Line Card Titles with Arrow --- */
 .home_products .cont--wrap .txtarea .ttl {
   white-space: nowrap !important;
-  font-size: 1.45rem !important;
+  font-size: max(16px, 1.45rem) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -2159,3 +2161,157 @@ body .home_company .cont--wrap:hover .cont--bg::before,
   filter: none !important;
 }
 
+/* ==========================================================================
+   READABLE TEXT
+   The theme sizes text in rem, and its rem follows screen width (12px at 1440,
+   9px near 1080), so these rules hold every piece of copy to the scale above.
+   ========================================================================== */
+
+/* Paragraphs */
+body .home_products .cont--wrap .txtarea .txt,
+body .home_quality .cont--wrap .txt,
+body .home_company .cont--wrap.cont-04 .txt,
+body .foot_cta--ttl .txt,
+body .foot_cta--copy,
+body .foot_cta--copy .foot_cta_line {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+/* Longer text needs to wrap in the footer call to action */
+body .foot_cta--copy .foot_cta_line {
+  white-space: normal;
+}
+
+/* Menus and buttons */
+body .gnav--link,
+body .head_sub_nav a,
+body .head_sub_nav .gnav--link,
+body .gnav--contact a,
+body .btn a {
+  font-size: var(--fs-ui) !important;
+}
+
+body .fnav--menu .menu-item-has-children > a {
+  font-size: var(--fs-ui);
+}
+
+/* Labels, dates and footer text: never below 14px */
+body .home_feature .cont--wrap .num-decoration .txt,
+body .home_about .cont--wrap .sub-ttl,
+body .home_company .cont--wrap .sub-ttl,
+body .post--date,
+body .cat_list .tag,
+body .foot_cta--contact .cta_tel .hours,
+body .footer--address,
+body .footer--tel,
+body .footer--tel a,
+body .footer .footer--address p,
+body .fnav--menu .sub-menu a,
+body .footer_btm--menu a,
+body .copyright,
+body .copyright small {
+  font-size: var(--fs-small);
+}
+
+/* "MANUFACTURING" was cut off by the neighbouring circle */
+body .home_about .cont--wrap .ttl {
+  font-size: 1.6rem;
+  letter-spacing: 0;
+}
+
+body .home_about .cont--wrap .sub-ttl {
+  letter-spacing: 0.04em;
+}
+
+/* Hero copy needs the width for its three lines when rem shrinks on small laptops */
+body .hero--cont .txt {
+  max-width: max(36rem, 430px);
+}
+
+/* Keep this card's copy clear of its arrow button */
+@media screen and (min-width: 48em) {
+  body .home_company .cont--wrap.cont-04 .txt {
+    padding-right: 6rem;
+  }
+}
+
+/* Footer: keep the link columns on one row */
+@media screen and (min-width: 48em) {
+  body .footer .fnav--menu {
+    flex-wrap: nowrap;
+  }
+
+  body .footer .fnav--menu > li {
+    min-width: 0;
+  }
+
+  body .footer .fnav--menu .sub-menu a,
+  body .footer .fnav--menu .menu-item-has-children > a {
+    white-space: nowrap;
+  }
+}
+
+/* Below 1440 the footer's grey notch runs behind the address and links, where
+   white text can't be read, so the footer becomes solid red */
+@media screen and (max-width: 89.9375em) {
+  body .footer {
+    background-color: #951f17;
+  }
+
+  body .footer .bg {
+    display: none !important;
+  }
+
+  body .footer_top {
+    padding-top: 6rem;
+  }
+}
+
+/* Phone hero: red text was lost against the video */
+@media screen and (max-width: 47.9375em) {
+  body .hero--cont .ttl {
+    color: #ffffff;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+  }
+
+  body .home_about .cont--wrap .ttl {
+    font-size: 15px;
+  }
+
+  body .home_about .cont--wrap .sub-ttl {
+    letter-spacing: 0;
+  }
+}
+
+/* Text sets the height of these cards, so bigger copy can't overflow them */
+body .home_quality .contarea {
+  grid-template-rows: minmax(13.75rem, auto) minmax(13.75rem, auto);
+}
+
+@media screen and (min-width: 48em) {
+  body .home_feature .cont--wrap {
+    height: auto;
+    min-height: 37.5rem;
+  }
+}
+
+@media screen and (max-width: 47.9375em) {
+  body .home_company .cont--row {
+    height: auto;
+    min-height: 320px;
+  }
+
+  body .home_company .cont--row.row-1 .cont--wrap {
+    min-height: 320px;
+  }
+
+  body .home_company .cont--wrap.cont-04 {
+    min-height: 320px;
+  }
+}
+
+/* Footer contact button: same floor on small laptops */
+body .footer--contact a {
+  font-size: max(15px, 1.5rem);
+}

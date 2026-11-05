@@ -8,9 +8,6 @@ export default function FootCta() {
           <h2 className="ttl ttl-01 font-en txt-lft">
             <span className="jp block">CONTACT US</span>
           </h2>
-          <h3 className="ttl-01-sub font-en txt-lft mgn-btm42">
-            <span className="txt">CONTACT</span>
-          </h3>
           <p className="txt foot_cta--copy">
             <span className="foot_cta_line">Get in touch with the future of doors &amp; windows.</span>
             <span className="foot_cta_line">For uPVC windows and doors, WPC door frames, water tanks, pipes and wall putty, talk to SBM GOLD.</span>

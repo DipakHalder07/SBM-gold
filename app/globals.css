@@ -2315,3 +2315,17 @@ body .home_quality .contarea {
 body .footer--contact a {
   font-size: max(15px, 1.5rem);
 }
+
+/* The staggered cards rise beside the heading, so it needs room to stay clear of them */
+@media screen and (min-width: 48em) {
+  body .home_products .ttlarea {
+    margin-bottom: 9rem;
+  }
+}
+
+/* Two lines, so it doesn't run into "MANUFACTURING" in the next circle */
+@media screen and (max-width: 47.9375em) {
+  body .home_about .cont--wrap.cont-03 .ttl {
+    max-width: 7em;
+  }
+}

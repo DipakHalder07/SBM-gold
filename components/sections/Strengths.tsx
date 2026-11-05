@@ -8,9 +8,6 @@ export default function Strengths() {
           <h2 className="ttl ttl-01 txt-ctr">
             <span className="jp block">OUR STRENGTHS</span>
           </h2>
-          <h3 className="ttl-01-sub font-en txt-ctr">
-            <span className="txt">FEATURE</span>
-          </h3>
         </div>
 
         <div className="contarea">

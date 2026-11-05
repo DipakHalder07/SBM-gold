@@ -16,12 +16,9 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
       </div>
       <div className="inner inner-md home_about--cont scroll_active">
         <div className="txtarea">
-          <h2 className="ttl ttl-01 txt-lft">
+          <h2 className="ttl ttl-01 txt-lft mgn-btm64">
             <span className="jp block">ABOUT US</span>
           </h2>
-          <h3 className="ttl-01-sub font-en txt-ctr mgn-btm64">
-            <span className="txt">ABOUT</span>
-          </h3>
           <h3 className="catch font-en">
             From Pipes to Profiles.<br />
             A Legacy of Precision Extrusion.

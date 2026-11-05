@@ -25,9 +25,6 @@ export default function Partner() {
           <h2 className="ttl ttl-01 txt-lft">
             <span className="jp block">BECOME A PARTNER</span>
           </h2>
-          <h3 className="ttl-01-sub font-en">
-            <span className="txt">PARTNER WITH SBM GOLD</span>
-          </h3>
           <div className="txt">
             <p>
               Partner with SBM GOLD in India &mdash; Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors &amp; windows, WPC door frames, HDPE pipes, water tanks, and wall putty.

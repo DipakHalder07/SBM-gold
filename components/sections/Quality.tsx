@@ -19,9 +19,6 @@ export default function Quality() {
           <h2 className="ttl ttl-01 txt-ctr">
             <span className="jp block">QUALITY CONTROL</span>
           </h2>
-          <h3 className="ttl-01-sub font-en txt-ctr">
-            <span className="txt">QUALITY MANAGEMENT</span>
-          </h3>
         </div>
 
         <div className="contarea">

@@ -27,9 +27,6 @@ export default function ProductsSection({ title = "OUR PRODUCTS" }: { title?: st
           <h2 className="ttl ttl-01 txt-lft">
             <span className="jp block">{title}</span>
           </h2>
-          <h3 className="ttl-01-sub font-en">
-            <span className="txt">PRODUCTS</span>
-          </h3>
         </div>
 
         <ProductCards items={products} />

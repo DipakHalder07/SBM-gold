@@ -9,9 +9,6 @@ export default function Milestones() {
             <h2 className="ttl ttl-01 txt-lft">
               <span className="jp block">MILESTONES</span>
             </h2>
-            <h3 className="ttl-01-sub font-en">
-              <span className="txt">NEWS</span>
-            </h3>
             <div className="btn btn-arrow">
               <Link href="https://www.instagram.com/sbmgold_/" target="_blank" rel="noopener noreferrer">
                 <span className="txt--wrap">Follow @sbmgold_</span>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -8,6 +8,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-base",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  maximumScale: 2.0,
+  userScalable: true,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sbmgold.com"),
@@ -30,6 +37,13 @@ export const metadata: Metadata = {
     ],
     locale: "en_IN",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
+    description:
+      "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
+    images: ["/images/logo/sbm-gold-logo.png"],
   },
   icons: {
     icon: [

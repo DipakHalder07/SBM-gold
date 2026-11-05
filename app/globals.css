@@ -2360,3 +2360,70 @@ body .home_news .cat_list .tag {
     padding-bottom: 14rem;
   }
 }
+
+/* ==========================================================================
+   HEADER LOGO: stays on the grey part of the home hero
+   The red shape's edge moves with screen height (35.24vh at the top) and the grey
+   slash with screen width (about 23vw), so the logo's width follows both.
+   ========================================================================== */
+@media screen and (min-width: 67.5625em) {
+  body .header--logo {
+    max-width: none;
+  }
+
+  body .header--logo img {
+    width: 260px;
+    height: auto;
+    max-width: none;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease;
+  }
+
+  body.home .header:not(.header-sm) .header--logo img {
+    width: max(150px, min(260px, calc(35.24vh + 5px - 4rem), calc(19.6vw - 12px)));
+  }
+}
+
+/* ==========================================================================
+   PRODUCTS SECTION: red shape moved 10% right so the heading stays on white.
+   The drawing's diagonal runs further down to reach the page edge, so these
+   layers are taller than the theme's 62.5vw (1489 / 1920 of the width).
+   ========================================================================== */
+@media screen and (min-width: 48em) {
+  body .home_products::before {
+    height: 77.55vw;
+    background-image: url("/theme/images/common/section-bg-products.svg");
+    background-size: 100% 100%;
+  }
+
+  body .home_products::after {
+    height: 77.55vw;
+  }
+}
+
+/* ==========================================================================
+   HOME FOOTER: orange shape above the dark red, and reaching further right.
+   Only its width grows, so its point at the top stays where it was and no
+   flat edge shows over the contact section.
+   ========================================================================== */
+@media screen and (min-width: 48em) {
+  /* Layers the orange and red within the footer, keeping both under the outlined text above */
+  body .footer {
+    z-index: 0;
+  }
+
+  body .footer::before {
+    z-index: 1 !important;
+    width: 72rem !important;
+    max-width: 72rem !important;
+    aspect-ratio: 72 / 78.5 !important;
+  }
+
+  /* Grey was too faint on orange */
+  body .footer .copyright,
+  body .footer .copyright small {
+    color: #ffffff;
+  }
+}

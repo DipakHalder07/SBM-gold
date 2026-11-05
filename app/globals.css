@@ -164,6 +164,13 @@ body .home_recruit .txtarea .txt p {
   word-spacing: 0.04em;
 }
 
+body .home_mission .txt {
+  max-width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
 /* Keep "FEATURE 03" style numbers on one line beside the heading */
 body .home_feature .ttl .num-decoration {
   flex-shrink: 0;

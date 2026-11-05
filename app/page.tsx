@@ -563,11 +563,8 @@ export default function Home() {
               </h3>
               <div className="txt anime-fade-up delay2">
                 <p>
-                  Every big achievement starts with a small dream.<br />
-                  <span className="bold">From a humble beginning at SBM Plaza, Jaigaon to a trusted name in building materials.</span><br />
-                  From plumbing systems to modern living solutions, we keep evolving.<br className="pc-none" />
-                  Building trust, innovation and durability for every home and business.<br className="pc-none" />
-                  Not just products, but a legacy.
+                  From humble beginnings at SBM Plaza to a trusted name in building materials.<br />
+                  Crafting durable, precision-engineered uPVC profiles and plumbing solutions for every Indian home.
                 </p>
               </div>
             </div>

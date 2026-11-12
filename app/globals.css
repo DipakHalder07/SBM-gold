@@ -425,7 +425,7 @@ body footer .footer--tel {
   fill: #ffffff !important;
 }
 
-/* 4. Hidden header */
+/* 4. Complete Hide during GSAP Zoom Section (.home_ymd) */
 .home .header.hide,
 .home .header.header-sm.hide,
 .header.hide {
@@ -1984,6 +1984,89 @@ body .footer::before {
   }
 }
 
+/* ==========================================================================
+   SBM GOLD EMBLEM STICKY ZOOM SECTION (.home_ymd)
+   ========================================================================== */
+body .home_ymd .imgarea {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: min(72vw, 82vh);
+  height: auto;
+  aspect-ratio: 2077 / 1830;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+body .home_ymd .imgarea .ymd-lg-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  object-fit: contain;
+  z-index: 1;
+  display: block;
+}
+
+body .home_ymd .imgarea .ymd-line-red {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  left: 0;
+  top: 0;
+  transform: translate(-46vw, -40vh);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+body .home_ymd .imgarea .ymd-line-blue {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  left: 0;
+  top: 0;
+  transform: translate(46vw, 40vh);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+body .home_ymd .imgarea .ymd-lg-color {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2077 / 1830;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+body .home_ymd .imgarea .ymd-lg-color .red-parts {
+  opacity: 0;
+}
+
+@media screen and (max-width: 767px) {
+  body .home_ymd .imgarea {
+    width: 88vw;
+  }
+  body .home_ymd .imgarea .ymd-line-red {
+    transform: translate(-45vw, -30vh);
+  }
+  body .home_ymd .imgarea .ymd-line-blue {
+    transform: translate(45vw, 30vh);
+  }
+}
+
 /* Section fade-outs: CSS gradients in brand colours instead of the
    e-ymd PNGs (company-bg01.png was navy, recruit-bg01.png the old red) */
 body .home_company::after {
@@ -2470,99 +2553,31 @@ body .home_news .cat_list .tag {
 
 /* ==========================================================================
    HDPE PIPE AROUND THE EARTH (.pe) - components/sections/PipeEarth.tsx
-   Same look as the Strengths cards: grey section, white rounded card,
-   maroon numbers, diagonal slashes.
+   Uses the OUR MISSION design (.home_mission: frosted white over the hero,
+   red sub-title, big centred heading, slashes, maroon corner, photo strip)
+   with the rotating globe in the middle.
    ========================================================================== */
 body .pe {
   --pe-maroon: #951F17;
   --pe-red: #E62320;
-  --pe-text: #111111;
-  --pe-muted: #7A7A81;
-  --pe-line: rgba(17, 17, 17, 0.1);
-  /* starts white so it continues the Company section's fade, then turns site grey */
-  background: linear-gradient(180deg, #FFFFFF 0, #F1F1F3 360px);
-  overflow: hidden;
-  isolation: isolate;
 }
 body .pe .inner { position: relative; z-index: 2; }
-body .pe .ttlarea { margin-bottom: 60px; }
-body .pe .deco { position: absolute; z-index: 1; pointer-events: none; }
-body .pe .pe-deco-1 { left: -4.5rem; top: 2rem; }
-body .pe .pe-deco-2 { left: 7rem; bottom: 3rem; }
-body .pe .pe-deco-3 { right: -3.5rem; bottom: -4rem; }
 
-body .pe .pe-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  background: #ffffff;
-  border-radius: 10.5px;
-  box-shadow: 0 0 20px rgba(24, 46, 102, 0.15);
-  overflow: hidden;
-}
-body .pe .pe-copy { padding: 52px 56px 48px 60px; }
-
-/* "HDPE / 76%" badge, same idea as the FEATURE 01 badge */
-body .pe .pe-title {
-  display: flex; align-items: center; gap: 22px;
-  margin: 0 0 22px;
-  font-size: 30px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em;
+/* the % counts up, so keep its width steady while it changes */
+body .pe .pe-pct {
+  display: inline-block;
+  min-width: 2.05em;
+  text-align: right;
   color: var(--pe-maroon);
-}
-body .pe .pe-numdeco {
-  display: flex; flex-direction: column; align-items: center; flex: none;
-  padding-right: 22px; border-right: 1px solid var(--pe-line);
-}
-body .pe .pe-numdeco-txt { font-size: 14px; font-weight: 600; letter-spacing: 0.08em; line-height: 1.6; }
-body .pe .pe-numdeco-num {
-  font-size: 56px; font-weight: 700; line-height: 1; letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums; min-width: 2.6em; text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
-body .pe .pe-lede { margin: 0 0 28px; font-size: 16px; line-height: 28px; color: var(--pe-text); }
-body .pe .pe-lede strong { font-weight: 700; color: var(--pe-maroon); font-variant-numeric: tabular-nums; }
-
-/* progress bar drawn as an HDPE pipe */
-body .pe .pe-bar { margin: 0 0 28px; }
-body .pe .pe-bar-track {
-  position: relative; height: 12px; border-radius: 99px;
-  background: #F1F1F3; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-body .pe .pe-bar-fill {
-  position: absolute; inset: 0 auto 0 0; width: 76%; border-radius: 99px;
-  background:
-    linear-gradient(180deg, transparent 58%, #1e8bff 58%, #1e8bff 74%, transparent 74%),
-    linear-gradient(180deg, #7d8994 0%, #2a3038 22%, #12161b 55%, #000 100%);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
-body .pe .pe-bar-labels {
-  display: flex; justify-content: space-between; margin-top: 10px;
-  font-size: 14px; font-weight: 600; color: var(--pe-muted); font-variant-numeric: tabular-nums;
-}
-
-body .pe .pe-stats {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--pe-line);
-}
-body .pe .pe-stats li { padding: 18px 16px 0 0; margin: 0; }
-body .pe .pe-stats li + li { padding-left: 16px; border-left: 1px solid var(--pe-line); }
-body .pe .pe-stats b {
-  display: block; font-size: 24px; line-height: 1.2; font-weight: 800;
-  color: var(--pe-text); font-variant-numeric: tabular-nums;
-}
-body .pe .pe-stats li:first-child b { color: var(--pe-maroon); }
-body .pe .pe-stats span { display: block; margin-top: 6px; font-size: 14px; line-height: 1.45; color: var(--pe-muted); }
-body .pe .pe-note { margin: 22px 0 0; font-size: 12px; line-height: 1.5; color: var(--pe-muted); }
-
-/* globe side: soft grey panel like the photo half of the Strengths cards */
 body .pe .pe-globe-area {
-  align-self: stretch;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 28px 28px 24px;
-  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #F6F6F8 55%, #EDEDF0 100%);
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem auto 1.5rem;
 }
-body .pe .pe-globe { position: relative; width: 100%; max-width: 500px; aspect-ratio: 1 / 1; }
+body .pe .pe-globe { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1 / 1; }
 body .pe .pe-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; }
 body .pe .pe-globe.is-ready .pe-canvas { opacity: 1; }
 body .pe .pe-head {
@@ -2575,44 +2590,22 @@ body .pe .pe-head {
   font-variant-numeric: tabular-nums; color: var(--pe-maroon);
   opacity: 0; transition: opacity 0.35s ease;
 }
+
+body .pe .txt strong { font-weight: 700; color: var(--pe-maroon); font-variant-numeric: tabular-nums; }
+
 body .pe .pe-replay {
-  margin-top: 6px; padding: 9px 20px; border-radius: 99px; cursor: pointer;
+  display: block;
+  margin: 1.75rem auto 0;
+  padding: 9px 20px; border-radius: 99px; cursor: pointer;
   font: inherit; font-size: 14px; font-weight: 700; color: var(--pe-maroon);
-  background: #fff; border: 1px solid rgba(149, 31, 23, 0.35);
+  background: transparent; border: 1px solid rgba(149, 31, 23, 0.35);
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 body .pe .pe-replay:hover { background: var(--pe-maroon); border-color: var(--pe-maroon); color: #fff; }
 body .pe .pe-replay:focus-visible { outline: 2px solid var(--pe-red); outline-offset: 3px; }
 
-@media screen and (max-width: 1080px) {
-  body .pe .pe-copy { padding: 40px 36px 36px; }
-  body .pe .pe-title { font-size: 26px; gap: 18px; }
-  body .pe .pe-numdeco { padding-right: 18px; }
-  body .pe .pe-numdeco-num { font-size: 46px; }
-  /* narrower card: stats become rows so the labels never break mid-word */
-  body .pe .pe-stats { grid-template-columns: minmax(0, 1fr); }
-  body .pe .pe-stats li { padding: 14px 0; border-top: 1px solid var(--pe-line); display: flex; align-items: baseline; gap: 12px; }
-  body .pe .pe-stats li:first-child { border-top: 0; }
-  body .pe .pe-stats li + li { padding-left: 0; border-left: 0; }
-  body .pe .pe-stats b { font-size: 20px; flex: none; min-width: 6.2em; }
-  body .pe .pe-stats span { margin-top: 0; font-size: 13px; }
-}
-
-/* phone/tablet: title and globe first, then the details */
 @media screen and (max-width: 767px) {
-  body .pe .ttlarea { margin-bottom: 28px; }
-  body .pe .pe-card { grid-template-columns: minmax(0, 1fr); }
-  body .pe .pe-copy { display: contents; }
-  body .pe .pe-title {
-    order: 1; flex-direction: column; align-items: flex-start; gap: 8px;
-    padding: 26px 20px 0; margin: 0 0 4px; font-size: 22px;
-  }
-  /* badge sits on its own line above the headline: "HDPE 76%" */
-  body .pe .pe-numdeco { flex-direction: row; align-items: baseline; gap: 10px; padding-right: 0; border-right: 0; }
-  body .pe .pe-numdeco-txt { font-size: 12px; }
-  body .pe .pe-numdeco-num { font-size: 44px; min-width: 0; text-align: left; }
-  body .pe .pe-globe-area { order: 2; background: none; padding: 4px 16px 8px; }
-  body .pe .pe-lede, body .pe .pe-bar, body .pe .pe-stats, body .pe .pe-note { order: 3; margin-left: 20px; margin-right: 20px; }
-  body .pe .pe-lede { margin-top: 12px; margin-bottom: 22px; font-size: 15px; line-height: 26px; }
-  body .pe .pe-note { margin-top: 6px; margin-bottom: 24px; }
+  body .pe .pe-globe-area { margin: 1.5rem auto 1rem; }
+  body .pe .pe-globe { max-width: 340px; }
+  body .pe .pe-replay { margin-top: 1.25rem; font-size: 13px; padding: 8px 18px; }
 }

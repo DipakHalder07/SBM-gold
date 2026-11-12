@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SiteLayout from "@/components/SiteLayout";
 import Mission from "@/components/sections/Mission";
 import AboutIntro from "@/components/sections/AboutIntro";
@@ -13,10 +11,10 @@ import ProductsSection from "@/components/sections/ProductsSection";
 import Company from "@/components/sections/Company";
 import Partner from "@/components/sections/Partner";
 import Milestones from "@/components/sections/Milestones";
+import PipeEarth from "@/components/sections/PipeEarth";
 import { scrollToHash } from "@/lib/smoothScroll";
 
 export default function Home() {
-  const ymdContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
 
@@ -36,59 +34,6 @@ export default function Home() {
       video.play().catch(() => {});
     }
   }, [showVideo]);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // 3. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
-    const moveCont1 = document.querySelector(".ymd-line-red");
-    const moveCont2 = document.querySelector(".ymd-line-blue");
-    const scaleCont = document.querySelector(".home_ymd--sticky .imgarea");
-    const colorCont = document.querySelector(".ymd-lg-color");
-    const redCont = document.querySelectorAll(".ymd-lg-color .red-parts");
-    const visibleCont = document.querySelector(".home_ymd--sticky .contarea");
-
-    // Initialize outline parts at top-left and bottom-right corners
-    if (moveCont1 && moveCont2) {
-      gsap.set(moveCont1, { x: "-46vw", y: "-40vh", left: 0, top: 0, opacity: 0.7 });
-      gsap.set(moveCont2, { x: "46vw", y: "40vh", left: 0, top: 0, opacity: 0.7 });
-    }
-
-    // Dedicated trigger to ensure header stays hidden throughout entire home_ymd section
-    ScrollTrigger.create({
-      trigger: ".home_ymd",
-      start: "top 80%",
-      end: "bottom top",
-      toggleClass: { targets: ".header", className: "hide" },
-    });
-
-    const tlYmd = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".home_ymd--scrolltarget01",
-        start: "top 80%",
-        endTrigger: ".home_ymd--scrolltarget01",
-        end: "center top",
-        scrub: 0.5,
-        toggleClass: { targets: ".header", className: "hide" },
-      },
-    });
-
-    if (moveCont1 && moveCont2 && colorCont && redCont.length > 0 && scaleCont && visibleCont) {
-      tlYmd
-        .to(moveCont1, { x: 0, y: 0, opacity: 1, ease: "none" })
-        .to(moveCont2, { x: 0, y: 0, opacity: 1, ease: "none" }, "<")
-        .to(colorCont, { opacity: 1, ease: "none" })
-        .to(redCont, { opacity: 1, ease: "none" })
-        // zoom into the centre of the light-red left piece (354,514 1055,995 818,1189 254,802)
-        // so the screen fills with the same orange-red as the catch panel behind it
-        .to(scaleCont, { scale: 35, transformOrigin: "30% 48%", ease: "none" })
-        .to(visibleCont, { opacity: 1, ease: "none" });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
 
   return (
     <SiteLayout>
@@ -212,213 +157,8 @@ export default function Home() {
         <ProductsSection />
         <Company />
 
-        {/* SBM GOLD EMBLEM ZOOM ANIMATION SECTION */}
-        <div className="home_ymd" ref={ymdContainerRef}>
-          <div className="home_ymd--sticky">
-            <div className="imgarea pos-rel">
-              <svg
-                className="ymd-lg-color new img-specif"
-                viewBox="0 0 2077 1830"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polygon
-                  className="red-parts"
-                  points="773,194 1016,0 2077,763 1663,829"
-                  fill="#EF4224"
-                />
-                <polygon
-                  points="768,199 1061,398 668,724 359,520"
-                  fill="#941711"
-                />
-                <polygon
-                  className="red-parts"
-                  points="354,514 1055,995 818,1189 254,802"
-                  fill="#EF4224"
-                />
-                <polygon
-                  points="1293,641 1834,1023 1679,1343 1011,874"
-                  fill="#941711"
-                />
-                <polygon
-                  points="0,1111 409,1028 1309,1642 1072,1830"
-                  fill="#941711"
-                />
-                <polygon
-                  className="red-parts"
-                  points="1414,1155 1685,1343 1315,1642 1022,1449"
-                  fill="#EF4224"
-                />
-              </svg>
-
-              <svg
-                className="ymd-line-red img-specif"
-                viewBox="0 0 2077 1830"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.85" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
-                  <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  <polygon points="768,199 1061,398 668,724 359,520" />
-                  <polygon points="354,514 1055,995 818,1189 254,802" />
-                </g>
-              </svg>
-
-              <svg
-                className="ymd-line-blue img-specif"
-                viewBox="0 0 2077 1830"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.85" stroke="#EF4224" strokeWidth="4" strokeLinejoin="round">
-                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
-                </g>
-              </svg>
-
-              {/* each logo piece shows its own photo; swap a photo by changing its href */}
-              <svg
-                className="ymd-lg-img"
-                viewBox="0 0 2077 1830"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="SBM GOLD"
-              >
-                <defs>
-                  <clipPath id="ymd-piece-1">
-                    <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  </clipPath>
-                  <clipPath id="ymd-piece-2">
-                    <polygon points="768,199 1061,398 668,724 359,520" />
-                  </clipPath>
-                  <clipPath id="ymd-piece-3">
-                    <polygon points="354,514 1055,995 818,1189 254,802" />
-                  </clipPath>
-                  <clipPath id="ymd-piece-4">
-                    <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  </clipPath>
-                  <clipPath id="ymd-piece-5">
-                    <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  </clipPath>
-                  <clipPath id="ymd-piece-6">
-                    <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="/images/sbm/emblem-01.jpg?v=2"
-                  x="773" y="0" width="1304" height="829"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-1)"
-                />
-                <image
-                  href="/images/sbm/emblem-02.jpg"
-                  x="359" y="199" width="702" height="525"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-2)"
-                />
-                <image
-                  href="/images/sbm/emblem-03.jpg"
-                  x="254" y="514" width="801" height="675"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-3)"
-                />
-                <image
-                  href="/images/sbm/emblem-04.jpg"
-                  x="1011" y="641" width="823" height="702"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-4)"
-                />
-                <image
-                  href="/images/sbm/emblem-05.jpg"
-                  x="0" y="1028" width="1309" height="802"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-5)"
-                />
-                <image
-                  href="/images/sbm/emblem-06.jpg"
-                  x="1022" y="1155" width="663" height="487"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-6)"
-                />
-                {/* thin white seams between neighbouring photos */}
-                <g fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinejoin="round">
-                  <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  <polygon points="768,199 1061,398 668,724 359,520" />
-                  <polygon points="354,514 1055,995 818,1189 254,802" />
-                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
-                </g>
-              </svg>
-            </div>
-
-            <div className="contarea pos-rel">
-              <div className="bg"></div>
-              <div className="scroll-txt top">
-                <div className="scroll-txt--cont flex flex-a-ctr">
-                  <img
-                loading="lazy"
-                decoding="async"
-                    src="/theme/images/top/recruit-txt.svg?v=4"
-                    width="4594"
-                    height="147"
-                    alt=""
-                  />
-                  <img
-                loading="lazy"
-                decoding="async"
-                    src="/theme/images/top/recruit-txt.svg?v=4"
-                    width="4594"
-                    height="147"
-                    alt=""
-                  />
-                  <img
-                loading="lazy"
-                decoding="async"
-                    src="/theme/images/top/recruit-txt.svg?v=4"
-                    width="4594"
-                    height="147"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <h3 className="catch font-en txt-ctr">
-                <span className="txt-lg">GROW</span>&nbsp;WITH{" "}<br className="pc-none" />
-                <span className="txt-lg">US</span>
-              </h3>
-              <div className="scroll-txt bottom">
-                <div className="scroll-txt--cont reverse flex flex-a-ctr">
-                  <img
-                loading="lazy"
-                decoding="async"
-                    src="/theme/images/top/recruit-txt.svg?v=4"
-                    width="4594"
-                    height="147"
-                    alt=""
-                  />
-                  <img
-                loading="lazy"
-                decoding="async"
-                    src="/theme/images/top/recruit-txt.svg?v=4"
-                    width="4594"
-                    height="147"
-                    alt=""
-                  />
-                  <img
-                loading="lazy"
-                decoding="async"
-                    src="/theme/images/top/recruit-txt.svg?v=4"
-                    width="4594"
-                    height="147"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="home_ymd--scrolltarget01"></div>
-        </div>
+        {/* HDPE PIPE AROUND THE EARTH */}
+        <PipeEarth />
 
         <Partner />
         <Milestones />

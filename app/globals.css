@@ -2589,7 +2589,13 @@ body .pe .pe-replay:focus-visible { outline: 2px solid var(--pe-red); outline-of
   body .pe .pe-title { font-size: 26px; gap: 18px; }
   body .pe .pe-numdeco { padding-right: 18px; }
   body .pe .pe-numdeco-num { font-size: 46px; }
-  body .pe .pe-stats b { font-size: 20px; }
+  /* narrower card: stats become rows so the labels never break mid-word */
+  body .pe .pe-stats { grid-template-columns: minmax(0, 1fr); }
+  body .pe .pe-stats li { padding: 14px 0; border-top: 1px solid var(--pe-line); display: flex; align-items: baseline; gap: 12px; }
+  body .pe .pe-stats li:first-child { border-top: 0; }
+  body .pe .pe-stats li + li { padding-left: 0; border-left: 0; }
+  body .pe .pe-stats b { font-size: 20px; flex: none; min-width: 6.2em; }
+  body .pe .pe-stats span { margin-top: 0; font-size: 13px; }
 }
 
 /* phone/tablet: title and globe first, then the details */
@@ -2608,11 +2614,5 @@ body .pe .pe-replay:focus-visible { outline: 2px solid var(--pe-red); outline-of
   body .pe .pe-globe-area { order: 2; background: none; padding: 4px 16px 8px; }
   body .pe .pe-lede, body .pe .pe-bar, body .pe .pe-stats, body .pe .pe-note { order: 3; margin-left: 20px; margin-right: 20px; }
   body .pe .pe-lede { margin-top: 12px; margin-bottom: 22px; font-size: 15px; line-height: 26px; }
-  body .pe .pe-stats { grid-template-columns: minmax(0, 1fr); }
-  body .pe .pe-stats li { padding: 14px 0; border-top: 1px solid var(--pe-line); display: flex; align-items: baseline; gap: 12px; }
-  body .pe .pe-stats li:first-child { border-top: 0; }
-  body .pe .pe-stats li + li { padding-left: 0; border-left: 0; }
-  body .pe .pe-stats b { font-size: 20px; flex: none; min-width: 6.2em; }
-  body .pe .pe-stats span { margin-top: 0; font-size: 13px; }
   body .pe .pe-note { margin-top: 6px; margin-bottom: 24px; }
 }

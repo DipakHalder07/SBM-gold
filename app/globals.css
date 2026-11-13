@@ -2566,7 +2566,7 @@ body .pe .inner { position: relative; z-index: 2; }
 /* the % counts up, so keep its width steady while it changes */
 body .pe .pe-pct {
   display: inline-block;
-  min-width: 2.05em;
+  min-width: 2.75em;
   text-align: right;
   color: var(--pe-maroon);
   font-variant-numeric: tabular-nums;

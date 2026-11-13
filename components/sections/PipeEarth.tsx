@@ -5,7 +5,7 @@ import Deco from "../Deco";
 import { initPipeEarth } from "@/lib/pipeEarth";
 
 /**
- * "Our pipes could wrap 76% of the way around the Earth" section.
+ * "Our pipes could wrap the whole Earth" section.
  * Uses the old OUR MISSION design (.home_mission) with the rotating globe in the middle.
  * The numbers and the animation settings live at the top of lib/pipeEarth.js.
  */
@@ -34,9 +34,9 @@ export default function PipeEarth() {
             Enough SBM GOLD pipe to wrap
             <br />
             <span className="txt-lg pe-pct" data-pe-pct>
-              76%
+              100%
             </span>{" "}
-            of the way around the <span className="txt-lg">Earth</span>.
+            around the <span className="txt-lg">Earth</span>.
           </span>
         </h3>
 
@@ -45,7 +45,7 @@ export default function PipeEarth() {
             <canvas
               className="pe-canvas"
               role="img"
-              aria-label="Rotating Earth with an SBM GOLD HDPE pipe wrapped 76% of the way around the equator"
+              aria-label="Rotating Earth with an SBM GOLD HDPE pipe wrapped all the way around the equator"
             ></canvas>
             <div className="pe-head" aria-hidden="true">
               0 km
@@ -55,7 +55,7 @@ export default function PipeEarth() {
 
         <div className="txt anime-fade-up delay2">
           <p>
-            <strong data-pe-total>30,457 km</strong> of HDPE pipe made, laid end to end.
+            <strong data-pe-total>40,075 km</strong> of HDPE pipe made, laid end to end.
           </p>
         </div>
         <button className="pe-replay anime-fade-up delay3" type="button">

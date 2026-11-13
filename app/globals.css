@@ -2609,3 +2609,122 @@ body .pe .pe-replay:focus-visible { outline: 2px solid var(--pe-red); outline-of
   body .pe .pe-globe { max-width: 340px; }
   body .pe .pe-replay { margin-top: 1.25rem; font-size: 13px; padding: 8px 18px; }
 }
+
+/* ==========================================================================
+   FOOTER MENU ACCORDION (components/FooterNav.tsx)
+   Phones: each link group is a row; tap the heading to open its links.
+   Desktop and tablet keep the open columns, so the toggle is hidden there.
+   ========================================================================== */
+.fnav--toggle,
+body .footer .fnav--menu .fnav--all {
+  display: none;
+}
+
+.fnav--toggle-txt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 47.9375em) {
+  body .footer .fnav {
+    width: 100%;
+  }
+
+  body .footer .fnav--menu {
+    display: block;
+    max-width: none;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  body .footer .fnav--menu > li {
+    position: relative;
+    min-width: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  /* heading row */
+  body .footer .fnav--menu .menu-item-has-children > a {
+    padding: 18px 48px 18px 26px;
+    font-size: 16px;
+  }
+
+  /* the whole heading row is the toggle */
+  .fnav--toggle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: block;
+    height: 58px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .fnav--toggle:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+
+  /* plus that turns into a minus when open */
+  .fnav--icon {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+  }
+
+  .fnav--icon::before,
+  .fnav--icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 14px;
+    height: 2px;
+    background-color: #ffffff;
+  }
+
+  .fnav--icon::after {
+    transform: rotate(90deg);
+  }
+
+  .is-open .fnav--icon::after {
+    display: none;
+  }
+
+  /* links stay hidden until their group is opened */
+  body .footer .fnav--menu .sub-menu {
+    display: none;
+    padding: 0 0 14px 26px;
+  }
+
+  body .footer .fnav--menu .is-open .sub-menu {
+    display: block;
+  }
+
+  body .footer .fnav--menu .sub-menu a {
+    padding: 10px 0;
+    font-size: 15px;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+
+  body .footer .fnav--menu .fnav--all {
+    display: block;
+  }
+
+  body .footer .fnav--menu .fnav--all a {
+    font-weight: 700;
+    opacity: 1;
+  }
+}

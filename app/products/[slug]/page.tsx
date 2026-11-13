@@ -2,9 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteLayout from "@/components/SiteLayout";
 import ProductGallery from "@/components/ProductGallery";
-import CtaBand from "@/components/inner/CtaBand";
 import PageIntro from "@/components/inner/PageIntro";
-import ProductTile from "@/components/inner/ProductTile";
+import ProductCard from "@/components/inner/ProductCard";
 import Section from "@/components/inner/Section";
 import { getProduct, getRelated, products } from "@/lib/products";
 import { CONTACT, pageMetadata } from "@/lib/site";
@@ -66,16 +65,24 @@ export default function ProductDetailPage({ params }: Props) {
         </div>
       </div>
 
-      <Section title="Overview">
+      <Section title="Overview" tone="grey" plain>
         <div className="ip-prose">
           {product.overview.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+        <div className="ip-range">
+          <h3>{product.range.title}</h3>
+          <ul className="ip-tags">
+            {product.range.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </Section>
 
-      <Section title="Key features">
-        <ul className="ip-list ip-list--two">
+      <Section title="Key features" plain>
+        <ul className="ip-list ip-list--clean ip-list--three">
           {product.features.map((feature) => (
             <li key={feature.title}>
               <h3>{feature.title}</h3>
@@ -85,28 +92,13 @@ export default function ProductDetailPage({ params }: Props) {
         </ul>
       </Section>
 
-      <Section title={product.range.title}>
-        <ul className="ip-tags">
-          {product.range.items.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="More products">
+      <Section id="more-products" title="More products" tone="grey" plain>
         <div className="ip-tiles ip-tiles--three">
           {getRelated(product).map((related) => (
-            <ProductTile key={related.slug} product={related} />
+            <ProductCard key={related.slug} product={related} />
           ))}
         </div>
       </Section>
-
-      <CtaBand
-        title={`Interested in ${product.name}?`}
-        text="Tell us what you need and our team will get back to you."
-        href={enquireHref}
-        label="Enquire Now"
-      />
     </SiteLayout>
   );
 }

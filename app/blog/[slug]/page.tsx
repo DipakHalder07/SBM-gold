@@ -2,12 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteLayout from "@/components/SiteLayout";
 import BlogCard from "@/components/inner/BlogCard";
-import CtaBand from "@/components/inner/CtaBand";
 import PageIntro from "@/components/inner/PageIntro";
 import Section from "@/components/inner/Section";
 import { getOtherPosts, getPost, posts, readingTime } from "@/lib/blog";
 import { getProduct } from "@/lib/products";
-import { pageMetadata } from "@/lib/site";
+import { CONTACT, pageMetadata } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -39,30 +38,16 @@ export default function BlogPostPage({ params }: Props) {
       />
 
       <div className="ip-wrap ip-article">
-        <aside className="ip-article--side">
-          <dl className="ip-facts ip-facts--stack">
-            <div>
-              <dt>Topic</dt>
-              <dd>{post.category}</dd>
-            </div>
-            <div>
-              <dt>Reading time</dt>
-              <dd>{readingTime(post)}</dd>
-            </div>
-            {product && (
-              <div>
-                <dt>Related product</dt>
-                <dd>
-                  <Link className="ip-link" href={`/products/${product.slug}`}>
-                    {product.name}
-                  </Link>
-                </dd>
-              </div>
-            )}
-          </dl>
-        </aside>
-
         <article className="ip-article--body">
+          {/* topic, reading time and a way back, above the photo */}
+          <div className="ip-article--meta">
+            <span className="ip-tile--cat">{post.category}</span>
+            <span className="ip-tile--time">{readingTime(post)}</span>
+            <Link href="/blog" className="ip-article--back">
+              All articles
+            </Link>
+          </div>
+
           <div className="ip-article--img">
             <img src={post.image} width="1200" height="800" alt={post.imageAlt} fetchPriority="high" />
           </div>
@@ -80,22 +65,40 @@ export default function BlogPostPage({ params }: Props) {
             }
             return <p key={i}>{block.text}</p>;
           })}
+
+          {/* the product this article is about, with the next step */}
+          {product && (
+            <aside className="ip-article--product">
+              <img loading="lazy" decoding="async" src={product.image} width="398" height="266" alt={product.imageAlt} />
+              <div>
+                <p className="ip-eyebrow">Related product</p>
+                <p className="ip-article--pname">{product.name}</p>
+                <div className="ip-actions">
+                  <Link href={`/products/${product.slug}`} className="ip-btn">
+                    View Product
+                  </Link>
+                  <Link href={`/contact?product=${product.slug}#inquiry`} className="ip-btn ip-btn--ghost">
+                    Enquire Now
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          )}
+
+          <p className="ip-article--help">
+            Have a question about your project? Call us toll free on{" "}
+            <a href={CONTACT.tollFreeHref}>{CONTACT.tollFree}</a>.
+          </p>
         </article>
       </div>
 
-      <Section title="More articles">
+      <Section title="More articles" tone="grey" plain>
         <div className="ip-tiles ip-tiles--three">
           {getOtherPosts(post).map((other) => (
             <BlogCard key={other.slug} post={other} />
           ))}
         </div>
       </Section>
-
-      <CtaBand
-        title="Have a question?"
-        text="Tell us about your project and our team will help you find the right product."
-        href={product ? `/contact?product=${product.slug}#inquiry` : "/contact"}
-      />
     </SiteLayout>
   );
 }

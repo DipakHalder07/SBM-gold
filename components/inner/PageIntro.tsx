@@ -1,4 +1,5 @@
 import Breadcrumb, { type Crumb } from "../Breadcrumb";
+import Deco from "../Deco";
 
 /** Inner page banner: diagonal red panel over a red-tinted photo, with an outlined title. */
 export default function PageIntro({
@@ -18,11 +19,13 @@ export default function PageIntro({
 }) {
   return (
     <>
-      <header className="ip-hero">
+      <header className="ip-hero scroll_active">
         <div className="ip-hero--photo">
           <img src={image} alt="" width="1600" height="600" fetchPriority="high" />
         </div>
         <div className="ip-hero--panel"></div>
+        <Deco className="ip-hero-deco-1 stroke wht lg reverse anime-diag-lft" />
+        <Deco className="ip-hero-deco-2 fill red xs reverse anime-diag-lft2 delay1" />
         {/* A text stroke would also trace the overlapping shapes inside the font's letters */}
         <svg className="ip-hero--filter" aria-hidden="true" width="0" height="0">
           <filter id="ip-outline">

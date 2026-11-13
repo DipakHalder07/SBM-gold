@@ -8,7 +8,6 @@ import "lenis/dist/lenis.css";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import FootCta from "./FootCta";
-import InnerFooter from "./inner/InnerFooter";
 import { setLenis } from "@/lib/smoothScroll";
 
 /**
@@ -18,9 +17,12 @@ import { setLenis } from "@/lib/smoothScroll";
 export default function SiteLayout({
   children,
   variant = "home",
+  footCta = true,
 }: {
   children: React.ReactNode;
   variant?: "home" | "inner";
+  /** The CONTACT US band above the footer; the contact page turns it off. */
+  footCta?: boolean;
 }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -58,16 +60,14 @@ export default function SiteLayout({
         });
       });
 
-    // Keep the header out of the way over the home page footer
-    if (variant === "home") {
-      ScrollTrigger.create({
-        trigger: ".foot_cta",
-        start: "top 80%",
-        endTrigger: "#footer",
-        end: "bottom bottom",
-        toggleClass: { targets: ".header", className: "hide" },
-      });
-    }
+    // Keep the header out of the way over the footer
+    ScrollTrigger.create({
+      trigger: footCta ? ".foot_cta" : "#footer",
+      start: "top 80%",
+      endTrigger: "#footer",
+      end: "bottom bottom",
+      toggleClass: { targets: ".header", className: "hide" },
+    });
 
     const refresh = () => ScrollTrigger.refresh();
     window.addEventListener("load", refresh);
@@ -84,14 +84,15 @@ export default function SiteLayout({
       setLenis(null);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [variant]);
+  }, [variant, footCta]);
 
   if (variant === "inner") {
     return (
       <>
         <SiteHeader />
         <main className="ip">{children}</main>
-        <InnerFooter />
+        {footCta && <FootCta />}
+        <SiteFooter />
       </>
     );
   }

@@ -46,7 +46,7 @@ export default function SitemapPage() {
       />
 
       {GROUPS.map((group) => (
-        <Section key={group.title} title={group.title}>
+        <Section compact key={group.title} title={group.title}>
           <div className="ip-article--body">
             <ul>
               {group.links.map((link) => (

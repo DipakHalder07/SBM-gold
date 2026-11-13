@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         lead="This page explains what happens to the details you share with SBM GOLD through this website. Last updated: 5 November 2026."
       />
 
-      <Section title="What we collect">
+      <Section compact title="What we collect">
         <div className="ip-prose">
           <p>
             We only receive the details you choose to send us, such as your name, phone number, email address, city and
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         </div>
       </Section>
 
-      <Section title="Inquiry forms" tone="grey">
+      <Section compact title="Inquiry forms">
         <div className="ip-prose">
           <p>
             The forms on this website do not store your details. Sending a form opens your own email app with the message
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
         </div>
       </Section>
 
-      <Section title="How we use your details">
+      <Section compact title="How we use your details">
         <div className="ip-prose">
           <p>
             We use your details to reply to you, to talk about our products or a partnership, and to support you as a
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
         </div>
       </Section>
 
-      <Section title="Cookies and other websites" tone="grey">
+      <Section compact title="Cookies and other websites">
         <div className="ip-prose">
           <p>
             This website does not use analytics or advertising cookies. Our hosting provider may keep standard technical
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
         </div>
       </Section>
 
-      <Section title="Your choices">
+      <Section compact title="Your choices">
         <div className="ip-prose">
           <p>
             To ask what details we hold about you, or to have them corrected or deleted, write to{" "}

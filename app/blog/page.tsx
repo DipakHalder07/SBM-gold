@@ -1,8 +1,7 @@
 import SiteLayout from "@/components/SiteLayout";
-import BlogCard from "@/components/inner/BlogCard";
-import CtaBand from "@/components/inner/CtaBand";
+import BlogBrowser from "@/components/inner/BlogBrowser";
 import PageIntro from "@/components/inner/PageIntro";
-import { posts } from "@/lib/blog";
+import Section from "@/components/inner/Section";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
@@ -12,8 +11,6 @@ export const metadata = pageMetadata(
 );
 
 export default function BlogPage() {
-  const [featured, ...rest] = posts;
-
   return (
     <SiteLayout variant="inner">
       <PageIntro
@@ -21,21 +18,17 @@ export default function BlogPage() {
         title="Guides & Insights"
         image="/images/sbm/gallery-02.jpg"
         crumbs={[{ label: "Blog" }]}
-        lead="Practical advice on choosing and using building materials, from the team at SBM GOLD."
       />
 
-      <section className="ip-blog">
-        <div className="ip-wrap">
-          <BlogCard post={featured} featured />
-          <div className="ip-tiles ip-tiles--three ip-blog--grid">
-            {rest.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CtaBand title="Have a question?" text="Tell us about your project and our team will help you find the right product." />
+      <Section
+        id="articles"
+        title="Latest Articles"
+        tone="grey"
+        plain
+        lead="Practical advice on choosing and using building materials, from the team at SBM GOLD."
+      >
+        <BlogBrowser />
+      </Section>
     </SiteLayout>
   );
 }

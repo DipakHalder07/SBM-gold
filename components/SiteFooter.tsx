@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { CONTACT, FOOTER_NAV } from "@/lib/site";
+import { CONTACT } from "@/lib/site";
+import FooterNav from "./FooterNav";
 
 export default function SiteFooter() {
   return (
@@ -49,22 +50,7 @@ export default function SiteFooter() {
               </aside>
             </div>
 
-            <nav className="fnav">
-              <ul className="fnav--menu flex flex-c-wrap flex-sp-block">
-                {FOOTER_NAV.map((group) => (
-                  <li key={group.key} className="menu-item menu-item-has-children">
-                    <Link href={group.href}>{group.label}</Link>
-                    <ul className="sub-menu">
-                      {group.children?.map((child) => (
-                        <li key={child.label}>
-                          <Link href={child.href}>{child.label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <FooterNav />
           </div>
         </div>
       </div>

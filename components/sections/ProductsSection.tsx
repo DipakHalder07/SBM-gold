@@ -1,10 +1,19 @@
 import Deco from "../Deco";
 import ProductCards from "../ProductCards";
-import { products } from "@/lib/products";
+import { products, type Product } from "@/lib/products";
 
-export default function ProductsSection({ title = "OUR PRODUCTS" }: { title?: string }) {
+/** The home page product grid. Inner pages reuse it with their own title and products. */
+export default function ProductsSection({
+  title = "OUR PRODUCTS",
+  items = products,
+  id = "products",
+}: {
+  title?: string;
+  items?: Product[];
+  id?: string;
+}) {
   return (
-    <section id="products" className="home_products scroll_active">
+    <section id={id} className="home_products scroll_active">
       <Deco className="deco-1 stroke red lg reverse anime-diag-lft" />
       <Deco className="deco-2 fill gray xs reverse anime-diag-lft2 delay1" />
       <Deco className="deco-3 fill red xs reverse anime-diag-lft2 delay1" />
@@ -29,7 +38,7 @@ export default function ProductsSection({ title = "OUR PRODUCTS" }: { title?: st
           </h2>
         </div>
 
-        <ProductCards items={products} />
+        <ProductCards items={items} />
       </div>
     </section>
   );

@@ -3,6 +3,11 @@ import SiteLayout from "@/components/SiteLayout";
 import PageIntro from "@/components/inner/PageIntro";
 import Section from "@/components/inner/Section";
 import Stats from "@/components/inner/Stats";
+import Mission from "@/components/sections/Mission";
+import Strengths from "@/components/sections/Strengths";
+import Quality from "@/components/sections/Quality";
+import Milestones from "@/components/sections/Milestones";
+import Partner from "@/components/sections/Partner";
 import { CONTACT, pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
@@ -12,61 +17,10 @@ export const metadata = pageMetadata(
   "/images/sbm/company-02.jpg",
 );
 
-const STRENGTHS = [
-  {
-    title: "Profiles designed to European standards",
-    text: "Sleek aesthetics with robust engineering. Our multi-chambered profiles work with European hardware systems and come with advanced locking systems for enhanced security.",
-  },
-  {
-    title: "Thermal insulation for quieter, cooler homes",
-    text: "Multi-chambered profiles give superior heat insulation and cut outdoor noise, keeping your rooms calm and comfortable through every season.",
-  },
-  {
-    title: "Built for every Indian climate extreme",
-    text: "Weather-sealed, termite-proof and low maintenance. Our profiles resist sun, rain and humidity for a long lifespan.",
-  },
-  {
-    title: "Your all-in-one solution, from profile to installation",
-    text: "End-to-end expertise with customisable styles and finishes, professional installation by our own team and reliable after-sales support.",
-  },
-  {
-    title: "Trusted by builders, backed by industry veterans",
-    text: "With 10+ years of extrusion expertise, SBM GOLD is a trusted name for builders and homeowners. Our eco-friendly, recyclable uPVC is made to last.",
-  },
-];
+const DIRECTIONS = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.address)}`;
 
-const QUALITY = [
-  {
-    title: "ISO certified quality",
-    text: "Certified to ISO 9001:2015 and ISO 4427. Caliper and wall-thickness checks on every batch keep each profile true to spec.",
-  },
-  {
-    title: "Automated extrusion",
-    text: "PLC-controlled lines hold every profile wall uniform, metre after metre.",
-  },
-  {
-    title: "Protective shield",
-    text: "Factory-applied film keeps profiles scratch-free from our plant to your site.",
-  },
-  {
-    title: "20-year warranty",
-    text: "Our uPVC profiles are backed by a 20-year warranty.",
-  },
-];
-
-const FACTS = [
-  { label: "Company", value: CONTACT.company },
-  { label: "Head office", value: CONTACT.address },
-  { label: "Facility", value: "2,25,000 sq ft modern manufacturing facility" },
-  { label: "Capacity", value: "22,000 MT per year" },
-  { label: "Network", value: "300+ dealers" },
-  { label: "Certifications", value: "ISO 9001:2015, ISO 4427 and BIS" },
-];
-
-const MILESTONES = [
-  { year: "2025", tag: "Launch", text: "Launched uPVC profiles for windows & doors and WPC door frames" },
-  { year: "2023", tag: "Milestone", text: "First company in North East India to manufacture 450mm HDPE pipes" },
-];
+// Size and capacity numbers are in the maroon band above, so this card stays short
+const MAKES = ["uPVC Profiles", "WPC Door Frames", "HDPE & uPVC Pipes", "Water Tanks", "Wall Putty"];
 
 export default function AboutPage() {
   return (
@@ -76,122 +30,99 @@ export default function AboutPage() {
         title="From Pipes to Profiles"
         image="/images/sbm/company-04.jpg"
         crumbs={[{ label: "About Us" }]}
-        lead="From humble beginnings at SBM Plaza to a trusted name in building materials, SBM GOLD makes durable, precision-engineered products for every Indian home."
       />
 
-      <div className="ip-wrap">
-        <div className="ip-banner">
-          <img
-            src="/images/sbm/emblem-05.jpg"
-            width="1800"
-            height="1018"
-            alt="SBM GOLD team inspecting uPVC profiles at the manufacturing facility"
-            fetchPriority="high"
-          />
-        </div>
-      </div>
-
-      <Section title="Our mission">
-        <p className="ip-statement">Bringing nature&rsquo;s serenity straight to you with doors and windows.</p>
-        <div className="ip-prose">
-          <p>
-            Backed by SBM GOLD&rsquo;s legacy of quality and innovation, our uPVC doors and windows profiles offer
-            world-class, custom solutions for Indian homes. Crafted with German technology and automated precision, they
-            ensure all-weather durability and superior noise and heat insulation.
-          </p>
-        </div>
-      </Section>
-
+      {/* Same sections as the home page, so About looks and reads like the rest of the site */}
+      <Mission />
       <Stats />
+      <Strengths />
+      <Quality />
 
-      <Section id="feature" title="Our strengths">
-        <ul className="ip-list">
-          {STRENGTHS.map((item) => (
-            <li key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
+      <Section id="overview" title="Our Company" tone="fade">
+        <div id="company" className="ip-company">
+          <div className="ip-company--media">
+            <figure className="ip-company--main">
+              <img
+                loading="lazy"
+                decoding="async"
+                src="/images/sbm/company-02.jpg"
+                width="1200"
+                height="896"
+                alt="SBM GOLD headquarters building"
+              />
+              <figcaption>
+                <span>Headquarters</span>
+                Siliguri, West Bengal
+              </figcaption>
+            </figure>
+            <figure className="ip-company--inset">
+              <img
+                loading="lazy"
+                decoding="async"
+                src="/images/sbm/company-03.jpg"
+                width="1200"
+                height="884"
+                alt="The SBM GOLD team"
+              />
+              <figcaption>Our team</figcaption>
+            </figure>
+          </div>
 
-      <Section id="quality" title="Quality">
-        <ul className="ip-list ip-list--two">
-          {QUALITY.map((item) => (
-            <li key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
+          <div className="ip-company--info">
+            <p className="ip-eyebrow">{CONTACT.company}</p>
+            <h3 className="ip-company--lead">
+              Made in Siliguri,
+              <br />
+              built for Indian homes.
+            </h3>
 
-      <Section id="overview" title="Company">
-        <dl className="ip-facts ip-facts--wide">
-          {FACTS.map((fact) => (
-            <div key={fact.label}>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
+            <ul className="ip-company--makes" aria-label="What we make">
+              {MAKES.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+
+            <ul className="ip-company--meta">
+              <li>
+                <span className="ip-company--icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z" />
+                    <circle cx="12" cy="9.5" r="2.5" />
+                  </svg>
+                </span>
+                <span>
+                  <b>Head office</b>
+                  Metro Plaza, SF Road, Siliguri
+                </span>
+              </li>
+              <li>
+                <span className="ip-company--icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" />
+                    <path d="M9 12l2 2 4-4" />
+                  </svg>
+                </span>
+                <span>
+                  <b>Certified</b>
+                  ISO 9001:2015 &middot; ISO 4427 &middot; BIS
+                </span>
+              </li>
+            </ul>
+
+            <div className="ip-actions">
+              <Link href="/contact" className="ip-btn">
+                Contact Us
+              </Link>
+              <a href={DIRECTIONS} className="ip-btn ip-btn--ghost" target="_blank" rel="noopener noreferrer">
+                Get Directions
+              </a>
             </div>
-          ))}
-        </dl>
-        <div id="company" className="ip-figures">
-          <figure>
-            <img
-              loading="lazy"
-              decoding="async"
-              src="/images/sbm/company-02.jpg"
-              width="1200"
-              height="896"
-              alt="SBM GOLD headquarters building"
-            />
-            <figcaption>Headquarters</figcaption>
-          </figure>
-          <figure>
-            <img
-              loading="lazy"
-              decoding="async"
-              src="/images/sbm/company-03.jpg"
-              width="1200"
-              height="884"
-              alt="The SBM GOLD team"
-            />
-            <figcaption>Our team</figcaption>
-          </figure>
+          </div>
         </div>
       </Section>
 
-      <Section id="news" title="Milestones">
-        <ul className="ip-timeline">
-          {MILESTONES.map((item) => (
-            <li key={item.year}>
-              <span className="year">{item.year}</span>
-              <div>
-                <span className="tag">{item.tag}</span>
-                <p>{item.text}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section id="recruit" title="Become a partner" tone="grey">
-        <div className="ip-prose">
-          <p>
-            Join Eastern India&rsquo;s most trusted manufacturing network for uPVC doors and windows, WPC door frames, HDPE
-            pipes, water tanks and wall putty.
-          </p>
-          <p>
-            As an authorized distributor, dealer or project partner, scale your business with high-margin product lines,
-            ISO and BIS certified reliability, state-of-the-art extrusion, and dedicated technical and marketing support.
-          </p>
-        </div>
-        <div className="ip-actions">
-          <Link href="/partner" className="ip-btn">
-            Become a Partner
-          </Link>
-        </div>
-      </Section>
+      <Milestones />
+      <Partner />
     </SiteLayout>
   );
 }

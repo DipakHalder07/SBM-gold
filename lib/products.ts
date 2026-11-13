@@ -133,7 +133,7 @@ export const products: Product[] = [
       "SBM GOLD HDPE pipes are manufactured to IS:4984 in sizes from 20mm to 630mm. Butt-welded, seamless joints keep the line leak-free from end to end.",
       "In 2023, SBM GOLD became the first company in North East India to manufacture 450mm HDPE pipes.",
     ],
-    image: "/images/sbm/product-hdpe-pipes.jpg",
+    image: "/images/sbm/product-hdpe-pipes-centered.jpg",
     imageAlt: "SBM GOLD HDPE pipes",
     gallery: [
       { src: "/images/sbm/emblem-03.jpg", alt: "Inspector checking an SBM GOLD HDPE pipe with a caliper" },
@@ -220,7 +220,7 @@ export const products: Product[] = [
       "SBM GOLD water tanks are roto-moulded from food-grade material, with UV-resistant and anti-bacterial properties.",
       "Choose a capacity from 100L to 10,000L, in 2, 3 or 4 layers, and in green, blue, black or white.",
     ],
-    image: "/images/sbm/product-water-tank.jpg",
+    image: "/images/sbm/product-water-tank-centered.jpg",
     imageAlt: "SBM GOLD water tanks in green, blue, black and white",
     gallery: [
       { src: "/images/sbm/feature-02.jpg?v=2", alt: "Green SBM GOLD water tank with pipes" },
@@ -264,7 +264,7 @@ export const products: Product[] = [
       "SBM GOLD Wall Putty is a white cement based putty for interior and exterior walls. It gives a smooth, refined finish with excellent spread and adhesion.",
       "It is scratch, UV and water resistant, and helps reduce cracking.",
     ],
-    image: "/images/sbm/product-wall-putty.jpg",
+    image: "/images/sbm/product-wall-putty-centered.jpg",
     imageAlt: "SBM GOLD wall putty bags",
     gallery: [{ src: "/images/sbm/recruit-slide-03.jpg", alt: "SBM GOLD wall putty bags" }],
     features: [

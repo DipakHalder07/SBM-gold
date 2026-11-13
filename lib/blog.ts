@@ -191,7 +191,7 @@ export const posts: BlogPost[] = [
     title: "Why Wall Putty Matters Before You Paint",
     excerpt: "A good paint finish starts with the surface underneath. Here is what wall putty does and what to look for.",
     category: "Wall Putty",
-    image: "/images/sbm/product-wall-putty.jpg",
+    image: "/images/sbm/product-wall-putty-centered.jpg",
     imageAlt: "SBM GOLD wall putty bags",
     product: "wall-putty",
     body: [

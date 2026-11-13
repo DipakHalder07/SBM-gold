@@ -23,42 +23,13 @@ const productLinks: NavLink[] = products.map((p) => ({
 
 const PARTNER_INQUIRY = "/partner#inquiry";
 
+// Only the main pages. Products keeps its dropdown so each product is one click away;
+// Milestones and Company live on the About page, and Contact is the button beside the menu.
 export const HEADER_NAV: NavGroup[] = [
-  {
-    key: "about",
-    label: "About Us",
-    href: "/about",
-    children: [
-      { label: "Our Strengths", href: "/about#feature" },
-      { label: "Colour Shades", href: "/about#quality" },
-      { label: "Certifications", href: "/about#quality" },
-      { label: "Warranty", href: "/about#quality" },
-    ],
-  },
+  { key: "about", label: "About Us", href: "/about" },
   { key: "products", label: "Products", href: "/products", children: productLinks },
-  { key: "milestones", label: "Milestones", href: "/about#news" },
+  { key: "partner", label: "Partner", href: "/partner" },
   { key: "blog", label: "Blog", href: "/blog" },
-  {
-    key: "company",
-    label: "Company",
-    href: "/about#overview",
-    children: [
-      { label: "Overview", href: "/about#overview" },
-      { label: "CEO Message", href: "/about#company" },
-      { label: "Our Team", href: "/about#company" },
-    ],
-  },
-  {
-    key: "partner",
-    label: "Partner",
-    href: "/partner",
-    children: [
-      { label: "Become a Partner", href: "/partner" },
-      { label: "Partner with SBM GOLD", href: "/partner#why" },
-      { label: "Distributor Network", href: "/partner#types" },
-      { label: "Partner Inquiry", href: PARTNER_INQUIRY },
-    ],
-  },
 ];
 
 export const FOOTER_NAV: NavGroup[] = [

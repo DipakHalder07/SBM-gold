@@ -2,7 +2,8 @@ import Link from "next/link";
 import { CONTACT } from "@/lib/site";
 import FooterNav from "./FooterNav";
 
-export default function SiteFooter() {
+/** `credit` adds a small "Design by" line under the copyright (used on the blog list only). */
+export default function SiteFooter({ credit = false }: { credit?: boolean }) {
   return (
     <footer id="footer" className="footer">
       <div className="bg"></div>
@@ -26,10 +27,20 @@ export default function SiteFooter() {
                 <p>{CONTACT.company}</p>
                 <p>{CONTACT.address}</p>
               </address>
+              {/* desktop shows "LABEL: value" lines; phones turn each into a full-width tap button */}
               <p className="footer--tel">
-                TOLL FREE:<a href={CONTACT.tollFreeHref}>{CONTACT.tollFree}</a>
-                <br />
-                EMAIL:<a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                <span className="ft-row">
+                  <span className="ft-label">TOLL FREE: </span>
+                  <a className="ft-call" href={CONTACT.tollFreeHref}>
+                    {CONTACT.tollFree}
+                  </a>
+                </span>
+                <span className="ft-row">
+                  <span className="ft-label">EMAIL: </span>
+                  <a className="ft-mail" href={`mailto:${CONTACT.email}`}>
+                    {CONTACT.email}
+                  </a>
+                </span>
               </p>
               <aside className="sns_area">
                 <ul className="flex flex-a-ctr">
@@ -72,6 +83,14 @@ export default function SiteFooter() {
             <div className="copyright flex flex-a-ctr flex-sp-block font-en">
               <small>&copy; SBM GOLD ALL RIGHTS RESERVED.</small>
             </div>
+            {credit && (
+              <p className="footer--credit">
+                Design by{" "}
+                <a href="https://digitalgrove.in/" target="_blank" rel="noopener noreferrer">
+                  digitalgrove.in
+                </a>
+              </p>
+            )}
           </div>
           <div className="footer_btm--rgt">
             <ul className="footer--cta flex flex-sp-block">

@@ -12,7 +12,7 @@ export const metadata = pageMetadata(
 
 export default function BlogPage() {
   return (
-    <SiteLayout variant="inner">
+    <SiteLayout variant="inner" footerCredit>
       <PageIntro
         word="Blog"
         title="Guides & Insights"

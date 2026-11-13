@@ -18,11 +18,14 @@ export default function SiteLayout({
   children,
   variant = "home",
   footCta = true,
+  footerCredit = false,
 }: {
   children: React.ReactNode;
   variant?: "home" | "inner";
   /** The CONTACT US band above the footer; the contact page turns it off. */
   footCta?: boolean;
+  /** Small "Design by" line in the footer. */
+  footerCredit?: boolean;
 }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -92,7 +95,7 @@ export default function SiteLayout({
         <SiteHeader />
         <main className="ip">{children}</main>
         {footCta && <FootCta />}
-        <SiteFooter />
+        <SiteFooter credit={footerCredit} />
       </>
     );
   }

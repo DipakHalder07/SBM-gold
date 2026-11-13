@@ -11,9 +11,9 @@ export default function SiteHeader() {
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  // Inner pages carry their own h1 in the page hero
+  // Every page has its own h1 (home hero, inner page banner), so the logo is never the h1
   const isHome = pathname === "/";
-  const LogoTag = isHome ? "h1" : "div";
+  const LogoTag = "div";
   // Only the home hero has a shape behind the header; inner pages keep it solid white
   const solidClass = isHome ? "" : "header-sm header-sm-visible";
 

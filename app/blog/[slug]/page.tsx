@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteLayout from "@/components/SiteLayout";
 import BlogCard from "@/components/inner/BlogCard";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema } from "@/lib/seo";
 import PageIntro from "@/components/inner/PageIntro";
 import Section from "@/components/inner/Section";
 import { getOtherPosts, getPost, posts, readingTime } from "@/lib/blog";
@@ -19,7 +21,10 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props) {
   const post = getPost(params.slug);
   if (!post) return {};
-  return pageMetadata(post.title, post.excerpt, `/blog/${post.slug}`, post.image);
+  return pageMetadata(post.title, post.excerpt, `/blog/${post.slug}`, post.image, {
+    type: "article",
+    imageAlt: post.imageAlt,
+  });
 }
 
 export default function BlogPostPage({ params }: Props) {
@@ -30,6 +35,7 @@ export default function BlogPostPage({ params }: Props) {
 
   return (
     <SiteLayout variant="inner">
+      <JsonLd data={articleSchema(post)} />
       <PageIntro
         word="Blog"
         title={post.title}

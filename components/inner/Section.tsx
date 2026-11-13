@@ -40,7 +40,7 @@ export default function Section({
       <div className="ip-wrap">
         <div className="ttlarea">
           <h2 className={`ttl ttl-01 ${compact ? "txt-lft" : "txt-ctr"} ip-section--ttl`}>
-            <span className="jp block">{title}</span>
+            <span className="ttl-txt block">{title}</span>
           </h2>
           {lead && <p className="ip-section--lead">{lead}</p>}
         </div>

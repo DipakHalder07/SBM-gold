@@ -12,7 +12,7 @@ import { CONTACT, pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
   "About Us",
-  "SBM GOLD has 10+ years of extrusion expertise, a 2,25,000 sq ft facility, 22,000 MT yearly capacity and a network of 300+ dealers. Learn about our story, strengths and quality.",
+  "SBM GOLD: 10+ years of extrusion expertise, a 2,25,000 sq ft plant in Siliguri, 22,000 MT a year and 300+ dealers. Our story, strengths and quality.",
   "/about",
   "/images/sbm/company-02.jpg",
 );

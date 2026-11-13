@@ -6,7 +6,11 @@ import { posts } from "@/lib/blog";
 import { products } from "@/lib/products";
 import { pageMetadata, type NavLink } from "@/lib/site";
 
-export const metadata = pageMetadata("Sitemap", "Every page on the SBM GOLD website.", "/sitemap");
+export const metadata = pageMetadata(
+  "Sitemap",
+  "Every page on the SBM GOLD website: products, company, partner programme, contact, blog articles and policies.",
+  "/sitemap",
+);
 
 const GROUPS: { title: string; links: NavLink[] }[] = [
   {

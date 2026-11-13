@@ -1,5 +1,7 @@
 import Breadcrumb, { type Crumb } from "../Breadcrumb";
 import Deco from "../Deco";
+import JsonLd from "../JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 /** Inner page banner: diagonal red panel over a red-tinted photo, with an outlined title. */
 export default function PageIntro({
@@ -39,6 +41,7 @@ export default function PageIntro({
           </p>
           <h1>{title}</h1>
           <Breadcrumb items={crumbs} />
+          <JsonLd data={breadcrumbSchema(crumbs)} />
         </div>
       </header>
 

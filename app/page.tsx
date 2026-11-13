@@ -16,7 +16,7 @@ import PipeEarth from "@/components/sections/PipeEarth";
 import { scrollToHash } from "@/lib/smoothScroll";
 
 export default function Home() {
-  const ymdContainerRef = useRef<HTMLDivElement>(null);
+  const emblemContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
 
@@ -41,12 +41,12 @@ export default function Home() {
     gsap.registerPlugin(ScrollTrigger);
 
     // 3. GSAP SBM GOLD Emblem Sticky Zoom Animation & Header Hide
-    const moveCont1 = document.querySelector(".ymd-line-red");
-    const moveCont2 = document.querySelector(".ymd-line-blue");
-    const scaleCont = document.querySelector(".home_ymd--sticky .imgarea");
-    const colorCont = document.querySelector(".ymd-lg-color");
-    const redCont = document.querySelectorAll(".ymd-lg-color .red-parts");
-    const visibleCont = document.querySelector(".home_ymd--sticky .contarea");
+    const moveCont1 = document.querySelector(".emblem-line-red");
+    const moveCont2 = document.querySelector(".emblem-line-blue");
+    const scaleCont = document.querySelector(".home_emblem--sticky .imgarea");
+    const colorCont = document.querySelector(".emblem-lg-color");
+    const redCont = document.querySelectorAll(".emblem-lg-color .red-parts");
+    const visibleCont = document.querySelector(".home_emblem--sticky .contarea");
 
     // Initialize outline parts at top-left and bottom-right corners
     if (moveCont1 && moveCont2) {
@@ -54,9 +54,9 @@ export default function Home() {
       gsap.set(moveCont2, { x: "46vw", y: "40vh", left: 0, top: 0, opacity: 0.7 });
     }
 
-    // Dedicated trigger to ensure header stays hidden throughout entire home_ymd section
+    // Dedicated trigger to ensure header stays hidden throughout entire home_emblem section
     ScrollTrigger.create({
-      trigger: ".home_ymd",
+      trigger: ".home_emblem",
       start: "top 80%",
       end: "bottom top",
       toggleClass: { targets: ".header", className: "hide" },
@@ -64,9 +64,9 @@ export default function Home() {
 
     const tlYmd = gsap.timeline({
       scrollTrigger: {
-        trigger: ".home_ymd--scrolltarget01",
+        trigger: ".home_emblem--scrolltarget01",
         start: "top 80%",
-        endTrigger: ".home_ymd--scrolltarget01",
+        endTrigger: ".home_emblem--scrolltarget01",
         end: "center top",
         scrub: 0.5,
         toggleClass: { targets: ".header", className: "hide" },
@@ -151,16 +151,16 @@ export default function Home() {
             </span>
 
             <div className="cont--inner">
-              <h2 className="ttl">
+              <h1 className="ttl">
                 <span className="ttl--row">
                   <span className="row-01 anime-fade-lft">
                     Engineered for
-                  </span>
+                  </span>{" "}
                   <span className="row-02 anime-fade-lft delay1">
                     Indian Homes<span className="ttl-dot">.</span>
                   </span>
                 </span>
-              </h2>
+              </h1>
               <p className="txt anime-fade-up delay2 sp-none">
                 Manufacturers of uPVC doors &amp; windows<br />
                 profiles, WPC door frames, water tanks<br className="sp-none" />
@@ -213,11 +213,11 @@ export default function Home() {
         <Company />
 
         {/* SBM GOLD EMBLEM ZOOM ANIMATION SECTION */}
-        <div className="home_ymd" ref={ymdContainerRef}>
-          <div className="home_ymd--sticky">
+        <div className="home_emblem" ref={emblemContainerRef}>
+          <div className="home_emblem--sticky">
             <div className="imgarea pos-rel">
               <svg
-                className="ymd-lg-color new img-specif"
+                className="emblem-lg-color new img-specif"
                 viewBox="0 0 2077 1830"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +252,7 @@ export default function Home() {
               </svg>
 
               <svg
-                className="ymd-line-red img-specif"
+                className="emblem-line-red img-specif"
                 viewBox="0 0 2077 1830"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +265,7 @@ export default function Home() {
               </svg>
 
               <svg
-                className="ymd-line-blue img-specif"
+                className="emblem-line-blue img-specif"
                 viewBox="0 0 2077 1830"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -279,29 +279,29 @@ export default function Home() {
 
               {/* each logo piece shows its own photo; swap a photo by changing its href */}
               <svg
-                className="ymd-lg-img"
+                className="emblem-lg-img"
                 viewBox="0 0 2077 1830"
                 xmlns="http://www.w3.org/2000/svg"
                 role="img"
                 aria-label="SBM GOLD"
               >
                 <defs>
-                  <clipPath id="ymd-piece-1">
+                  <clipPath id="emblem-piece-1">
                     <polygon points="773,194 1016,0 2077,763 1663,829" />
                   </clipPath>
-                  <clipPath id="ymd-piece-2">
+                  <clipPath id="emblem-piece-2">
                     <polygon points="768,199 1061,398 668,724 359,520" />
                   </clipPath>
-                  <clipPath id="ymd-piece-3">
+                  <clipPath id="emblem-piece-3">
                     <polygon points="354,514 1055,995 818,1189 254,802" />
                   </clipPath>
-                  <clipPath id="ymd-piece-4">
+                  <clipPath id="emblem-piece-4">
                     <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
                   </clipPath>
-                  <clipPath id="ymd-piece-5">
+                  <clipPath id="emblem-piece-5">
                     <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
                   </clipPath>
-                  <clipPath id="ymd-piece-6">
+                  <clipPath id="emblem-piece-6">
                     <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
                   </clipPath>
                 </defs>
@@ -309,37 +309,37 @@ export default function Home() {
                   href="/images/sbm/emblem-01.jpg?v=2"
                   x="773" y="0" width="1304" height="829"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-1)"
+                  clipPath="url(#emblem-piece-1)"
                 />
                 <image
                   href="/images/sbm/emblem-02.jpg"
                   x="359" y="199" width="702" height="525"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-2)"
+                  clipPath="url(#emblem-piece-2)"
                 />
                 <image
                   href="/images/sbm/emblem-03.jpg"
                   x="254" y="514" width="801" height="675"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-3)"
+                  clipPath="url(#emblem-piece-3)"
                 />
                 <image
                   href="/images/sbm/emblem-04.jpg"
                   x="1011" y="641" width="823" height="702"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-4)"
+                  clipPath="url(#emblem-piece-4)"
                 />
                 <image
                   href="/images/sbm/emblem-05.jpg"
                   x="0" y="1028" width="1309" height="802"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-5)"
+                  clipPath="url(#emblem-piece-5)"
                 />
                 <image
                   href="/images/sbm/emblem-06.jpg"
                   x="1022" y="1155" width="663" height="487"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#ymd-piece-6)"
+                  clipPath="url(#emblem-piece-6)"
                 />
                 {/* thin white seams between neighbouring photos */}
                 <g fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinejoin="round">
@@ -417,7 +417,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="home_ymd--scrolltarget01"></div>
+          <div className="home_emblem--scrolltarget01"></div>
         </div>
 
         <Partner />

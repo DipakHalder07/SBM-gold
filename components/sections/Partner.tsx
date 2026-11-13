@@ -1,5 +1,14 @@
 import Link from "next/link";
 
+const SLIDE_ALTS = [
+  "SBM GOLD uPVC windows on a red background",
+  "uPVC windows and a door on a red background",
+  "SBM GOLD wall putty bags",
+  "Rolled green shade net",
+  "Bundles of SBM GOLD pipes in blue packaging",
+  "Drip irrigation line watering seedlings",
+];
+
 export default function Partner() {
   return (
     <section id="recruit" className="home_recruit pos-rel scroll_active">
@@ -23,7 +32,7 @@ export default function Partner() {
       <div className="inner inner-xl flex flex-a-ctr flex-j-between flex-sp-block">
         <div className="txtarea">
           <h2 className="ttl ttl-01 txt-lft">
-            <span className="jp block">BECOME A PARTNER</span>
+            <span className="ttl-txt block">BECOME A PARTNER</span>
           </h2>
           <div className="txt">
             <p>
@@ -51,6 +60,7 @@ export default function Partner() {
 
       <div className="recruit--scroll scroll-img">
         <div className="scroll-img--list flex">
+          {/* first set is described for search engines and screen readers; the repeat that makes the loop is hidden */}
           {[1, 2, 3, 4, 5, 6].map((num) => (
             <div key={num} className="img pos-rel">
               <img
@@ -60,7 +70,7 @@ export default function Partner() {
                 width="640"
                 height="427"
                 className="img-cover"
-                alt=""
+                alt={SLIDE_ALTS[num - 1]}
               />
             </div>
           ))}
@@ -74,6 +84,7 @@ export default function Partner() {
                 height="427"
                 className="img-cover"
                 alt=""
+                aria-hidden="true"
               />
             </div>
           ))}

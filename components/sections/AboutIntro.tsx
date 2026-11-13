@@ -17,7 +17,7 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
       <div className="inner inner-md home_about--cont scroll_active">
         <div className="txtarea">
           <h2 className="ttl ttl-01 txt-lft mgn-btm64">
-            <span className="jp block">ABOUT US</span>
+            <span className="ttl-txt block">ABOUT US</span>
           </h2>
           <h3 className="catch font-en">
             From Pipes to Profiles.<br />

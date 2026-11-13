@@ -9,7 +9,7 @@ import { CONTACT, pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
   "Become a Partner",
-  "Partner with SBM GOLD as an authorized distributor, dealer or project partner. Join Eastern India's trusted manufacturing network for uPVC, WPC, pipes, water tanks and wall putty.",
+  "Become an SBM GOLD distributor, dealer or project partner and sell uPVC, WPC, pipes, water tanks and wall putty across Eastern India.",
   "/partner",
   "/images/sbm/gallery-06.jpg",
 );

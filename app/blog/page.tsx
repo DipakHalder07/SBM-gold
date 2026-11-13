@@ -2,6 +2,9 @@ import SiteLayout from "@/components/SiteLayout";
 import BlogBrowser from "@/components/inner/BlogBrowser";
 import PageIntro from "@/components/inner/PageIntro";
 import Section from "@/components/inner/Section";
+import JsonLd from "@/components/JsonLd";
+import { posts } from "@/lib/blog";
+import { itemListSchema } from "@/lib/seo";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
@@ -13,6 +16,12 @@ export const metadata = pageMetadata(
 export default function BlogPage() {
   return (
     <SiteLayout variant="inner" footerCredit>
+      <JsonLd
+        data={itemListSchema(
+          "SBM GOLD articles",
+          posts.map((p) => ({ name: p.title, path: `/blog/${p.slug}` })),
+        )}
+      />
       <PageIntro
         word="Blog"
         title="Guides & Insights"

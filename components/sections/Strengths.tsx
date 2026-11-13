@@ -6,7 +6,7 @@ export default function Strengths() {
       <div className="inner inner-lg">
         <div className="ttlarea">
           <h2 className="ttl ttl-01 txt-ctr">
-            <span className="jp block">OUR STRENGTHS</span>
+            <span className="ttl-txt block">OUR STRENGTHS</span>
           </h2>
         </div>
 
@@ -109,7 +109,7 @@ export default function Strengths() {
                 width="800"
                 height="600"
                 className="img-cover"
-                alt=""
+                alt="Wood-finish uPVC window overlooking hills at sunset"
               />
             </div>
             <div className="txtarea">
@@ -156,7 +156,7 @@ export default function Strengths() {
                 width="800"
                 height="600"
                 className="img-cover"
-                alt=""
+                alt="uPVC sliding doors opening onto a dining room"
               />
             </div>
             <div className="txtarea">
@@ -203,7 +203,7 @@ export default function Strengths() {
                 width="800"
                 height="600"
                 className="img-cover"
-                alt=""
+                alt="White uPVC windows and doors on a home veranda"
               />
             </div>
             <div className="txtarea">

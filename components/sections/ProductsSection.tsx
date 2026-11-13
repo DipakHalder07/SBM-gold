@@ -34,7 +34,7 @@ export default function ProductsSection({
       <div className="inner inner-md">
         <div className="ttlarea">
           <h2 className="ttl ttl-01 txt-lft">
-            <span className="jp block">{title}</span>
+            <span className="ttl-txt block">{title}</span>
           </h2>
         </div>
 

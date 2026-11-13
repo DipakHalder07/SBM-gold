@@ -1,68 +1,48 @@
-# 株式会社YMD (Yamada) - Pixel-Perfect Next.js Homepage
+# SBM GOLD website
 
-A pixel-perfect, high-performance replica of the corporate homepage of [株式会社YMD (e-ymd.com)](https://www.e-ymd.com/) built with **Next.js 14 (App Router)**, **TypeScript**, **GSAP & ScrollTrigger**, and the complete official visual asset pipeline and design system.
+Website for SBM GOLD (SBM Pipe Industries Private Limited, Siliguri): uPVC doors and windows profiles, WPC door frames, HDPE and uPVC pipes, water tanks and wall putty.
 
----
+Built with **Next.js 14 (App Router)**, **TypeScript**, **GSAP + ScrollTrigger** and **Lenis** smooth scrolling. Every page is rendered to static HTML at build time.
 
-## 🌟 Features & Animations
+## Pages
 
-1. **Custom Interactive Cursor (`#cursor`)**:
-   - Smooth mouse coordinate following
-   - Magnetic transform into a prominent red circular badge with `"MORE"` indicator when hovering over interactive cards (`.more-cursor`).
+| Route | What it shows |
+| --- | --- |
+| `/` | Home: hero, mission with the HDPE-pipe Earth animation, about, strengths, quality, products, company, emblem zoom, partner, milestones |
+| `/about` | Mission, key numbers, strengths, quality, company details, milestones |
+| `/products`, `/products/[slug]` | Product range with a category filter, and one page per product |
+| `/partner` | Ways to partner, benefits, how it works, partner inquiry form |
+| `/contact` | Call, email, visit and Instagram cards, inquiry form |
+| `/blog`, `/blog/[slug]` | Articles with a topic filter |
+| `/privacy`, `/sitemap` | Privacy policy and an HTML sitemap |
 
-2. **Video Hero Section**:
-   - Autoplaying, muted, responsive looped background video (`fv01.mp4`).
-   - Floating diagonal geometric SVG accents with staggered keyframe entry (`anime-diag-lft`, `anime-diag-rgt`).
-   - Catchphrase stagger animations (`anime-fade-lft`, `delay1`, `delay2`).
-   - Infinite marquee typography ticker banner (`Noting is impossible.`).
+`/sitemap.xml` and `/robots.txt` are generated from `app/sitemap.ts` and `app/robots.ts`.
 
-3. **Mission Section ("OUR MISSION")**:
-   - Numbered philosophy statements with rich Japanese typography (`Noto Sans JP` / `Gothic MB101`).
-   - Dual-loop continuous horizontal sliding gallery (`.scroll-img--list`) featuring factory and component snapshots.
+## Where things live
 
-4. **About Section ("ABOUT")**:
-   - Large custom typographic SVG watermark (`about-ttl.svg`).
-   - 3 interactive highlight circular cards with custom line-art iconography (Trading Company, Manufacturer Function, Quality Assurance).
+- `lib/site.ts`: site URL, contact details, header and footer menus, page metadata helper
+- `lib/products.ts`, `lib/blog.ts`: product and article content
+- `lib/seo.ts`: structured data (JSON-LD) for search engines
+- `lib/pipeEarth.js`: the rotating Earth animation (settings at the top of the file)
+- `components/sections/`: home page sections, reused on inner pages
+- `components/inner/`: building blocks for the inner pages
+- `app/globals.css`: site-wide styles on top of the theme in `public/theme/css/style.css`
+- `app/inner-pages.css`: styles for the inner pages (classes start with `ip-`)
 
-5. **YMD's Strengths ("FEATURE 01 - 05")**:
-   - Alternating layout cards for 5 core pillars.
-   - Distinctive 5-dot matrix ornamentation and angled red/white decorative geometry.
-   - Smooth hover elevation and responsive layout.
+## Development
 
-6. **Quality Management & Products**:
-   - 3-column interactive grids with custom link overlays and circular action indicators.
-   - Products showcase with oversized English numerals (`01`, `02`, `03`) and arrow transition cues.
-
-7. **The Iconic YMD Sticky Zoom Animation (`.home_ymd`)**:
-   - 220vh scroll journey with GSAP `ScrollTrigger` scrubbing.
-   - The giant corporate YMD logo scales up by **3000% (30x)** right into the camera, transitioning through red and blue wireframes into the bold corporate blue background.
-   - Reveals the centered catchphrase *"自分だけの価値を創造しよう"* flanked by counter-scrolling typography banners.
-
-8. **Recruit & News**:
-   - Comprehensive career benefits presentation, employee environment highlights, and recruitment photography carousel.
-   - Company press releases and Awwwards nomination announcements.
-
-9. **Contact CTA & Comprehensive Footer**:
-   - Contact CTA block with mail icon, Japanese telephone hotline, and reception schedule.
-   - Multi-column site navigation map, social links (Facebook, Instagram), and copyright details.
-
-10. **Cookie Notice Banner**:
-    - Floating bottom notification with smooth blur backdrop and dismissible action.
-
----
-
-## 🚀 Getting Started
-
-### Development
 ```bash
 npm install
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Build
+Open http://localhost:3000.
+
+## Production
+
 ```bash
 npm run build
-npm run start
+npm start
 ```
-# SBM-gold
+
+The site can be deployed to any Node.js host or to Vercel without extra settings. If the domain changes, update `SITE_URL` in `lib/site.ts`.

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import "./inner-pages.css";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -15,18 +17,51 @@ export const viewport: Viewport = {
   initialScale: 1.0,
   maximumScale: 2.0,
   userScalable: true,
+  themeColor: "#951F17",
 };
+
+const DESCRIPTION =
+  "SBM GOLD makes uPVC doors & windows profiles, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri. ISO & BIS certified.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sbmgold.com"),
   title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
-  description:
-    "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
+  description: DESCRIPTION,
+  applicationName: "SBM GOLD",
+  keywords: [
+    "SBM GOLD",
+    "uPVC profiles",
+    "uPVC windows and doors",
+    "WPC door frames",
+    "HDPE pipes",
+    "uPVC pipes",
+    "water tanks",
+    "wall putty",
+    "Siliguri",
+    "West Bengal",
+    "North East India",
+  ],
+  authors: [{ name: "SBM GOLD", url: "https://www.sbmgold.com" }],
+  creator: "SBM GOLD",
+  publisher: "SBM Pipe Industries Private Limited",
+  category: "Building materials",
+  manifest: "/manifest.webmanifest",
+  formatDetection: { telephone: false, email: false, address: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   alternates: { canonical: "/" },
   openGraph: {
-    title: "SBM GOLD",
-    description:
-      "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
+    title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
+    description: DESCRIPTION,
     url: "https://www.sbmgold.com/",
     siteName: "SBM GOLD",
     images: [
@@ -43,8 +78,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SBM GOLD | uPVC Doors & Windows Profiles Manufacturer",
-    description:
-      "SBM GOLD manufactures uPVC profiles for doors & windows, WPC door frames, HDPE & uPVC pipes, water tanks and wall putty in Siliguri, West Bengal. ISO & BIS certified, 300+ dealers.",
+    description: DESCRIPTION,
     images: ["/images/logo/sbm-gold-logo.png"],
   },
   icons: {
@@ -67,27 +101,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"
-        />
-        <meta name="format-detection" content="telephone=no" />
-        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
-        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
-        <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <link
           rel="stylesheet"
           href="/theme/css/style.css"
         />
       </head>
       <body className={`home ${plusJakartaSans.className}`} id="top">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         {/* SVG definitions for icons */}
         <svg
           aria-hidden="true"

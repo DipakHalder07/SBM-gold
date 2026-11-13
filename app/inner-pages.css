@@ -374,7 +374,7 @@ body .ip .ip-intro .ip-lead {
   margin-bottom: 3.5rem;
 }
 
-body .ip .ip-section--ttl .jp {
+body .ip .ip-section--ttl .ttl-txt {
   text-transform: uppercase;
 }
 
@@ -1022,7 +1022,7 @@ body .ip .ip-company--lead {
 }
 
 body .ip .home_news .ttlarea .ttl,
-body .ip .home_news .ttlarea .ttl .jp {
+body .ip .home_news .ttlarea .ttl .ttl-txt {
   color: #ffffff;
 }
 

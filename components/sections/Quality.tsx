@@ -17,7 +17,7 @@ export default function Quality() {
       <div className="inner inner-md">
         <div className="ttlarea">
           <h2 className="ttl ttl-01 txt-ctr">
-            <span className="jp block">QUALITY CONTROL</span>
+            <span className="ttl-txt block">QUALITY CONTROL</span>
           </h2>
         </div>
 

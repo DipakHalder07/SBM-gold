@@ -7,7 +7,7 @@ export default function Milestones() {
         <div className="home_news--wrap flex flex-sp-block">
           <div className="ttlarea">
             <h2 className="ttl ttl-01 txt-lft">
-              <span className="jp block">MILESTONES</span>
+              <span className="ttl-txt block">MILESTONES</span>
             </h2>
             <div className="btn btn-arrow">
               <Link href="https://www.instagram.com/sbmgold_/" target="_blank" rel="noopener noreferrer">

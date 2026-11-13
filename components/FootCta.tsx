@@ -6,7 +6,7 @@ export default function FootCta() {
       <div className="inner flex flex-j-between flex-sp-block">
         <div className="foot_cta--ttl">
           <h2 className="ttl ttl-01 font-en txt-lft">
-            <span className="jp block">CONTACT US</span>
+            <span className="ttl-txt block">CONTACT US</span>
           </h2>
           <p className="txt foot_cta--copy">
             <span className="foot_cta_line">Get in touch with the future of doors &amp; windows.</span>

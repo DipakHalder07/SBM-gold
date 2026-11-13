@@ -9,7 +9,7 @@
   --font-primary-db: "Plus Jakarta Sans", sans-serif;
   --font-primary-b: "Plus Jakarta Sans", sans-serif;
   --font-secondary: "Plus Jakarta Sans", sans-serif;
-  --font-jp: "Plus Jakarta Sans", sans-serif;
+  --font-main: "Plus Jakarta Sans", sans-serif;
   --font-en: "Plus Jakarta Sans", sans-serif;
   --clr-primary-default: #951F17;
   --clr-primary-dark: #951F17;
@@ -42,7 +42,7 @@
 
 /* ##############################################################################
 
-    style info : リセット及びフォントサイズ
+    style info : Reset and font sizes
 
 ############################################################################## */
 html, body, div, span, object, iframe,
@@ -169,7 +169,7 @@ input, select {
   zoom: 1;
 }
 
-/*隙間消し*/
+/*Remove gaps*/
 li img {
   vertical-align: bottom;
 }
@@ -2658,9 +2658,9 @@ svg[preserveAspectRatio=none] {
 }
 
 /* --- font-family --- */
-.font-jp {
+.font-main {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 
 .font-en {
@@ -2746,7 +2746,7 @@ svg[preserveAspectRatio=none] {
 
 .editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4, .editor-styles-wrapper h5, .editor-styles-wrapper h6 {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 .editor-styles-wrapper h1:not(:first-child), .editor-styles-wrapper h2:not(:first-child), .editor-styles-wrapper h3:not(:first-child), .editor-styles-wrapper h4:not(:first-child), .editor-styles-wrapper h5:not(:first-child), .editor-styles-wrapper h6:not(:first-child) {
   margin-top: 2em;
@@ -3076,7 +3076,7 @@ svg[preserveAspectRatio=none] {
 
 .mce-content-body th {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 
 .editor-styles-wrapper suwp,
@@ -3090,7 +3090,7 @@ svg[preserveAspectRatio=none] {
   color: #E62320;
   color: var(--clr-secondary-default);
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 
 /* iframe */
@@ -3195,9 +3195,9 @@ svg[preserveAspectRatio=none] {
     font-size: max(12px, 0.875rem);
   }
 }
-/* ブロックスタイル
+/* Block styles
 *************************************************** */
-/* 見出し */
+/* Headings */
 .editor-ttl,
 .editor-ttl2,
 .editor-ttl3,
@@ -3205,7 +3205,7 @@ svg[preserveAspectRatio=none] {
 .is-style-editor-ttl2,
 .is-style-editor-ttl3 {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 .editor-ttl:not(:first-child),
 .editor-ttl2:not(:first-child),
@@ -3277,7 +3277,7 @@ svg[preserveAspectRatio=none] {
   }
 }
 
-/* 注意書き */
+/* Notes */
 .txt-attention,
 .is-style-txt-attention {
   display: block;
@@ -3297,7 +3297,7 @@ svg[preserveAspectRatio=none] {
   content: "※";
 }
 
-/* テーブル */
+/* Tables */
 .table1 th,
 .table1 td {
   position: relative;
@@ -3360,7 +3360,7 @@ svg[preserveAspectRatio=none] {
   position: relative;
 }
 
-/* ボックス */
+/* Boxes */
 .box,
 .is-style-box {
   padding: 1.5rem 2rem;
@@ -3394,7 +3394,7 @@ svg[preserveAspectRatio=none] {
   background-color: var(--clr-wht);
 }
 
-/* リスト */
+/* Lists */
 .list-circle::before,
 .editor-styles-wrapper ul .is-style-list-circle::before {
   background-color: transparent;
@@ -3434,7 +3434,7 @@ ul.check--list li::after, w .list-check::after,
   transform: rotate(-45deg);
 }
 
-/* 装飾付き見出し*/
+/* Decorated headings*/
 .editor-ttl-num {
   color: #951F17;
   color: var(--clr-primary-default);
@@ -3526,7 +3526,7 @@ ul.check--list li::after, w .list-check::after,
 }
 
 @media screen and (max-width: 47.9375em) {
-  /* テーブル */
+  /* Tables */
   .table1.table-sp-block td::before {
     display: none;
   }
@@ -3541,7 +3541,7 @@ ul.check--list li::after, w .list-check::after,
   .table2.table-sp-block tr:last-child > *:last-child {
     border-bottom: 1px solid #D3D3D3;
   }
-  /* 装飾付き見出し*/
+  /* Decorated headings*/
   .editor-ttl-num {
     font-size: 1.5714285714rem;
     margin-top: 0.5em;
@@ -3559,13 +3559,13 @@ ul.check--list li::after, w .list-check::after,
     padding-top: 0;
   }
 }
-/* 管理画面エディタ用
+/* Admin editor
 *************************************************** */
 h1.editor-post-title__input {
   padding: 32px 0;
   font-size: 2.5rem;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 
 .editor-styles-wrapper,
@@ -3588,7 +3588,7 @@ h1.editor-post-title__input {
     display: table-cell;
   }
 }
-/* コアブロック
+/* Core blocks
 ********************************************** */
 .has-text-align-left {
   text-align: left;
@@ -3606,7 +3606,7 @@ h1.editor-post-title__input {
   font-style: italic;
 }
 
-/* デフォルトの機能
+/* Default features
 ********************************************** */
 .wp-block-table .has-fixed-layout {
   table-layout: fixed;
@@ -12800,7 +12800,7 @@ h1.editor-post-title__input {
   background-color: var(--clr-text-primary);
   text-align: center;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
   text-decoration: none;
 }
 @media screen and (max-width: 47.9375em) {
@@ -12893,7 +12893,7 @@ h1.editor-post-title__input {
   content: none;
 }
 
-/* --- 横並び --- */
+/* --- Horizontal layout --- */
 .flex > .btn {
   margin-bottom: 0;
 }
@@ -13380,7 +13380,7 @@ span.wpcf7-not-valid-tip {
   font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 .nf-form-cont .ninja-forms-req-symbol::before {
-  content: "必須"; /* 必須 */
+  content: "Required"; /* Required */
   background-color: #f55;
   color: #fff;
   color: var(--clr-wht);
@@ -13428,7 +13428,7 @@ span.wpcf7-not-valid-tip {
   text-align: center;
 }
 
-/* リキャプチャ・キャプション
+/* reCAPTCHA caption
 **************************************** */
 .grecaptcha-badge {
   visibility: hidden;
@@ -13808,27 +13808,27 @@ span.wpcf7-not-valid-tip {
 
 /* flex
 **************************************** */
-/* --- ブロック要素 --- */
+/* --- Block elements --- */
 .flex {
   display: flex;
 }
 
-/* --- インライン要素 --- */
+/* --- Inline elements --- */
 .flex-inline {
   display: inline-flex;
 }
 
-/* --- 逆向き --- */
+/* --- Reversed --- */
 .flex-reverse {
   flex-direction: row-reverse;
 }
 
-/* --- 縦並び --- */
+/* --- Vertical layout --- */
 .flex-column {
   flex-direction: column;
 }
 
-/* --- 水平方向揃え --- */
+/* --- Horizontal alignment --- */
 .flex-j-start {
   justify-content: flex-start;
 }
@@ -13849,7 +13849,7 @@ span.wpcf7-not-valid-tip {
   justify-content: space-around;
 }
 
-/* --- 垂直方向揃え --- */
+/* --- Vertical alignment --- */
 .flex-a-start {
   align-items: flex-start;
 }
@@ -13870,7 +13870,7 @@ span.wpcf7-not-valid-tip {
   align-items: stretch;
 }
 
-/* --- 子要素の折り返し設定 --- */
+/* --- Child wrapping --- */
 .flex-c-nowrap {
   flex-wrap: nowrap;
 }
@@ -13879,7 +13879,7 @@ span.wpcf7-not-valid-tip {
   flex-wrap: wrap;
 }
 
-/* --- 子要素の複数行設定 --- */
+/* --- Child multi-line --- */
 .flex-c-reverse {
   flex-wrap: wrap-reverse;
 }
@@ -13909,7 +13909,7 @@ span.wpcf7-not-valid-tip {
 }
 
 @media screen and (max-width: 47.9375em) {
-  /* --- 縦並び - sp --- */
+  /* --- Vertical layout - sp --- */
   .flex-sp-block {
     flex-direction: column;
   }
@@ -25193,7 +25193,7 @@ span.wpcf7-not-valid-tip {
 }
 /* ##############################################################################
 
-    スタンダード用
+    Standard
 
 ############################################################################## */
 /* footer-simple
@@ -31722,7 +31722,7 @@ span.wpcf7-not-valid-tip {
 
 .gnav--link {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
   font-size: 1.25rem;
   padding: 0 1rem;
 }
@@ -32284,7 +32284,7 @@ span.wpcf7-not-valid-tip {
   }
 }
 
-/* home共通
+/* home shared
 ********************************************** */
 .deco.stroke.blue svg {
   stroke: #951F17;
@@ -33848,14 +33848,14 @@ body.home {
     bottom: auto;
   }
 }
-/* home_ymd
+/* home_emblem
 ********************************************** */
-.home_ymd {
+.home_emblem {
   position: relative;
   overflow: clip;
 }
 
-.home_ymd--sticky {
+.home_emblem--sticky {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -33863,7 +33863,7 @@ body.home {
   top: 0;
 }
 
-.home_ymd .imgarea {
+.home_emblem .imgarea {
   text-align: center;
   position: relative;
   margin-left: auto;
@@ -33871,13 +33871,13 @@ body.home {
   width: 89.1666666667vw;
   height: 26.5625vw;
 }
-.home_ymd .imgarea .ymd-lg-img {
+.home_emblem .imgarea .emblem-lg-img {
   position: relative;
   aspect-ratio: 1712/510;
   height: auto;
   width: 89.1666666667vw;
 }
-.home_ymd .imgarea .ymd-line-red {
+.home_emblem .imgarea .emblem-line-red {
   position: absolute;
   left: -4.1666666667vw;
   top: -4.1666666667vw;
@@ -33886,7 +33886,7 @@ body.home {
   height: auto;
   width: 89.1666666667vw;
 }
-.home_ymd .imgarea .ymd-line-blue {
+.home_emblem .imgarea .emblem-line-blue {
   position: absolute;
   right: -4.1666666667vw;
   bottom: -4.1666666667vw;
@@ -33895,7 +33895,7 @@ body.home {
   height: auto;
   width: 89.1666666667vw;
 }
-.home_ymd .imgarea .ymd-lg-color {
+.home_emblem .imgarea .emblem-lg-color {
   position: absolute;
   left: -0.15625vw;
   top: 0;
@@ -33905,11 +33905,11 @@ body.home {
   height: auto;
   width: 89.375vw;
 }
-.home_ymd .imgarea .ymd-lg-color .red-parts {
+.home_emblem .imgarea .emblem-lg-color .red-parts {
   opacity: 0;
 }
 
-.home_ymd--sticky .contarea {
+.home_emblem--sticky .contarea {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -33921,7 +33921,7 @@ body.home {
   opacity: 0;
   z-index: 2;
 }
-.home_ymd--sticky .contarea .bg {
+.home_emblem--sticky .contarea .bg {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -33932,56 +33932,56 @@ body.home {
   opacity: 1;
 }
 
-.home_ymd--sticky .contarea .catch {
+.home_emblem--sticky .contarea .catch {
   position: relative;
   color: #fff;
   color: var(--clr-wht);
   font-style: italic;
   font-size: 5rem;
 }
-.home_ymd--sticky .contarea .catch .txt-lg {
+.home_emblem--sticky .contarea .catch .txt-lg {
   font-size: 7.5rem;
 }
-.home_ymd--sticky .contarea .catch .txt-sm {
+.home_emblem--sticky .contarea .catch .txt-sm {
   font-size: 3.75rem;
 }
 
-.home_ymd--sticky .contarea .scroll-txt.top {
+.home_emblem--sticky .contarea .scroll-txt.top {
   top: 0;
   bottom: auto;
   transform: translateY(-20%);
 }
-.home_ymd--sticky .contarea .scroll-txt.bottom {
+.home_emblem--sticky .contarea .scroll-txt.bottom {
   transform: translateY(0);
 }
 
-.home_ymd--scrolltarget01 {
+.home_emblem--scrolltarget01 {
   position: relative;
   height: 200vh;
 }
 
 @media screen and (max-width: 47.9375em) {
-  .home_ymd .imgarea {
+  .home_emblem .imgarea {
     width: 100%;
     height: auto;
   }
-  .home_ymd .imgarea .ymd-lg-img {
+  .home_emblem .imgarea .emblem-lg-img {
     width: 100%;
   }
-  .home_ymd .imgarea .ymd-line-red {
+  .home_emblem .imgarea .emblem-line-red {
     width: 100%;
   }
-  .home_ymd .imgarea .ymd-line-blue {
+  .home_emblem .imgarea .emblem-line-blue {
     width: 100%;
   }
-  .home_ymd .imgarea .ymd-lg-color {
+  .home_emblem .imgarea .emblem-lg-color {
     width: 100%;
     left: 0;
   }
-  .home_ymd--sticky .contarea .catch {
+  .home_emblem--sticky .contarea .catch {
     font-size: 1.8571428571rem;
   }
-  .home_ymd--sticky .contarea .catch .txt-lg {
+  .home_emblem--sticky .contarea .catch .txt-lg {
     font-size: 2.5714285714rem;
   }
 }
@@ -34257,7 +34257,7 @@ body.home {
 
 /* ########################################################################
 
- スタンダード用TOP
+ Standard home
 
 ######################################################################## */
 .standard {
@@ -34265,17 +34265,17 @@ body.home {
   ********************************************** */
   /* home_newsline
   ********************************************** */
-  /* 回り込みレイアウト
+  /* Wrap layout
   ********************************************** */
-  /* スライド
+  /* Slides
   ********************************************** */
-  /* 背景写真カラム
+  /* Background photo column
   ********************************************** */
-  /* 新着情報、ブログ
+  /* News and blog
   ********************************************** */
-  /* お問い合わせ
+  /* Contact
   ********************************************** */
-  /* フッター上リンク（名称求む…）
+  /* Links above the footer
   ********************************************** */
 }
 .standard .hero--cont {
@@ -34838,14 +34838,14 @@ body.home {
   background-size: cover;
 }
 
-.page_ttl-jp {
+.page_ttl-sub {
   font-size: 2rem;
   letter-spacing: 0.03em;
   color: #fff;
   color: var(--clr-wht);
 }
 @media screen and (max-width: 47.9375em) {
-  .page_ttl-jp {
+  .page_ttl-sub {
     font-size: 1.2857142857rem;
   }
 }
@@ -34868,7 +34868,7 @@ body.home {
   }
 }
 
-/* --- page_ttl（タイトル画像なし） --- */
+/* --- page_ttl (no title image) --- */
 @media screen and (max-width: 47.9375em) {
   .page_ttl:not(.page_ttl-has_bg) {
     padding-top: 1.7142857143rem;
@@ -34885,7 +34885,7 @@ body.home {
   color: var(--clr-wht);
 }
 
-/* --- page_ttl（タイトル画像あり） --- */
+/* --- page_ttl (with title image) --- */
 .page_ttl-has_bg {
   height: 28.125rem;
 }
@@ -34961,7 +34961,7 @@ body.home {
   color: var(--clr-text-primary);
   line-height: 1.3;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 @media screen and (max-width: 47.9375em) {
   .ttl-01 {
@@ -35126,7 +35126,7 @@ body.home {
 @media print, screen and (min-width: 67.5625em) {
   .anchor_link--list_wrap {
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-family: var(--font-jp);
+    font-family: var(--font-main);
   }
 }
 @media screen and (max-width: 47.9375em) {
@@ -35337,7 +35337,7 @@ body.home {
   color: #7A7A81;
   color: var(--clr-text-secondary);
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 @media screen and (max-width: 47.9375em) {
   .cat_list a {
@@ -35673,7 +35673,7 @@ body.home {
 .posts-news .post--ttl {
   font-size: 2rem;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 @media screen and (max-width: 47.9375em) {
   .posts-news .post--ttl {
@@ -35823,7 +35823,7 @@ body.home {
   position: absolute;
   left: 0;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-family: var(--font-jp);
+  font-family: var(--font-main);
 }
 
 .posts-interview .post .post--ttl {
@@ -35972,13 +35972,13 @@ body.home {
   opacity: 0;
 }
 
-.related_page--list .font-jp {
+.related_page--list .font-main {
   position: relative;
   margin-bottom: 0.25em;
   letter-spacing: 0.03125em;
 }
 @media screen and (max-width: 47.9375em) {
-  .related_page--list .font-jp {
+  .related_page--list .font-main {
     font-size: 1.2857142857rem;
   }
 }
@@ -36144,12 +36144,12 @@ body.home {
     SINGLE
 
 ############################################################################## */
-/* --- アイキャッチ --- */
+/* --- Featured image --- */
 .eyecatch {
   margin-bottom: 2rem;
 }
 
-/* --- 目次 --- */
+/* --- Table of contents --- */
 .ez-toc-debug-messages {
   display: none;
 }
@@ -37556,7 +37556,7 @@ div#ez-toc-container p.ez-toc-title {
   line-height: 1.4;
 }
 
-/* 白背景 */
+/* White background */
 .lps_parts--column .column_item.bg-wht {
   border-radius: 0.5rem;
 }
@@ -37564,7 +37564,7 @@ div#ez-toc-container p.ez-toc-title {
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
-/* 白背景なし */
+/* No white background */
 .lps_parts--column .column_item:not(.bg-wht) .img img {
   border-radius: 0.5rem;
 }
@@ -37649,7 +37649,7 @@ div#ez-toc-container p.ez-toc-title {
 
 /* lps_parts--faq
 ********************************************** */
-/* --- 共通 --- */
+/* --- Shared --- */
 .lps_parts--faq {
   margin-left: auto;
   margin-right: auto;
@@ -37690,7 +37690,7 @@ div#ez-toc-container p.ez-toc-title {
   max-width: 60rem;
 }
 
-/* --- 通常 --- */
+/* --- Default --- */
 .lps_parts--faq:not(.faq-toggle) .faq_item {
   border: 2px solid #951F17;
   border: 2px solid var(--clr-primary-default);
@@ -37723,7 +37723,7 @@ div#ez-toc-container p.ez-toc-title {
   color: var(--clr-wht);
 }
 
-/* --- 開閉式 --- */
+/* --- Collapsible --- */
 .lps_parts--faq.faq-toggle .faq_item {
   border-top: 2px solid #B1B4C5;
   border-top: 2px solid var(--clr-text-placeholder);
@@ -37817,7 +37817,7 @@ div#ez-toc-container p.ez-toc-title {
 
 /* lps_parts--flow
 ********************************************** */
-/* --- 共通 --- */
+/* --- Shared --- */
 .lps_parts--flow {
   margin-left: auto;
   margin-right: auto;
@@ -37895,7 +37895,7 @@ div#ez-toc-container p.ez-toc-title {
   }
 }
 
-/* --- 通常 --- */
+/* --- Default --- */
 .lps_parts--flow:not(.flow-num) .flow_item:not(:last-child)::before {
   top: 2.5rem;
   bottom: 0.25rem;
@@ -37915,7 +37915,7 @@ div#ez-toc-container p.ez-toc-title {
   }
 }
 
-/* --- 連番 --- */
+/* --- Numbered --- */
 .lps_parts--flow.flow-num .flow_item {
   counter-increment: number;
 }
@@ -37971,7 +37971,7 @@ div#ez-toc-container p.ez-toc-title {
 
 /* ##############################################################################
 
-    Loops モジュール
+    Loops module
 
 ############################################################################## */
 .btn .icon-svg {
@@ -38341,7 +38341,7 @@ div#ez-toc-container p.ez-toc-title {
   }
 }
 
-/* 白背景 */
+/* White background */
 .lps_parts--img_text .lps_parts--child.bg-wht:not(.inner-lg) {
   border-radius: 0.5rem;
 }
@@ -38359,13 +38359,13 @@ div#ez-toc-container p.ez-toc-title {
   }
 }
 
-/* 白背景なし */
+/* No white background */
 .lps_parts--img_text .lps_parts--child:not(.bg-wht) .img_text--img img {
   border-radius: 0.5rem;
 }
 
-/* レイアウトL
-   ※Lも全部角丸にしたかったら削除！ */
+/* Layout L
+   (remove this to round every corner of L too) */
 .lps_parts--img_text .lps_parts--child.inner-lg .img_text--img img {
   border-radius: 0;
 }
@@ -38397,7 +38397,7 @@ div#ez-toc-container p.ez-toc-title {
 }
 /* lps_parts--numbers
 ********************************************** */
-/* --- 共通 --- */
+/* --- Shared --- */
 .lps_parts--numbers .lps_parts--child {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -38482,7 +38482,7 @@ div#ez-toc-container p.ez-toc-title {
 }
 /* lps_parts--faq
 ********************************************** */
-/* --- 共通 --- */
+/* --- Shared --- */
 .lps_parts--skill_card .contarea {
   padding-bottom: 1.875rem;
   position: relative;
@@ -38655,8 +38655,8 @@ div#ez-toc-container p.ez-toc-title {
 /* lps_parts--slide
 ********************************************** */
 .lps_parts--slide {
-  /* --- textのみ --- */
-  /* --- 1枚だけ --- */
+  /* --- text only --- */
+  /* --- single image --- */
 }
 .lps_parts--slide .deco {
   display: none;
@@ -38787,7 +38787,7 @@ div#ez-toc-container p.ez-toc-title {
 /* slide-center
 ********************************************** */
 .lps_parts--slide.slide-center {
-  /* --- textのみ --- */
+  /* --- text only --- */
 }
 .lps_parts--slide.slide-center .slick-slide {
   width: 75rem;
@@ -38840,7 +38840,7 @@ div#ez-toc-container p.ez-toc-title {
 ********************************************** */
 .lps_parts--slide.slide-fit {
   overflow-x: clip;
-  /* --- textのみ --- */
+  /* --- text only --- */
 }
 .lps_parts--slide.slide-fit::before, .lps_parts--slide.slide-fit::after {
   content: "";
@@ -39033,7 +39033,7 @@ div#ez-toc-container p.ez-toc-title {
   padding-right: 0;
 }
 
-/* 背景色調整
+/* Background colour adjustment
 ********************************************** */
 .lps_sec:nth-child(even) .lps_parts--slide .text:only-child,
 .lps_sec:nth-child(even) .lps_parts--slide.slide-fit .slick-track,
@@ -39045,7 +39045,7 @@ div#ez-toc-container p.ez-toc-title {
 
 /* lps_parts--faq
 ********************************************** */
-/* --- 共通 --- */
+/* --- Shared --- */
 .lps_parts--timeline {
   margin-left: auto;
   margin-right: auto;

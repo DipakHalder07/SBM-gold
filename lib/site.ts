@@ -72,15 +72,29 @@ export const FOOTER_NAV: NavGroup[] = [
 ];
 
 /** Page metadata with the canonical URL and share card pointing at the page itself. */
-export function pageMetadata(title: string, description: string, path: string, image?: string): Metadata {
+export function pageMetadata(
+  title: string,
+  description: string,
+  path: string,
+  image?: string,
+  options: { type?: "website" | "article"; imageAlt?: string } = {},
+): Metadata {
   const fullTitle = `${title} | SBM GOLD`;
   const url = `${SITE_URL}${path}`;
-  const images = [image ?? "/images/logo/sbm-gold-logo.png"];
+  const images = [{ url: image ?? "/images/logo/sbm-gold-logo.png", alt: options.imageAlt ?? fullTitle }];
   return {
     title: fullTitle,
     description,
     alternates: { canonical: url },
-    openGraph: { title: fullTitle, description, url, siteName: "SBM GOLD", images, locale: "en_IN", type: "website" },
+    openGraph: {
+      title: fullTitle,
+      description,
+      url,
+      siteName: "SBM GOLD",
+      images,
+      locale: "en_IN",
+      type: options.type ?? "website",
+    },
     twitter: { card: "summary_large_image", title: fullTitle, description, images },
   };
 }

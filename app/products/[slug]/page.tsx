@@ -4,6 +4,8 @@ import SiteLayout from "@/components/SiteLayout";
 import ProductGallery from "@/components/ProductGallery";
 import PageIntro from "@/components/inner/PageIntro";
 import ProductCard from "@/components/inner/ProductCard";
+import JsonLd from "@/components/JsonLd";
+import { productSchema } from "@/lib/seo";
 import Section from "@/components/inner/Section";
 import { getProduct, getRelated, products } from "@/lib/products";
 import { CONTACT, pageMetadata } from "@/lib/site";
@@ -19,7 +21,9 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props) {
   const product = getProduct(params.slug);
   if (!product) return {};
-  return pageMetadata(product.name, product.short, `/products/${product.slug}`, product.image);
+  return pageMetadata(product.name, product.short, `/products/${product.slug}`, product.image, {
+    imageAlt: product.imageAlt,
+  });
 }
 
 export default function ProductDetailPage({ params }: Props) {
@@ -30,6 +34,7 @@ export default function ProductDetailPage({ params }: Props) {
 
   return (
     <SiteLayout variant="inner">
+      <JsonLd data={productSchema(product)} />
       <PageIntro
         word="Products"
         title={product.name}

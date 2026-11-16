@@ -1,8 +1,6 @@
-import Deco from "../Deco";
-
 /**
  * Inner page section in the home page style: big centred uppercase title,
- * diagonal slashes, and white / grey backgrounds that alternate down the page.
+ * and white / grey backgrounds that alternate down the page.
  * `compact` is for text-heavy pages (privacy, sitemap): smaller left title, no slashes.
  * `plain` keeps the big title but drops the slashes.
  */
@@ -31,12 +29,6 @@ export default function Section({
 
   return (
     <section id={id} className={cls}>
-      {!compact && !plain && (
-        <>
-          <Deco className="ip-sec-deco-1 stroke blue lg reverse anime-diag-lft" />
-          <Deco className="ip-sec-deco-2 fill red xs reverse anime-diag-lft2 delay1" />
-        </>
-      )}
       <div className="ip-wrap">
         <div className="ttlarea">
           <h2 className={`ttl ttl-01 ${compact ? "txt-lft" : "txt-ctr"} ip-section--ttl`}>

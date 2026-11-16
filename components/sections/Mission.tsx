@@ -20,27 +20,6 @@ export default function Mission() {
         </div>
       </div>
 
-      <span className="deco deco-1 fill blue xs anime-diag-rgt2 delay1">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-2 stroke blue lg anime-diag-rgt delay2">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-3 stroke blue lg anime-diag-rgt">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-4 fill wht sm anime-diag-rgt2 delay1">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-
       {/* Seamless Infinite Scrolling Gallery */}
       <div className="imgarea scroll-img">
         <div className="scroll-img--list flex">

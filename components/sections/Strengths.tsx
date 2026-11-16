@@ -36,16 +36,6 @@ export default function Strengths() {
                 Sleek aesthetics with robust engineering. Our multi-chambered profiles work with European hardware systems and come with advanced locking systems for enhanced security.
               </p>
             </div>
-            <span className="deco deco-1 stroke wht md reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 fill red xs reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
             <span className="dots-list pos-ab">
               <span className="dot"></span>
               <span className="dot"></span>
@@ -80,16 +70,6 @@ export default function Strengths() {
                 Multi-chambered profiles give superior heat insulation and cut outdoor noise, keeping your rooms calm and comfortable through every season.
               </p>
             </div>
-            <span className="deco deco-1 stroke wht md reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 fill red xs reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
             <span className="dots-list pos-ab">
               <span className="dot"></span>
               <span className="dot"></span>
@@ -127,16 +107,6 @@ export default function Strengths() {
                 <Link href="#quality">Learn About Quality Control</Link>
               </div>
             </div>
-            <span className="deco deco-1 stroke wht md reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 fill red xs reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
             <span className="dots-list pos-ab">
               <span className="dot"></span>
               <span className="dot"></span>
@@ -174,16 +144,6 @@ export default function Strengths() {
                 <Link href="/products">Explore Our Range</Link>
               </div>
             </div>
-            <span className="deco deco-1 stroke wht md reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 fill red xs reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
             <span className="dots-list pos-ab">
               <span className="dot"></span>
               <span className="dot"></span>
@@ -221,16 +181,6 @@ export default function Strengths() {
                 <Link href="/contact">Talk to Our Team</Link>
               </div>
             </div>
-            <span className="deco deco-1 stroke wht md reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 fill red xs reverse">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
             <span className="dots-list pos-ab">
               <span className="dot"></span>
               <span className="dot"></span>

@@ -13,21 +13,6 @@ export default function Partner() {
   return (
     <section id="recruit" className="home_recruit pos-rel scroll_active">
       <span id="partner" className="pos-abs" style={{ top: "-100px" }}></span>
-      <span className="deco deco-1 fill wht xs reverse anime-diag-lft2">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-2 stroke wht lg anime-diag-rgt delay1">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-3 fill blue xs anime-diag-rgt2 delay2">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
 
       <div className="inner inner-xl flex flex-a-ctr flex-j-between flex-sp-block">
         <div className="txtarea">

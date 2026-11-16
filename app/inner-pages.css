@@ -78,12 +78,12 @@ body .ip .ip-lead {
   line-height: 1.6;
 }
 
-/* small red label with a slash in front, like the breadcrumb */
+/* eyebrow label */
 .ip-eyebrow {
   position: relative;
   display: inline-block;
-  padding-left: 20px;
-  color: var(--ip-red);
+  padding-left: 0;
+  color: var(--ip-brand);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -91,16 +91,7 @@ body .ip .ip-lead {
 }
 
 .ip-eyebrow::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 10px;
-  height: 16px;
-  margin: auto;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
+  display: none !important;
 }
 
 .ip-prose {
@@ -203,18 +194,20 @@ a.ip-link:hover::after {
   transform: translateX(4px);
 }
 
-/* --- Banner: red panel on a diagonal over a red-tinted photo --- */
+/* --- Banner: clean brand red gradient over photo, no diagonal cuts --- */
 .ip-hero {
   position: relative;
   overflow: hidden;
-  background-color: #c4453a;
+  background: linear-gradient(135deg, #7a1712 0%, #951F17 55%, #a8271e 100%);
   color: #ffffff;
 }
 
-.ip-hero--photo,
-.ip-hero--panel {
+.ip-hero--photo {
   position: absolute;
   inset: 0;
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 .ip-hero--photo img {
@@ -222,30 +215,18 @@ a.ip-link:hover::after {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center;
-  filter: grayscale(1) contrast(1.05);
-  mix-blend-mode: multiply;
+  object-position: center;
+  filter: contrast(1.1);
 }
 
 .ip-hero--panel {
-  background-color: var(--ip-brand);
-  clip-path: polygon(0 0, 25% 0, 43% 100%, 0 100%);
+  display: none !important;
 }
 
-body .ip .ip-hero .deco {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-}
-
-body .ip .ip-hero-deco-1 {
-  right: 6%;
-  top: -3rem;
-}
-
+body .ip .ip-hero .deco,
+body .ip .ip-hero-deco-1,
 body .ip .ip-hero-deco-2 {
-  right: 22%;
-  bottom: -1rem;
+  display: none !important;
 }
 
 .ip-hero--cont {
@@ -254,14 +235,16 @@ body .ip .ip-hero-deco-2 {
   padding-bottom: clamp(28px, 2.8vw, 44px);
 }
 
-/* Decorative: the h1 below is the page's real heading */
+/* Outlined banner word */
 body .ip .ip-hero--word {
-  color: #ffffff;
-  filter: url(#ip-outline);
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
   font-size: clamp(56px, 7.6vw, 124px);
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1.1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .ip-hero--filter {
@@ -278,26 +261,17 @@ body .ip .ip-hero h1 {
   line-height: 1.25;
 }
 
-/* --- Breadcrumb: red slash, then chevrons between links --- */
+/* --- Breadcrumb: clean, readable, no diagonal slash --- */
 .breadcrumb {
   position: relative;
-  padding-left: 26px;
-  color: #ffffff;
+  padding-left: 0 !important;
+  color: rgba(255, 255, 255, 0.9);
   font-size: var(--fs-small);
   font-weight: 500;
 }
 
 .breadcrumb::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 14px;
-  height: 22px;
-  margin: auto;
-  background-color: #f04934;
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
+  display: none !important;
 }
 
 .breadcrumb ol {
@@ -312,26 +286,35 @@ body .ip .ip-hero h1 {
 .breadcrumb li {
   display: flex;
   align-items: center;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .breadcrumb li:not(:last-child)::after {
-  content: "";
-  width: 6px;
-  height: 6px;
-  margin: 0 14px 0 10px;
-  border-top: 1.5px solid #ffffff;
-  border-right: 1.5px solid #ffffff;
-  transform: rotate(45deg);
+  content: "/";
+  margin: 0 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85em;
+  transform: none;
+  border: none;
+  width: auto;
+  height: auto;
 }
 
 .breadcrumb a {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .breadcrumb a:hover {
+  color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 /* --- Intro line under the banner: centred, like the home page mission --- */
@@ -378,31 +361,12 @@ body .ip .ip-section--ttl .ttl-txt {
   text-transform: uppercase;
 }
 
-body .ip .ip-section .deco {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.ip-sec-deco-1 {
-  left: -6rem;
-  top: 2.5rem;
-}
-
-.ip-sec-deco-2 {
-  left: 7rem;
-  top: 15rem;
-}
-
-/* every other section puts its slashes on the right */
-.ip-section:nth-of-type(even) .ip-sec-deco-1 {
-  left: auto;
-  right: -6rem;
-}
-
+body .ip .ip-section .deco,
+.ip-sec-deco-1,
+.ip-sec-deco-2,
+.ip-section:nth-of-type(even) .ip-sec-deco-1,
 .ip-section:nth-of-type(even) .ip-sec-deco-2 {
-  left: auto;
-  right: 7rem;
+  display: none !important;
 }
 
 body .ip .ip-section--lead {
@@ -556,7 +520,7 @@ body .ip .ip-section:not(.ip-section--compact) .ip-prose p {
 
 body .ip .ip-section--compact .ip-section--ttl {
   position: relative;
-  padding-left: 24px;
+  padding-left: 0;
   color: var(--ip-brand);
   font-size: clamp(20px, 1.8vw, 26px);
   font-weight: 700;
@@ -564,16 +528,14 @@ body .ip .ip-section--compact .ip-section--ttl {
 }
 
 .ip-section--compact .ip-section--ttl::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 12px;
-  height: 20px;
-  margin: auto;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
+  display: none !important;
+}
+
+/* Ensure animations are always visible */
+body .anime-fade-up,
+.anime-fade-up {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* --- Stats: maroon band like the home page About section --- */
@@ -583,25 +545,58 @@ body .ip .ip-section--compact .ip-section--ttl {
   padding: 5rem 0;
 }
 
-/* After the mission block the photo strip hangs over the top of the band */
-.home_mission + .ip-statband {
-  padding-top: 20.625rem;
+/* Clean spacing and natural flow on inner pages: No overlapping elements */
+body .ip .home_mission {
+  position: relative !important;
+  padding-top: 5rem !important;
+  padding-bottom: 2rem !important;
+  overflow: hidden !important;
 }
 
-body .ip .ip-statband .deco {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
+body .ip .home_mission .inner {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
 }
 
-.ip-stat-deco-1 {
-  left: -5rem;
-  bottom: -6rem;
+body .ip .home_mission .txt {
+  margin-top: 1.5rem;
 }
 
+body .ip .home_mission .txt p {
+  color: #4a4d55;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+body .ip .home_mission .scroll-img {
+  position: relative !important;
+  transform: none !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  height: 24rem !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0 !important;
+  z-index: 1 !important;
+}
+
+body .ip .ip-statband {
+  position: relative !important;
+  z-index: 2 !important;
+  padding: 4.5rem 0 !important;
+  background-color: #951F17 !important;
+}
+
+.home_mission + .ip-statband,
+body .ip .home_mission + .ip-statband {
+  padding-top: 4.5rem !important;
+}
+
+body .ip .ip-statband .deco,
+.ip-stat-deco-1,
 .ip-stat-deco-2 {
-  right: 9%;
-  top: 2rem;
+  display: none !important;
 }
 
 .ip ul.ip-stats {
@@ -674,18 +669,9 @@ body .ip .ip-statband .deco {
   line-height: 1;
 }
 
-/* small red slash in the corner of each card */
 .ip-list li::after,
 .ip-steps li::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  right: 22px;
-  width: 26px;
-  height: 64px;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
-  opacity: 0.9;
+  display: none !important;
 }
 
 body .ip .ip-list h3,
@@ -898,14 +884,7 @@ body .ip .ip-steps h3 {
 }
 
 .ip-company--info::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  right: 26px;
-  width: 26px;
-  height: 64px;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
+  display: none !important;
 }
 
 body .ip .ip-company--lead {
@@ -1008,17 +987,8 @@ body .ip .ip-company--lead {
   background-color: var(--ip-brand);
 }
 
-/* red slash in the corner of the panel */
 .ip .home_news .ttlarea::after {
-  content: "";
-  position: absolute;
-  right: -20px;
-  bottom: -30px;
-  width: 110px;
-  height: 170px;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
-  opacity: 0.9;
+  display: none !important;
 }
 
 body .ip .home_news .ttlarea .ttl,
@@ -1367,11 +1337,11 @@ body .ip .ip-article--body p + p {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.45em;
-  width: 9px;
-  height: 14px;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--ip-brand);
 }
 
 .ip .ip-article--body li a {
@@ -1449,10 +1419,17 @@ body .ip-pd--info .ip-lead {
 }
 
 .ip-gallery--thumbs {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin: 14px 0 0 !important;
+  padding: 0;
+  list-style: none;
+}
+
+.ip-gallery--thumbs li {
+  flex: 0 0 auto;
+  width: clamp(72px, 18%, 105px);
 }
 
 .ip-gallery--thumbs button {
@@ -1577,18 +1554,8 @@ body .ip-pd--info .ip-lead {
   color: #ffffff;
 }
 
-/* red slash in the corner, as on the home page cards */
 .ip-contact--partner::after {
-  content: "";
-  position: absolute;
-  right: -24px;
-  bottom: -36px;
-  width: 96px;
-  height: 150px;
-  background-color: var(--ip-red);
-  clip-path: polygon(73% 0, 100% 0, 27% 100%, 0 100%);
-  opacity: 0.9;
-  pointer-events: none;
+  display: none !important;
 }
 
 .ip-contact--call {
@@ -1996,14 +1963,6 @@ body .ip .contact_form--note {
     padding-top: 5.7142857143rem;
   }
 
-  .ip-hero--panel {
-    clip-path: polygon(0 0, 52% 0, 84% 100%, 0 100%);
-  }
-
-  body .ip .ip-hero-deco-1 {
-    right: -2rem;
-  }
-
   .ip-section,
   .ip-blog {
     padding: 4rem 0;
@@ -2011,16 +1970,6 @@ body .ip .contact_form--note {
 
   .ip-section .ttlarea {
     margin-bottom: 2rem;
-  }
-
-  .ip-sec-deco-1,
-  .ip-section:nth-of-type(even) .ip-sec-deco-1 {
-    top: 1rem;
-  }
-
-  .ip-sec-deco-2,
-  .ip-section:nth-of-type(even) .ip-sec-deco-2 {
-    display: none;
   }
 
   .ip-section--compact {
@@ -2043,8 +1992,19 @@ body .ip .contact_form--note {
     padding: 2.5rem 0;
   }
 
-  .home_mission + .ip-statband {
-    padding-top: 8.5714285714rem;
+  body .ip .home_mission {
+    padding-top: 3.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  body .ip .home_mission .scroll-img {
+    height: 14rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .home_mission + .ip-statband,
+  body .ip .home_mission + .ip-statband {
+    padding-top: 3.5rem !important;
   }
 
   .ip-statband {
@@ -2100,7 +2060,17 @@ body .ip .contact_form--note {
   }
 
   .ip-gallery--thumbs {
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 6px;
+  }
+
+  .ip-gallery--thumbs li {
+    flex: 0 0 76px;
+    width: 76px;
   }
 
   .ip-facts > div,

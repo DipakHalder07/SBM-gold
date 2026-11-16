@@ -3,17 +3,6 @@ import Link from "next/link";
 export default function Quality() {
   return (
     <section id="quality" className="home_quality scroll_active">
-      <span className="deco deco-1 stroke blue lg reverse anime-diag-lft">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-2 fill blue xs reverse anime-diag-lft2 delay1">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-
       <div className="inner inner-md">
         <div className="ttlarea">
           <h2 className="ttl ttl-01 txt-ctr">

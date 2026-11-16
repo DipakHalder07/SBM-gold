@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Deco from "../Deco";
 import { initPipeEarth } from "@/lib/pipeEarth";
 
 /**
@@ -62,11 +61,6 @@ export default function PipeEarth() {
           ↻ Replay
         </button>
       </div>
-
-      <Deco className="deco-1 fill blue xs anime-diag-rgt2 delay1" />
-      <Deco className="deco-2 stroke blue lg anime-diag-rgt delay2" />
-      <Deco className="deco-3 stroke blue lg anime-diag-rgt" />
-      <Deco className="deco-4 fill wht sm anime-diag-rgt2 delay1" />
 
       {/* Seamless infinite scrolling gallery */}
       <div className="imgarea scroll-img">

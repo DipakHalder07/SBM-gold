@@ -343,13 +343,14 @@ body footer .footer--tel {
 }
 
 .home .header:not(.header-sm):not(.active) .gnav--menu > li > .gnav--link {
-  color: #ffffff !important;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  color: #951F17 !important;
+  text-shadow: none !important;
+  font-weight: 600;
 }
 
 .home .header:not(.header-sm):not(.active) .gnav--menu > li:hover > .gnav--link {
-  color: #ffffff !important;
-  opacity: 0.85;
+  color: #E62320 !important;
+  opacity: 1;
 }
 
 /* Non-sticky Initial State: CONTACT button is White with Dark Red text and icon */
@@ -357,7 +358,8 @@ body footer .footer--tel {
 .header:not(.header-sm):not(.active) .gnav--contact a {
   background-color: #ffffff !important;
   color: #951F17 !important;
-  box-shadow: none !important;
+  border: 1.5px solid rgba(149, 31, 23, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
 }
 
 .home .header:not(.header-sm):not(.active) .gnav--contact a svg,
@@ -367,13 +369,13 @@ body footer .footer--tel {
 
 .home .header:not(.header-sm):not(.active) .gnav--contact a:hover,
 .header:not(.header-sm):not(.active) .gnav--contact a:hover {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  color: #951F17 !important;
+  background-color: #951F17 !important;
+  color: #ffffff !important;
 }
 
 .home .header:not(.header-sm):not(.active) .gnav--contact a:hover svg,
 .header:not(.header-sm):not(.active) .gnav--contact a:hover svg {
-  fill: #951F17 !important;
+  fill: #ffffff !important;
 }
 
 /* 2. Scrolled Sticky State with White Background (After scrolling past 50px) */
@@ -388,17 +390,15 @@ body footer .footer--tel {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
-.home .header.header-sm .gnav--menu > li > .gnav--link {
+.home .header.header-sm .gnav--menu > li > .gnav--link,
+.header.header-sm .gnav--menu > li > .gnav--link {
   color: #951F17 !important;
   text-shadow: none !important;
 }
 
-.home .header.header-sm .gnav--menu > li:hover > .gnav--link {
-  color: #951F17 !important;
-}
-
-.home .header.header-sm .gnav--menu > li:hover > .gnav--link[href*="recruit"] {
-  color: #e62320 !important;
+.home .header.header-sm .gnav--menu > li:hover > .gnav--link,
+.header.header-sm .gnav--menu > li:hover > .gnav--link {
+  color: #E62320 !important;
 }
 
 /* Sticky Scrolled State: CONTACT button is Dark Red with White text and icon */
@@ -870,25 +870,27 @@ body .hero--cont .txt {
     right: 1.5rem !important;
     width: 3.4285714286rem !important;
     height: 3.4285714286rem !important;
-    border: 1.5px solid #D5D7DC !important;
+    border: 1.5px solid rgba(149, 31, 23, 0.25) !important;
     border-radius: 50% !important;
     cursor: pointer !important;
     z-index: 10001 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background: transparent !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .gnav_btn:hover {
-    border-color: #9599a3 !important;
+    border-color: #951F17 !important;
   }
 
   .gnav_btn.active,
   .header.active .gnav_btn {
     border: 2px solid #ffffff !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
   }
 
   .gnav_btn--lines {
@@ -902,7 +904,7 @@ body .hero--cont .txt {
     left: 0 !important;
     width: 100% !important;
     height: 2px !important;
-    background-color: #9599A3 !important;
+    background-color: #951F17 !important;
     transition: all 0.4s ease-out !important;
   }
 
@@ -2509,20 +2511,76 @@ body .home_news .cat_list .tag {
 }
 
 /* ==========================================================================
-   PRODUCTS SECTION: red shape moved 10% right so the heading stays on white.
-   The drawing's diagonal runs further down to reach the page edge, so these
-   layers are taller than the theme's 62.5vw (1489 / 1920 of the width).
+   GLOBAL: REMOVE ALL DECORATIVE BACKGROUND ELEMENT IMAGES & SHAPES
    ========================================================================== */
-@media screen and (min-width: 48em) {
-  body .home_products::before {
-    height: 77.55vw;
-    background-image: url("/theme/images/common/section-bg-products.svg");
-    background-size: 100% 100%;
-  }
+.deco,
+.bg-deco,
+body .deco,
+body .bg-deco,
+.ip .deco,
+.ip .bg-deco {
+  display: none !important;
+}
 
-  body .home_products::after {
-    height: 77.55vw;
-  }
+/* Remove diagonal background shapes & SVG divider elements from all sections */
+.home_products::before,
+.home_products::after,
+.home_feature::before,
+.home_feature::after,
+.home_quality::before,
+.home_quality::after,
+.home_about::before,
+.home_about::after,
+.hero--cont::before,
+.hero--cont::after,
+.hero--movie::before,
+.hero--movie::after,
+.home_mission::before,
+.home_mission::after,
+.pe::before,
+.pe::after,
+#pipe-earth::before,
+#pipe-earth::after {
+  display: none !important;
+  background-image: none !important;
+  content: none !important;
+}
+
+/* Clean background for products section without diagonal cut */
+body.home .home_products {
+  background-color: #f8f9fa !important;
+}
+
+body.home .home_products .ttlarea .ttl,
+body.home .home_products .ttlarea .ttl .ttl-txt {
+  color: #212121 !important;
+}
+
+/* Company Section: Top and Bottom gradients */
+body.home .home_company::before {
+  content: "" !important;
+  display: block !important;
+  width: 100% !important;
+  height: 25rem !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  background-image: linear-gradient(to bottom, #f8f9fa 0%, #951F17 100%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+body.home .home_company::after {
+  content: "" !important;
+  display: block !important;
+  width: 100% !important;
+  height: 25rem !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  background-image: linear-gradient(to bottom, #951F17 0%, #FFFFFF 100%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
 }
 
 /* ==========================================================================
@@ -2906,3 +2964,78 @@ body .footer .footer--credit a {
     letter-spacing: 0.04em;
   }
 }
+
+/* ==========================================================================
+   USER CUSTOMIZATIONS: BG ELEMENT REMOVALS & HEADER TEXT COLOR
+   ========================================================================== */
+
+/* 1. Header menu text color: Dark & readable on all light backgrounds */
+@media print, screen and (min-width: 67.5625em) {
+  body .header .gnav--menu > li > .gnav--link,
+  body .home .header .gnav--menu > li > .gnav--link,
+  body .home .header:not(.header-sm):not(.active) .gnav--menu > li > .gnav--link,
+  body .header.header-sm .gnav--menu > li > .gnav--link {
+    color: #1a1a1a !important;
+    font-weight: 600 !important;
+  }
+
+  body .header .gnav--menu > li > .gnav--link:hover,
+  body .home .header .gnav--menu > li > .gnav--link:hover,
+  body .home .header:not(.header-sm):not(.active) .gnav--menu > li > .gnav--link:hover,
+  body .header.header-sm .gnav--menu > li > .gnav--link:hover {
+    color: #951F17 !important;
+  }
+
+  body .header .gnav--contact a,
+  body .home .header .gnav--contact a {
+    background-color: #951F17 !important;
+    color: #ffffff !important;
+    border: 1.5px solid #951F17 !important;
+    box-shadow: 0 4px 14px rgba(149, 31, 23, 0.2) !important;
+  }
+  body .header .gnav--contact a svg,
+  body .home .header .gnav--contact a svg {
+    fill: #ffffff !important;
+  }
+  body .header .gnav--contact a:hover,
+  body .home .header .gnav--contact a:hover {
+    background-color: #7a1712 !important;
+  }
+}
+
+/* 2. AROUND THE EARTH: Remove left and right background decorative elements */
+.home_mission::before,
+.home_mission::after,
+#pipe-earth::before,
+#pipe-earth::after {
+  display: none !important;
+  content: none !important;
+  background-image: none !important;
+}
+
+/* 3. PRODUCTS SECTION: Remove red diagonal polygon & slash background element images */
+.home_products::before {
+  display: none !important;
+  content: none !important;
+  background-image: none !important;
+}
+.home_products::after {
+  background-image: none !important;
+  clip-path: none !important;
+}
+
+/* 4. COMPANY SECTION: Make top side have a gradient like the bottom side */
+.home_company::before {
+  content: "" !important;
+  width: 100% !important;
+  height: 25rem !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  background-image: url(/theme/images/top/company-bg01.png) !important;
+  background-size: cover !important;
+  transform: scaleY(-1) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+

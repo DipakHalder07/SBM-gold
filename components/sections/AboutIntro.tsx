@@ -86,17 +86,6 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
           </div>
         </div>
       </div>
-
-      <span className="deco deco-1 stroke wht lg scroll_active anime-diag-rgt delay1">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
-      <span className="deco deco-2 fill red xs scroll_active anime-diag-rgt2">
-        <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-          <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-        </svg>
-      </span>
     </section>
   );
 }

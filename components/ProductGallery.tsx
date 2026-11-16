@@ -6,12 +6,14 @@ type GalleryImage = { src: string; alt: string };
 
 export default function ProductGallery({ images }: { images: GalleryImage[] }) {
   const [active, setActive] = useState(0);
-  const current = images[active];
+  const current = images[active] ?? images[0];
 
   return (
     <div className="ip-gallery">
       <div className="ip-gallery--main">
-        <img src={current.src} alt={current.alt} width="796" height="532" fetchPriority="high" />
+        {current && (
+          <img src={current.src} alt={current.alt || ""} width="796" height="532" fetchPriority="high" />
+        )}
       </div>
       {images.length > 1 && (
         <ul className="ip-gallery--thumbs">
@@ -24,7 +26,7 @@ export default function ProductGallery({ images }: { images: GalleryImage[] }) {
                 aria-pressed={i === active}
                 onClick={() => setActive(i)}
               >
-                <img src={image.src} alt="" width="160" height="107" loading="lazy" decoding="async" />
+                <img src={image.src} alt="" width="160" height="107" decoding="async" />
               </button>
             </li>
           ))}

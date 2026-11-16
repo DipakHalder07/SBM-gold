@@ -1,5 +1,3 @@
-import Deco from "../Deco";
-
 const STATS = [
   { value: "10+", label: "Years of extrusion expertise" },
   { value: "22,000 MT", label: "Yearly manufacturing capacity" },
@@ -11,8 +9,6 @@ const STATS = [
 export default function Stats() {
   return (
     <section className="ip-statband bg-primary-dark clr-wht scroll_active">
-      <Deco className="ip-stat-deco-1 stroke wht lg reverse anime-diag-lft" />
-      <Deco className="ip-stat-deco-2 fill red xs reverse anime-diag-lft2 delay1" />
       <div className="ip-wrap">
         <ul className="ip-stats">
           {STATS.map((stat) => (

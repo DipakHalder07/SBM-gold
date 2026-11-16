@@ -129,27 +129,6 @@ export default function Home() {
           </div>
 
           <section className="hero--cont scroll_active">
-            <span className="deco deco-1 fill gray md reverse anime-diag-lft">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-2 fill wht xs reverse anime-diag-lft">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-3 stroke wht lg reverse anime-diag-lft delay1">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-            <span className="deco deco-4 fill blue sm reverse anime-diag-lft delay1">
-              <svg width="100%" height="100%" viewBox="0 0 342 388" fill="none">
-                <path d="M273.68 0.5L0.96405 387.5H68.3158L341.036 0.5H273.68Z" />
-              </svg>
-            </span>
-
             <div className="cont--inner">
               <h1 className="ttl">
                 <span className="ttl--row">
@@ -172,20 +151,6 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-
-
-
-            <span className="bg-deco pc-none">
-              <svg
-                className="bg-deco img-specif"
-                width="88"
-                height="134"
-                viewBox="0 0 88 134"
-                fill="none"
-              >
-                <path d="M88 0L0 133.583H88L88 0Z" fill="#F04934" />
-              </svg>
-            </span>
           </section>
 
           {/* SP Hero */}

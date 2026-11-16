@@ -14,7 +14,7 @@ type Props = { params: { slug: string } };
 
 export const dynamicParams = false;
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 

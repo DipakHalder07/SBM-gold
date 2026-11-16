@@ -3024,18 +3024,3 @@ body .footer .footer--credit a {
   clip-path: none !important;
 }
 
-/* 4. COMPANY SECTION: Make top side have a gradient like the bottom side */
-.home_company::before {
-  content: "" !important;
-  width: 100% !important;
-  height: 25rem !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  background-image: url(/theme/images/top/company-bg01.png) !important;
-  background-size: cover !important;
-  transform: scaleY(-1) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-}
-

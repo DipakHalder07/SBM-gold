@@ -12,7 +12,7 @@ import { CONTACT, pageMetadata } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
-export const dynamicParams = false;
+// dynamicParams is not needed with static export + generateStaticParams
 
 export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));

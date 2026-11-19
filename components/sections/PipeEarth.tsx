@@ -27,15 +27,14 @@ export default function PipeEarth() {
     >
       <div className="bg"></div>
       <div className="inner">
-        <h4 className="sub-ttl anime-fade-up">AROUND THE EARTH</h4>
+        <h4 className="sub-ttl anime-fade-up">A GLOBAL REACH. A STRONGER TOMORROW.</h4>
         <h3 className="ttl ttl-02 txt-ctr anime-fade-up delay1" id="pe-title">
           <span className="block">
-            Enough SBM GOLD pipe to wrap
-            <br />
+            SBM Gold Pipes have now covered<br />
             <span className="txt-lg pe-pct" data-pe-pct>
               100%
             </span>{" "}
-            around the <span className="txt-lg">Earth</span>.
+            of the Earth.
           </span>
         </h3>
 

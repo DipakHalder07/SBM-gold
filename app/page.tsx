@@ -135,17 +135,17 @@ export default function Home() {
                   <span className="row-01 anime-fade-lft">
                     Engineered for
                   </span>{" "}
-                  <span className="row-02 anime-fade-lft delay1">
+                  <span className="row-02 anime-fade-lft">
                     Indian Homes<span className="ttl-dot">.</span>
                   </span>
                 </span>
               </h1>
-              <p className="txt anime-fade-up delay2 sp-none">
+              <p className="txt anime-fade-up delay1 sp-none">
                 Manufacturers of uPVC doors &amp; windows<br />
                 profiles, WPC door frames, water tanks<br className="sp-none" />
                 &amp; pipes, crafted with German technology.
               </p>
-              <div className="btn anime-fade-up delay3 sp-none">
+              <div className="btn anime-fade-up delay2 sp-none">
                 <Link href="#products" onClick={(e) => scrollToHash("#products", e)}>
                   <span>Explore Products</span>
                 </Link>
@@ -156,10 +156,10 @@ export default function Home() {
           {/* SP Hero */}
           <div className="hero--cont-sp pc-none scroll_active">
             <div className="inner">
-              <p className="txt anime-fade-up delay2">
+              <p className="txt anime-fade-up delay1">
                 Manufacturers of uPVC doors &amp; windows profiles, WPC door frames, water tanks &amp; pipes, crafted with German technology.
               </p>
-              <div className="btn anime-fade-up delay3">
+              <div className="btn anime-fade-up delay2">
                 <Link href="#products" onClick={(e) => scrollToHash("#products", e)}>
                   <span>Explore Products</span>
                 </Link>

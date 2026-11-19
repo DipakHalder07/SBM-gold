@@ -46,18 +46,19 @@ export default function SiteLayout({
     gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0);
 
-    // Page heroes animate in on load, everything else as it scrolls into view
-    const isHero = (el: Element) => el.matches(".hero--cont, .hero--cont-sp");
+    // Page heroes animate in immediately on load, everything else as it scrolls into view
+    const isHero = (el: Element) => el.matches(".hero--cont, .hero--cont-sp, .ip-hero");
     const activeElements = gsap.utils.toArray<HTMLElement>(".scroll_active");
+    activeElements.filter(isHero).forEach((el) => el.classList.add("active"));
     const heroTimer = setTimeout(() => {
       activeElements.filter(isHero).forEach((el) => el.classList.add("active"));
-    }, 120);
+    }, 0);
     activeElements
       .filter((el) => !isHero(el))
       .forEach((el) => {
         ScrollTrigger.create({
           trigger: el,
-          start: "top 75%",
+          start: "top 88%",
           onEnter: () => el.classList.add("active"),
           once: true,
         });

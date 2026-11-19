@@ -5,8 +5,8 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
     <section id="about" className="home_about bg-primary-dark clr-wht pos-rel">
       <div className="ttl-en scroll_active">
         <img
-            loading="lazy"
-            decoding="async"
+          loading="lazy"
+          decoding="async"
           src="/theme/images/top/about-ttl.svg"
           width="1124"
           height="149"
@@ -20,11 +20,13 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
             <span className="ttl-txt block">ABOUT US</span>
           </h2>
           <h3 className="catch font-en">
-            From Pipes to Profiles.<br />
-            A Legacy of Precision Extrusion.
+            Engineering Quality. Building a Legacy of Trust.
+
           </h3>
           <p className="txt">
-            Backed by SBM GOLD&rsquo;s legacy of quality and innovation, our uPVC doors and windows profiles offer world-class, custom solutions for Indian homes. Crafted with German technology and automated precision, they ensure all-weather durability and superior noise and heat insulation.
+            From pipes and water tanks to UPVC profiles, SBM Gold brings together a diverse range of solutions for homes, businesses and infrastructure.
+            <br />Driven by innovation, precision manufacturing and a commitment to quality, we create products designed for durability, dependable performance and everyday needs.
+
           </p>
           <div className="btn btn-wh">
             <Link href={ctaHref}>{ctaLabel}</Link>
@@ -35,13 +37,14 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
           <div className="contarea--row1 flex flex-j-ctr">
             <div className="cont--wrap cont-01 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale">
               <span className="sub-ttl font-en">
-                10+ Years of<br />Extrusion Expertise
+                10+ Years of Extrusion Expertise
+
               </span>
-              <h4 className="ttl font-en">EXPERIENCE</h4>
+              {/* <h4 className="ttl font-en">EXPERIENCE</h4> */}
               <span className="icon">
                 <img
-            loading="lazy"
-            decoding="async"
+                  loading="lazy"
+                  decoding="async"
                   src="/theme/images/top/about-icn01.svg"
                   width="166"
                   height="176"
@@ -53,13 +56,14 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
           <div className="contarea--row2 flex flex-j-ctr">
             <div className="cont--wrap cont-02 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay1">
               <span className="sub-ttl font-en">
-                22,000 MT<br />Yearly Capacity
+                22,000 MT Annual Manufacturing Capacity
+
               </span>
-              <h4 className="ttl font-en">MANUFACTURING</h4>
+              {/* <h4 className="ttl font-en">MANUFACTURING</h4> */}
               <span className="icon">
                 <img
-            loading="lazy"
-            decoding="async"
+                  loading="lazy"
+                  decoding="async"
                   src="/theme/images/top/about-icn02.svg"
                   width="176"
                   height="176"
@@ -69,13 +73,13 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
             </div>
             <div className="cont--wrap cont-03 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay2">
               <span className="sub-ttl font-en">
-                ISO &amp; BIS<br />Certified
+                ISO & BIS Certified Quality Assurance
               </span>
-              <h4 className="ttl font-en">QUALITY ASSURANCE</h4>
+              {/* <h4 className="ttl font-en">QUALITY ASSURANCE</h4> */}
               <span className="icon">
                 <img
-            loading="lazy"
-            decoding="async"
+                  loading="lazy"
+                  decoding="async"
                   src="/theme/images/top/about-icn03.svg"
                   width="176"
                   height="176"

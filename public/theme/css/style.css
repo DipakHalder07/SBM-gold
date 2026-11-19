@@ -34185,15 +34185,15 @@ body.home {
 }
 
 .delay1 {
-  transition-delay: 0.5s;
+  transition-delay: 0.08s;
 }
 
 .delay2 {
-  transition-delay: 1s;
+  transition-delay: 0.16s;
 }
 
 .delay3 {
-  transition-delay: 1.5s;
+  transition-delay: 0.24s;
 }
 
 .active .anime-fade-scale {
@@ -34227,20 +34227,20 @@ body.home {
 
 .anime-fade-lft {
   opacity: 0;
-  transform: translate(-15.625rem, 0);
-  transition-duration: 0.5s;
+  transform: translate(-1.5rem, 0);
+  transition-duration: 0.35s;
 }
 
 .anime-fade-rgt {
   opacity: 0;
-  transform: translate(15.625rem, 0);
-  transition-duration: 0.5s;
+  transform: translate(1.5rem, 0);
+  transition-duration: 0.35s;
 }
 
 .anime-fade-up {
   opacity: 0;
-  transform: translate(0, 1.875rem);
-  transition-duration: 0.5s;
+  transform: translate(0, 1.25rem);
+  transition-duration: 0.35s;
 }
 
 .active.anime-diag-rgt, .active.anime-diag-rgt2, .active.anime-diag-lft, .active.anime-diag-lft2, .active.anime-fade-lft, .active.anime-fade-rgt,

@@ -15,8 +15,8 @@ export default function Strengths() {
           <div className="cont--wrap cont-01 pos-rel flex">
             <div className="imgarea pos-rel">
               <img
-            loading="lazy"
-            decoding="async"
+                loading="lazy"
+                decoding="async"
                 src="/images/sbm/feature-01.jpg?v=2"
                 width="800"
                 height="600"
@@ -30,10 +30,10 @@ export default function Strengths() {
                   <span className="txt">FEATURE</span>
                   <span className="num">01</span>
                 </span>
-                Profiles Designed to<br />European Standards
+                uPVC Profiles:<br />German Technology, Indian Strength
               </h4>
               <p className="txt">
-                Sleek aesthetics with robust engineering. Our multi-chambered profiles work with European hardware systems and come with advanced locking systems for enhanced security.
+                Multi-chambered profiles built to European standards, available in Oak Wood, Walnut, Black, White and Grey.
               </p>
             </div>
             <span className="dots-list pos-ab">
@@ -49,8 +49,8 @@ export default function Strengths() {
           <div className="cont--wrap cont-02 pos-rel flex">
             <div className="imgarea pos-rel">
               <img
-            loading="lazy"
-            decoding="async"
+                loading="lazy"
+                decoding="async"
                 src="/images/sbm/feature-02.jpg?v=2"
                 width="800"
                 height="600"
@@ -64,10 +64,10 @@ export default function Strengths() {
                   <span className="txt">FEATURE</span>
                   <span className="num">02</span>
                 </span>
-                Thermal Insulation for<br />Quieter, Cooler Homes
+                uPVC Windows &amp; Doors:<br />Built for Every Weather
               </h4>
               <p className="txt">
-                Multi-chambered profiles give superior heat insulation and cut outdoor noise, keeping your rooms calm and comfortable through every season.
+                Termite-proof and weather-sealed, with better noise and heat insulation, advanced locking and a 20-year warranty.
               </p>
             </div>
             <span className="dots-list pos-ab">
@@ -83,8 +83,8 @@ export default function Strengths() {
           <div className="cont--wrap cont-03 pos-rel flex">
             <div className="imgarea pos-rel">
               <img
-            loading="lazy"
-            decoding="async"
+                loading="lazy"
+                decoding="async"
                 src="/images/sbm/feature-03.jpg"
                 width="800"
                 height="600"
@@ -98,10 +98,10 @@ export default function Strengths() {
                   <span className="txt">FEATURE</span>
                   <span className="num">03</span>
                 </span>
-                Built for Every Indian<br />Climate Extreme
+                Water Tanks:<br />Pure Water, Layer by Layer
               </h4>
               <p className="txt">
-                Weather-sealed, termite-proof and low maintenance. Our profiles resist sun, rain and humidity for a long lifespan, backed by a 20-year warranty.
+                Food-grade, UV-resistant and anti-bacterial tanks from 100L to 10,000L, with up to 4 layers and ISI marking.
               </p>
               <div className="btn">
                 <Link href="#quality">Learn About Quality Control</Link>
@@ -120,8 +120,8 @@ export default function Strengths() {
           <div className="cont--wrap cont-04 pos-rel flex">
             <div className="imgarea pos-rel">
               <img
-            loading="lazy"
-            decoding="async"
+                loading="lazy"
+                decoding="async"
                 src="/images/sbm/feature-04.jpg"
                 width="800"
                 height="600"
@@ -135,10 +135,10 @@ export default function Strengths() {
                   <span className="txt">FEATURE</span>
                   <span className="num">04</span>
                 </span>
-                Your All-in-One Solution,<br />From Profile to Installation
+                Pipes:<br />From Homes to Fields
               </h4>
               <p className="txt">
-                End-to-end expertise with customizable styles and finishes, professional installation by our own team and reliable after-sales support.
+                From your home’s plumbing to farm irrigation and city water lines, SBM GOLD pipes deliver leak-proof, long-lasting flow.
               </p>
               <div className="btn">
                 <Link href="/products">Explore Our Range</Link>
@@ -157,8 +157,8 @@ export default function Strengths() {
           <div className="cont--wrap cont-05 pos-rel flex">
             <div className="imgarea pos-rel">
               <img
-            loading="lazy"
-            decoding="async"
+                loading="lazy"
+                decoding="async"
                 src="/images/sbm/feature-05.jpg"
                 width="800"
                 height="600"
@@ -172,10 +172,10 @@ export default function Strengths() {
                   <span className="txt">FEATURE</span>
                   <span className="num">05</span>
                 </span>
-                Trusted by Builders,<br />Backed by Industry Veterans
+                Wall Putty: The Perfect Base for Every Wall
               </h4>
               <p className="txt">
-                With 10+ years of extrusion expertise, SBM GOLD is a trusted name for builders and homeowners. Our eco-friendly, recyclable uPVC is made to last.
+                A smooth, strong finish that helps paint look better and last longer.
               </p>
               <div className="btn">
                 <Link href="/contact">Talk to Our Team</Link>

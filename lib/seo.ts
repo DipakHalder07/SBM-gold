@@ -45,7 +45,7 @@ export function organizationSchema() {
         areaServed: "IN",
       },
     ],
-    sameAs: [CONTACT.instagram],
+    sameAs: [CONTACT.instagram, CONTACT.facebook, CONTACT.linkedin, CONTACT.youtube],
   };
 }
 

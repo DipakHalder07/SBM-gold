@@ -3,7 +3,7 @@ import { products, type Product } from "@/lib/products";
 
 /** The home page product grid. Inner pages reuse it with their own title and products. */
 export default function ProductsSection({
-  title = "OUR PRODUCTS",
+  title = "BUILT FOR EVERY HOME",
   items = products,
   id = "products",
 }: {

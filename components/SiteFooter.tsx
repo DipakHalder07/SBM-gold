@@ -57,6 +57,45 @@ export default function SiteFooter({ credit = false }: { credit?: boolean }) {
                       </svg>
                     </a>
                   </li>
+                  <li>
+                    <a
+                      className="facebook"
+                      href={CONTACT.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="SBM GOLD on Facebook"
+                    >
+                      <svg className="icon-facebook">
+                        <use xlinkHref="#icon-facebook"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="linkedin"
+                      href={CONTACT.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="SBM GOLD on LinkedIn"
+                    >
+                      <svg className="icon-linkedin">
+                        <use xlinkHref="#icon-linkedin"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="youtube"
+                      href={CONTACT.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="SBM GOLD on YouTube"
+                    >
+                      <svg className="icon-youtube">
+                        <use xlinkHref="#icon-youtube"></use>
+                      </svg>
+                    </a>
+                  </li>
                 </ul>
               </aside>
             </div>

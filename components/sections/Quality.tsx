@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export default function Quality() {
   return (
@@ -12,7 +11,6 @@ export default function Quality() {
 
         <div className="contarea">
           <div className="cont--wrap cont-01 pos-rel">
-            <Link href="/contact" className="cont--link"></Link>
             <div className="cont--bg">
               <img
                 loading="lazy"
@@ -29,12 +27,10 @@ export default function Quality() {
               <p className="txt">
                 Certified to ISO 9001:2015 &amp; ISO 4427. Caliper and wall-thickness checks on every batch keep each profile true to spec.
               </p>
-              <span className="circle"></span>
             </div>
           </div>
 
           <div className="cont--wrap cont-02 pos-rel">
-            <Link href="/contact" className="cont--link"></Link>
             <div className="cont--bg">
               <img
                 loading="lazy"
@@ -49,12 +45,10 @@ export default function Quality() {
             <div className="cont--wrap--inner">
               <h4 className="ttl font-en">Automated Extrusion</h4>
               <p className="txt">PLC-controlled lines hold every profile wall uniform, metre after metre.</p>
-              <span className="circle"></span>
             </div>
           </div>
 
           <div className="cont--wrap cont-03">
-            <Link href="/contact" className="cont--link"></Link>
             <div className="cont--bg">
               <img
                 loading="lazy"
@@ -69,7 +63,6 @@ export default function Quality() {
             <div className="cont--wrap--inner">
               <h4 className="ttl font-en">Protective Shield</h4>
               <p className="txt">Factory-applied film keeps profiles scratch-free from our plant to your site.</p>
-              <span className="circle"></span>
             </div>
           </div>
         </div>

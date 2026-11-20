@@ -10,7 +10,10 @@ export const CONTACT = {
   tollFreeHref: "tel:18008893850",
   email: "sbmpipeindustries@gmail.com",
   instagramHandle: "@sbmgold_",
-  instagram: "https://www.instagram.com/sbmgold_/",
+  instagram: "https://www.instagram.com/sbmgold_",
+  facebook: "https://www.facebook.com/share/1CuHz4UJRk/",
+  linkedin: "https://www.linkedin.com/company/sbm-gold/",
+  youtube: "https://youtube.com/@sbmgoldindia",
 };
 
 export type NavLink = { label: string; href: string };

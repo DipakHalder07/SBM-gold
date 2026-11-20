@@ -36,55 +36,50 @@ export default function AboutIntro({ ctaHref = "/about", ctaLabel = "Explore SBM
         <div className="contarea">
           <div className="contarea--row1 flex flex-j-ctr">
             <div className="cont--wrap cont-01 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale">
-              <span className="sub-ttl font-en">
-                10+ Years of Extrusion Expertise
-
-              </span>
-              {/* <h4 className="ttl font-en">EXPERIENCE</h4> */}
               <span className="icon">
                 <img
                   loading="lazy"
                   decoding="async"
                   src="/theme/images/top/about-icn01.svg"
-                  width="166"
-                  height="176"
+                  width="44"
+                  height="44"
                   alt=""
                 />
+              </span>
+              <span className="sub-ttl font-en">
+                10+ Years of<br />Extrusion Expertise
               </span>
             </div>
           </div>
           <div className="contarea--row2 flex flex-j-ctr">
             <div className="cont--wrap cont-02 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay1">
-              <span className="sub-ttl font-en">
-                22,000 MT Annual Manufacturing Capacity
-
-              </span>
-              {/* <h4 className="ttl font-en">MANUFACTURING</h4> */}
               <span className="icon">
                 <img
                   loading="lazy"
                   decoding="async"
                   src="/theme/images/top/about-icn02.svg"
-                  width="176"
-                  height="176"
+                  width="44"
+                  height="44"
                   alt=""
                 />
               </span>
+              <span className="sub-ttl font-en">
+                22,000 MT Annual<br />Manufacturing<br />Capacity
+              </span>
             </div>
             <div className="cont--wrap cont-03 txt-ctr flex flex-j-ctr flex-a-ctr flex-column anime-fade-scale delay2">
-              <span className="sub-ttl font-en">
-                ISO & BIS Certified Quality Assurance
-              </span>
-              {/* <h4 className="ttl font-en">QUALITY ASSURANCE</h4> */}
               <span className="icon">
                 <img
                   loading="lazy"
                   decoding="async"
                   src="/theme/images/top/about-icn03.svg"
-                  width="176"
-                  height="176"
+                  width="44"
+                  height="44"
                   alt=""
                 />
+              </span>
+              <span className="sub-ttl font-en">
+                ISO &amp; BIS Certified<br />Quality Assurance
               </span>
             </div>
           </div>

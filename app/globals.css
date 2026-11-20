@@ -2344,8 +2344,74 @@ body .home_about .cont--wrap .ttl {
   letter-spacing: 0;
 }
 
+/* About section circular badges icon & typography */
+body .home_about .cont--wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 1.5rem !important;
+}
+
+body .home_about .cont--wrap .icon {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 auto 0.85rem auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+}
+
+body .home_about .cont--wrap .icon img {
+  width: 44px !important;
+  height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+  filter: none !important;
+}
+
 body .home_about .cont--wrap .sub-ttl {
-  letter-spacing: 0.04em;
+  color: #1a1a1a !important;
+  font-size: clamp(14px, 1.3rem, 17px) !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  max-width: 90% !important;
+  margin: 0 auto !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+@media screen and (max-width: 47.9375em) {
+  body .home_about .cont--wrap {
+    padding: 0.75rem !important;
+  }
+  body .home_about .cont--wrap .icon {
+    margin: 0 auto 0.4rem auto !important;
+  }
+  body .home_about .cont--wrap .icon img {
+    width: 28px !important;
+    height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+  }
+  body .home_about .cont--wrap .sub-ttl {
+    font-size: clamp(10px, 2.7vw, 12px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.01em !important;
+  }
 }
 
 /* Hero copy needs the width for its three lines when rem shrinks on small laptops */

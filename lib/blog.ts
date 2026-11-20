@@ -12,6 +12,7 @@ export type BlogPost = {
   imageAlt: string;
   /** Slug of the product this article leads to. */
   product: string;
+  date: string;
   body: BlogBlock[];
 };
 
@@ -24,6 +25,7 @@ export const posts: BlogPost[] = [
     image: "/images/sbm/gallery-04.jpg",
     imageAlt: "Bright living room with large windows looking onto a garden",
     product: "upvc-windows-doors",
+    date: "2026.11.02",
     body: [
       {
         type: "p",
@@ -68,6 +70,7 @@ export const posts: BlogPost[] = [
     image: "/images/sbm/emblem-01.jpg",
     imageAlt: "Pipe extrusion line at the SBM GOLD manufacturing plant",
     product: "hdpe-pipes",
+    date: "2026.10.20",
     body: [
       {
         type: "p",
@@ -111,6 +114,7 @@ export const posts: BlogPost[] = [
     image: "/images/sbm/feature-02.jpg?v=2",
     imageAlt: "Green SBM GOLD water tank with pipes",
     product: "water-tanks",
+    date: "2026.10.05",
     body: [
       {
         type: "p",
@@ -155,6 +159,7 @@ export const posts: BlogPost[] = [
     image: "/images/sbm/product-02.jpg",
     imageAlt: "SBM GOLD WPC door frame",
     product: "wpc-door-frames",
+    date: "2026.09.18",
     body: [
       {
         type: "p",
@@ -194,6 +199,7 @@ export const posts: BlogPost[] = [
     image: "/images/sbm/product-wall-putty-centered.jpg",
     imageAlt: "SBM GOLD wall putty bags",
     product: "wall-putty",
+    date: "2026.08.30",
     body: [
       {
         type: "p",
@@ -229,6 +235,7 @@ export const posts: BlogPost[] = [
     image: "/images/sbm/quality-01.jpg",
     imageAlt: "SBM GOLD quality inspector measuring a uPVC profile with a caliper",
     product: "upvc-windows-doors",
+    date: "2026.08.12",
     body: [
       {
         type: "p",

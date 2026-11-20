@@ -11,7 +11,7 @@ import Quality from "@/components/sections/Quality";
 import ProductsSection from "@/components/sections/ProductsSection";
 import Company from "@/components/sections/Company";
 import Partner from "@/components/sections/Partner";
-import Milestones from "@/components/sections/Milestones";
+import BlogSection from "@/components/sections/BlogSection";
 import PipeEarth from "@/components/sections/PipeEarth";
 import { scrollToHash } from "@/lib/smoothScroll";
 import { INDIA_MAP } from "@/lib/indiaMap";
@@ -400,7 +400,7 @@ export default function Home() {
         </div>
 
         <Partner />
-        <Milestones />
+        <BlogSection />
 
     </SiteLayout>
   );

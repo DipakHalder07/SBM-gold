@@ -45,7 +45,7 @@ export const FOOTER_NAV: NavGroup[] = [
       { label: "Colour Shades", href: "/about#quality" },
       { label: "Certifications", href: "/about#quality" },
       { label: "Warranty", href: "/about#quality" },
-      { label: "Milestones", href: "/about#news" },
+      { label: "Company Overview", href: "/about#overview" },
     ],
   },
   { key: "products", label: "Products", href: "/products", children: productLinks },

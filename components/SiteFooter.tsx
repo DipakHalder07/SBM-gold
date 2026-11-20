@@ -110,7 +110,7 @@ export default function SiteFooter({ credit = false }: { credit?: boolean }) {
           <div className="footer_btm--lft">
             <ul className="footer_btm--menu flex">
               <li>
-                <Link href="/about#news">Milestones</Link>
+                <Link href="/blog">Blog</Link>
               </li>
               <li>
                 <Link href="/privacy">Privacy Policy</Link>

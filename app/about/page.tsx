@@ -3,11 +3,7 @@ import SiteLayout from "@/components/SiteLayout";
 import PageIntro from "@/components/inner/PageIntro";
 import Section from "@/components/inner/Section";
 import Stats from "@/components/inner/Stats";
-import Mission from "@/components/sections/Mission";
-import Strengths from "@/components/sections/Strengths";
-import Quality from "@/components/sections/Quality";
 import Milestones from "@/components/sections/Milestones";
-import Partner from "@/components/sections/Partner";
 import { CONTACT, pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
@@ -32,11 +28,7 @@ export default function AboutPage() {
         crumbs={[{ label: "About Us" }]}
       />
 
-      {/* Same sections as the home page, so About looks and reads like the rest of the site */}
-      <Mission />
       <Stats />
-      <Strengths />
-      <Quality />
 
       <Section id="overview" title="Our Company" tone="fade">
         <div id="company" className="ip-company">
@@ -122,7 +114,6 @@ export default function AboutPage() {
       </Section>
 
       <Milestones />
-      <Partner />
     </SiteLayout>
   );
 }

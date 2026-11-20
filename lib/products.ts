@@ -28,7 +28,7 @@ export const products: Product[] = [
     name: "uPVC Windows & Doors",
     category: "Doors & Windows",
     short:
-      "Sliding, casement, tilt & turn and villa windows, plus slide & fold, sliding and internal doors, built on our Sliding, Casement and Accessories profile series.",
+      "Termite-proof uPVC windows and doors that keep out noise, heat and rain while staying low-maintenance for years. Available in sliding, casement, tilt & turn, slide & fold and villa styles.",
     tagline:
       "Windows and doors on SBM GOLD profiles, crafted with German technology for quieter, cooler Indian homes.",
     overview: [
@@ -87,7 +87,7 @@ export const products: Product[] = [
     name: "WPC Door Frames",
     category: "Doors & Windows",
     short:
-      "100% waterproof and termite-proof Wood Plastic Composite frames, ready to install and paint. Sizes 5×2.5, 4×2.5 and 3×2 inches.",
+      "Wood-like WPC door frames that are waterproof, termite-proof and stronger than timber. Ready to install and paint. Sizes: 5×2.5, 4×2.5 and 3×2 inches.",
     tagline: "Wood Plastic Composite door frames that stay free of water and termite damage, ready to install and paint.",
     overview: [
       "SBM GOLD WPC door frames are made from Wood Plastic Composite, giving you a frame that is 100% waterproof and termite-proof.",
@@ -127,7 +127,7 @@ export const products: Product[] = [
     name: "HDPE Pipes",
     category: "Pipes",
     short:
-      "Resilient, reliable and leak-free HDPE pipes from 20mm to 630mm (IS:4984), with butt-welded seamless joints for water supply, industry and infrastructure.",
+      "Strong, leak-free HDPE pipes with welded joints, built for water supply, industry and infrastructure. Available from 20mm to 450mm.",
     tagline: "Resilient, reliable and leak-free pipes from 20mm to 630mm for water supply, industry and infrastructure.",
     overview: [
       "SBM GOLD HDPE pipes are manufactured to IS:4984 in sizes from 20mm to 630mm. Butt-welded, seamless joints keep the line leak-free from end to end.",
@@ -171,7 +171,7 @@ export const products: Product[] = [
     name: "uPVC & Agri Pipes",
     category: "Pipes",
     short:
-      "High-pressure solvent weld plumbing (IS:4985), MCGM approved for potable water and 40–50% cheaper than G.I. Plus agri, boring and drip irrigation pipes.",
+      "High-pressure uPVC plumbing and agri pipes that carry clean water and irrigate fields without leaks or corrosion. IS:4985 certified and 40–50% cheaper than G.I. pipes.",
     tagline: "High-pressure plumbing approved for potable water, plus pipes for agriculture, boring and drip irrigation.",
     overview: [
       "SBM GOLD uPVC pipes are high-pressure solvent weld plumbing pipes made to IS:4985. They are MCGM approved for potable water and cost 40–50% less than G.I.",
@@ -214,7 +214,7 @@ export const products: Product[] = [
     name: "Water Tanks",
     category: "Tanks & Finishes",
     short:
-      "Roto-moulded, food-grade, UV-resistant and anti-bacterial tanks from 100L to 10,000L in 2, 3 and 4 layers. Green, blue, black and white.",
+      "Food-grade, UV-resistant and anti-bacterial tanks that keep stored water clean and safe. Available from 100L to 10,000L in 2, 3 and 4 layers.",
     tagline: "Roto-moulded, food-grade tanks from 100L to 10,000L in 2, 3 and 4 layers.",
     overview: [
       "SBM GOLD water tanks are roto-moulded from food-grade material, with UV-resistant and anti-bacterial properties.",
@@ -258,7 +258,7 @@ export const products: Product[] = [
     name: "Wall Putty",
     category: "Tanks & Finishes",
     short:
-      "White cement based putty for interior and exterior walls: a smooth, refined finish with excellent spread and adhesion. From rough to refined.",
+      "White cement-based putty that gives interior and exterior walls a smooth, strong finish so paint looks better and lasts longer. Easy to spread with excellent adhesion.",
     tagline: "White cement based putty for interior and exterior walls. From rough to refined.",
     overview: [
       "SBM GOLD Wall Putty is a white cement based putty for interior and exterior walls. It gives a smooth, refined finish with excellent spread and adhesion.",

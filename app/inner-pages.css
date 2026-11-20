@@ -194,20 +194,42 @@ a.ip-link:hover::after {
   transform: translateX(4px);
 }
 
-/* --- Banner: clean brand red gradient over photo, no diagonal cuts --- */
+/* --- Banner: signature brand red diagonal panel over natural photo (no all-red wash) --- */
 .ip-hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #7a1712 0%, #951F17 55%, #a8271e 100%);
+  background-color: #1a1a1a;
   color: #ffffff;
+}
+
+/* Red diagonal panel on the left covering title & breadcrumb; natural photo on the right */
+.ip-hero::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(149, 31, 23, 0.95) 0%, rgba(122, 23, 18, 0.95) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 48em) {
+  .ip-hero::before {
+    width: clamp(520px, 54vw, 840px);
+    clip-path: polygon(0 0, 72% 0, 100% 100%, 0% 100%);
+    background: #951F17;
+  }
 }
 
 .ip-hero--photo {
   position: absolute;
   inset: 0;
-  opacity: 0.25;
-  mix-blend-mode: overlay;
+  opacity: 0.92;
+  mix-blend-mode: normal;
   pointer-events: none;
+  z-index: 0;
 }
 
 .ip-hero--photo img {
@@ -216,7 +238,7 @@ a.ip-link:hover::after {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: contrast(1.1);
+  filter: none;
 }
 
 .ip-hero--panel {
@@ -231,6 +253,7 @@ body .ip .ip-hero-deco-2 {
 
 .ip-hero--cont {
   position: relative;
+  z-index: 2;
   padding-top: clamp(40px, 5vw, 76px);
   padding-bottom: clamp(28px, 2.8vw, 44px);
 }
@@ -261,7 +284,7 @@ body .ip .ip-hero h1 {
   line-height: 1.25;
 }
 
-/* --- Breadcrumb: clean, readable, no diagonal slash --- */
+/* --- Breadcrumb: clean, readable, matches live site --- */
 .breadcrumb {
   position: relative;
   padding-left: 0 !important;

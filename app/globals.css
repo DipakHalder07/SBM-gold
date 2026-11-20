@@ -1986,12 +1986,6 @@ body .footer::before {
   }
 }
 
-/* Section fade-outs: CSS gradients in brand colours instead of the
-   old PNGs (company-bg01.png was navy, recruit-bg01.png the old red) */
-body .home_company::after {
-  background-image: linear-gradient(to bottom, #951F17, #FFFFFF);
-}
-
 body .home_recruit {
   padding-bottom: 6.25rem;
 }
@@ -2560,31 +2554,15 @@ body.home .home_products .ttlarea .ttl .ttl-txt {
   color: #212121 !important;
 }
 
-/* Company Section: Top and Bottom gradients */
-body.home .home_company::before {
-  content: "" !important;
-  display: block !important;
-  width: 100% !important;
-  height: 25rem !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  background-image: linear-gradient(to bottom, #f8f9fa 0%, #951F17 100%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
+/* Company Section: plain light background, same as the products section above it (no red, no fades) */
+body.home .home_company {
+  background-color: #f8f9fa !important;
 }
 
+body.home .home_company::before,
 body.home .home_company::after {
-  content: "" !important;
-  display: block !important;
-  width: 100% !important;
-  height: 25rem !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  background-image: linear-gradient(to bottom, #951F17 0%, #FFFFFF 100%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
+  content: none !important;
+  display: none !important;
 }
 
 /* ==========================================================================

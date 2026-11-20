@@ -27,18 +27,23 @@ export default function PipeEarth() {
     >
       <div className="bg"></div>
       <div className="inner">
-        <h4 className="sub-ttl anime-fade-up">A GLOBAL REACH. A STRONGER TOMORROW.</h4>
-        <h3 className="ttl ttl-02 txt-ctr anime-fade-up delay1" id="pe-title">
-          <span className="block">
-            SBM Gold Pipes have now covered<br />
-            <span className="txt-lg pe-pct" data-pe-pct>
-              100%
-            </span>{" "}
-            of the Earth.
-          </span>
-        </h3>
+        {/* TOP: A GLOBAL REACH. A STRONGER TOMORROW. */}
+        <h2
+          className="sub-ttl anime-fade-up"
+          id="pe-title"
+          style={{
+            fontSize: "clamp(1.5rem, 2.4vw, 2.25rem)",
+            fontWeight: 700,
+            letterSpacing: "0.05em",
+            marginBottom: "1rem",
+            textWrap: "balance",
+          }}
+        >
+          A GLOBAL REACH. A STRONGER TOMORROW.
+        </h2>
 
-        <div className="pe-globe-area anime-fade-up delay2">
+        {/* GLOBE IN THE MIDDLE */}
+        <div className="pe-globe-area anime-fade-up delay1">
           <div className="pe-globe">
             <canvas
               className="pe-canvas"
@@ -51,11 +56,17 @@ export default function PipeEarth() {
           </div>
         </div>
 
-        <div className="txt anime-fade-up delay2">
+        {/* BOTTOM OF EARTH: SBM Gold Pipes have now covered 100% of the Earth (old small style). */}
+        <div className="txt anime-fade-up delay2" style={{ marginTop: "1.25rem" }}>
           <p>
-            <strong data-pe-total>40,075 km</strong> of HDPE pipe made, laid end to end.
+            SBM Gold Pipes have now covered{" "}
+            <strong className="pe-pct" data-pe-pct>
+              100%
+            </strong>{" "}
+            of the Earth.
           </p>
         </div>
+
         <button className="pe-replay anime-fade-up delay3" type="button">
           ↻ Replay
         </button>

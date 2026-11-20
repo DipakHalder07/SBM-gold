@@ -14,6 +14,31 @@ import Partner from "@/components/sections/Partner";
 import Milestones from "@/components/sections/Milestones";
 import PipeEarth from "@/components/sections/PipeEarth";
 import { scrollToHash } from "@/lib/smoothScroll";
+import { INDIA_MAP } from "@/lib/indiaMap";
+
+// The map is centred inside the 2077×1830 emblem box, so convert map units to box percentages
+const [MAP_W, MAP_H] = INDIA_MAP.viewBox.split(" ").slice(2).map(Number);
+const MAP_FRAC = (MAP_W / MAP_H) * (1830 / 2077);
+const mapPos = (x: number, y: number) => ({
+  left: `${((1 - MAP_FRAC) / 2 + (x / MAP_W) * MAP_FRAC) * 100}%`,
+  top: `${(y / MAP_H) * 100}%`,
+});
+// the six pieces of the SBM GOLD mark, top to bottom; light pieces are the brand orange-red
+const EMBLEM_PIECES = [
+  { points: "773,194 1016,0 2077,763 1663,829", fill: "#EF4224" },
+  { points: "768,199 1061,398 668,724 359,520", fill: "#941711" },
+  { points: "354,514 1055,995 818,1189 254,802", fill: "#EF4224" },
+  { points: "1293,641 1834,1023 1679,1343 1011,874", fill: "#941711" },
+  { points: "0,1111 409,1028 1309,1642 1072,1830", fill: "#941711" },
+  { points: "1414,1155 1685,1343 1315,1642 1022,1449", fill: "#EF4224" },
+];
+
+const PIN_FRAC = {
+  x: (1 - MAP_FRAC) / 2 + (INDIA_MAP.siliguri[0] / MAP_W) * MAP_FRAC,
+  y: INDIA_MAP.siliguri[1] / MAP_H,
+};
+const PIN_BOX = { x: PIN_FRAC.x * 2077, y: PIN_FRAC.y * 1830 };
+const PIN_ORIGIN = `${PIN_FRAC.x * 100}% ${PIN_FRAC.y * 100}%`;
 
 export default function Home() {
   const emblemContainerRef = useRef<HTMLDivElement>(null);
@@ -45,7 +70,6 @@ export default function Home() {
     const moveCont2 = document.querySelector(".emblem-line-blue");
     const scaleCont = document.querySelector(".home_emblem--sticky .imgarea");
     const colorCont = document.querySelector(".emblem-lg-color");
-    const redCont = document.querySelectorAll(".emblem-lg-color .red-parts");
     const visibleCont = document.querySelector(".home_emblem--sticky .contarea");
 
     // Initialize outline parts at top-left and bottom-right corners
@@ -73,16 +97,59 @@ export default function Home() {
       },
     });
 
-    if (moveCont1 && moveCont2 && colorCont && redCont.length > 0 && scaleCont && visibleCont) {
+    const mapCont = document.querySelector(".emblem-map");
+    const mapRest = document.querySelector(".emblem-map--rest");
+    const mapNe = document.querySelectorAll(".emblem-map--ne");
+    const mapMarks = document.querySelectorAll(".emblem-map--pin, .emblem-map--pulse, .emblem-map--label");
+    const pieces = gsap.utils.toArray<SVGPolygonElement>(".emblem-lg-color .emblem-piece");
+    const shine = document.querySelector(".emblem-shine");
+
+    if (mapCont && mapRest && mapNe.length > 0) {
+      gsap.set(mapRest, { strokeDasharray: 1, strokeDashoffset: 1, fillOpacity: 0 });
+      gsap.set(mapNe, { opacity: 0 });
+      gsap.set(mapMarks, { opacity: 0 });
       tlYmd
-        .to(moveCont1, { x: 0, y: 0, opacity: 1, ease: "none" })
-        .to(moveCont2, { x: 0, y: 0, opacity: 1, ease: "none" }, "<")
-        .to(colorCont, { opacity: 1, ease: "none" })
-        .to(redCont, { opacity: 1, ease: "none" })
+        // the outline traces itself, then India fills in
+        .to(mapRest, { strokeDashoffset: 0, ease: "none", duration: 1.2 })
+        .to(mapRest, { fillOpacity: 1, ease: "none", duration: 0.4 })
+        // the northeast states light up one after another, then the head office pin and labels
+        .to(mapNe, { opacity: 1, ease: "none", duration: 0.25, stagger: 0.12 })
+        .to(mapMarks, { opacity: 1, ease: "none", duration: 0.3 })
+        // hold the finished map for a moment before the logo takes over
+        .to({}, { duration: 0.6 })
+        // the map collapses into the Siliguri pin...
+        .to(mapCont, { opacity: 0, scale: 0.15, transformOrigin: PIN_ORIGIN, ease: "power2.in", duration: 0.7 });
+    }
+
+    if (moveCont1 && moveCont2 && colorCont && pieces.length > 0 && scaleCont && visibleCont) {
+      // ...and the logo bursts out of that same point: every piece starts on the pin, small and turned
+      gsap.set(colorCont, { opacity: 1 });
+      pieces.forEach((piece, i) => {
+        const box = piece.getBBox();
+        gsap.set(piece, {
+          x: PIN_BOX.x - (box.x + box.width / 2),
+          y: PIN_BOX.y - (box.y + box.height / 2),
+          scale: 0,
+          rotation: i % 2 ? 120 : -120,
+          opacity: 0,
+          transformOrigin: "50% 50%",
+        });
+      });
+      if (shine) gsap.set(shine, { x: -900 });
+
+      tlYmd
+        .to(pieces, { x: 0, y: 0, scale: 1, rotation: 0, opacity: 1, ease: "back.out(1.3)", duration: 0.9, stagger: 0.14 }, mapCont ? "-=0.25" : undefined)
+        // the outlines sweep in from the corners and settle just off the pieces, like a shadow of the logo
+        .to(moveCont1, { x: 0, y: 0, xPercent: -2.4, yPercent: -2.6, opacity: 1, ease: "power2.out", duration: 1 }, "<0.2")
+        .to(moveCont2, { x: 0, y: 0, xPercent: 2.4, yPercent: 2.6, opacity: 1, ease: "power2.out", duration: 1 }, "<");
+      // a band of light runs across the finished logo
+      if (shine) tlYmd.to(shine, { x: 2600, ease: "power1.inOut", duration: 0.8 }, "-=0.2");
+      tlYmd
+        .to({}, { duration: 0.4 })
         // zoom into the centre of the light-red left piece (354,514 1055,995 818,1189 254,802)
         // so the screen fills with the same orange-red as the catch panel behind it
-        .to(scaleCont, { scale: 35, transformOrigin: "30% 48%", ease: "none" })
-        .to(visibleCont, { opacity: 1, ease: "none" });
+        .to(scaleCont, { scale: 35, transformOrigin: "30% 48%", ease: "power2.in", duration: 1 })
+        .to(visibleCont, { opacity: 1, ease: "none", duration: 0.4 }, "-=0.3");
     }
 
     return () => {
@@ -187,33 +254,26 @@ export default function Home() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <polygon
-                  className="red-parts"
-                  points="773,194 1016,0 2077,763 1663,829"
-                  fill="#EF4224"
-                />
-                <polygon
-                  points="768,199 1061,398 668,724 359,520"
-                  fill="#941711"
-                />
-                <polygon
-                  className="red-parts"
-                  points="354,514 1055,995 818,1189 254,802"
-                  fill="#EF4224"
-                />
-                <polygon
-                  points="1293,641 1834,1023 1679,1343 1011,874"
-                  fill="#941711"
-                />
-                <polygon
-                  points="0,1111 409,1028 1309,1642 1072,1830"
-                  fill="#941711"
-                />
-                <polygon
-                  className="red-parts"
-                  points="1414,1155 1685,1343 1315,1642 1022,1449"
-                  fill="#EF4224"
-                />
+                <defs>
+                  <linearGradient id="emblem-shine-grad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stopColor="#FFFFFF" stopOpacity="0" />
+                    <stop offset="0.5" stopColor="#FFFFFF" stopOpacity="0.55" />
+                    <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+                  </linearGradient>
+                  <clipPath id="emblem-all-pieces">
+                    {EMBLEM_PIECES.map((piece) => (
+                      <polygon key={piece.points} points={piece.points} />
+                    ))}
+                  </clipPath>
+                </defs>
+                {EMBLEM_PIECES.map((piece) => (
+                  <polygon key={piece.points} className="emblem-piece" points={piece.points} fill={piece.fill} />
+                ))}
+                <g clipPath="url(#emblem-all-pieces)">
+                  <g transform="skewX(-20)">
+                    <rect className="emblem-shine" x="-400" y="-200" width="420" height="2300" fill="url(#emblem-shine-grad)" />
+                  </g>
+                </g>
               </svg>
 
               <svg
@@ -242,80 +302,34 @@ export default function Home() {
                 </g>
               </svg>
 
-              {/* each logo piece shows its own photo; swap a photo by changing its href */}
-              <svg
-                className="emblem-lg-img"
-                viewBox="0 0 2077 1830"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="SBM GOLD"
-              >
-                <defs>
-                  <clipPath id="emblem-piece-1">
-                    <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  </clipPath>
-                  <clipPath id="emblem-piece-2">
-                    <polygon points="768,199 1061,398 668,724 359,520" />
-                  </clipPath>
-                  <clipPath id="emblem-piece-3">
-                    <polygon points="354,514 1055,995 818,1189 254,802" />
-                  </clipPath>
-                  <clipPath id="emblem-piece-4">
-                    <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  </clipPath>
-                  <clipPath id="emblem-piece-5">
-                    <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  </clipPath>
-                  <clipPath id="emblem-piece-6">
-                    <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="/images/sbm/emblem-01.jpg?v=2"
-                  x="773" y="0" width="1304" height="829"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#emblem-piece-1)"
-                />
-                <image
-                  href="/images/sbm/emblem-02.jpg"
-                  x="359" y="199" width="702" height="525"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#emblem-piece-2)"
-                />
-                <image
-                  href="/images/sbm/emblem-03.jpg"
-                  x="254" y="514" width="801" height="675"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#emblem-piece-3)"
-                />
-                <image
-                  href="/images/sbm/emblem-04.jpg"
-                  x="1011" y="641" width="823" height="702"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#emblem-piece-4)"
-                />
-                <image
-                  href="/images/sbm/emblem-05.jpg"
-                  x="0" y="1028" width="1309" height="802"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#emblem-piece-5)"
-                />
-                <image
-                  href="/images/sbm/emblem-06.jpg"
-                  x="1022" y="1155" width="663" height="487"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#emblem-piece-6)"
-                />
-                {/* thin white seams between neighbouring photos */}
-                <g fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinejoin="round">
-                  <polygon points="773,194 1016,0 2077,763 1663,829" />
-                  <polygon points="768,199 1061,398 668,724 359,520" />
-                  <polygon points="354,514 1055,995 818,1189 254,802" />
-                  <polygon points="1293,641 1834,1023 1679,1343 1011,874" />
-                  <polygon points="0,1111 409,1028 1309,1642 1072,1830" />
-                  <polygon points="1414,1155 1685,1343 1315,1642 1022,1449" />
-                </g>
-              </svg>
+              {/* India map shown first; it draws in, highlights the northeast, then hands over to the logo */}
+              <div className="emblem-map">
+                <svg
+                  className="emblem-map--svg"
+                  viewBox={INDIA_MAP.viewBox}
+                  preserveAspectRatio="xMidYMid meet"
+                  role="img"
+                  aria-labelledby="emblem-map-title"
+                >
+                  <title id="emblem-map-title">
+                    Map of India highlighting the northeast states, with SBM GOLD&apos;s head office in Siliguri
+                  </title>
+                  <path className="emblem-map--rest" d={INDIA_MAP.rest} pathLength={1} />
+                  {INDIA_MAP.ne.map((state) => (
+                    <path key={state.name} className="emblem-map--ne" d={state.d}>
+                      <title>{state.name}</title>
+                    </path>
+                  ))}
+                  <circle className="emblem-map--pulse" cx={INDIA_MAP.siliguri[0]} cy={INDIA_MAP.siliguri[1]} r="10" />
+                  <circle className="emblem-map--pin" cx={INDIA_MAP.siliguri[0]} cy={INDIA_MAP.siliguri[1]} r="9" />
+                </svg>
+                <span className="emblem-map--label emblem-map--label-hq" style={mapPos(INDIA_MAP.siliguri[0], INDIA_MAP.siliguri[1] - 30)}>
+                  Siliguri HQ
+                </span>
+                <span className="emblem-map--label emblem-map--label-ne" style={mapPos(690, 470)}>
+                  Northeast India
+                </span>
+              </div>
             </div>
 
             <div className="contarea pos-rel">
